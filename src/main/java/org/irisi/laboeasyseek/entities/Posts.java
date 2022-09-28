@@ -8,7 +8,6 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @XmlRootElement(name = "root")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Posts {

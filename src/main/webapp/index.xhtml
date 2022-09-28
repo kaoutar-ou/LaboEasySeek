@@ -4,21 +4,26 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <f:view>
    <head>
-      <title>Login screen</title>
+      <title>Posts Page</title>
    </head>
    <body>
-   <h1>Login screen</h1>
+   <h1>Posts Page</h1>
    <h:form>
-      Login:
-      <h:inputText id="login" value="#{loginBean.login}" />
+      ID :
+      <h:inputText id="id" value="#{postBean.id}" />
       <br/>
-      Password:
-      <h:inputText id="password" value="#{loginBean.password}" />
+      Name :
+      <h:inputText id="name" value="#{postBean.name}" />
       <br/>
-      <h:commandButton action="#{testController.test}" value="Connect" />
+      <h:commandButton action="#{xmlController.addPost(postBean)}" value="Add Post" />
    </h:form>
-   <ui:repeat value="#{testController.posts}" var="post">
-<!--      <h:commandButton value="#{post.name}" />-->
+   <h:form>
+      Search :
+      <h:inputText id="search" value="#{xmlController.searchString}" />
+      <br/>
+      <h:commandButton action="#{xmlController.searchPostsByContent}" value="search Post" />
+   </h:form>
+   <ui:repeat value="#{xmlController.allPosts}" var="post">
       <div>
          Post name : #{post.name}
       </div>

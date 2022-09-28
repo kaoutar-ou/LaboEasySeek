@@ -1,5 +1,7 @@
 package org.irisi.laboeasyseek.entities;
 
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -9,15 +11,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "post")
 @XmlRootElement(name = "post")
 @XmlType(propOrder = { "id", "name" })
-public class Post {
+@Named("postBean")
+@SessionScoped
+public class Post implements Serializable {
+
+    private static final long serialVersionUID = -5435850275007435405L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
