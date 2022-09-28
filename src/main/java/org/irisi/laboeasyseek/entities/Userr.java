@@ -1,7 +1,6 @@
 package org.irisi.laboeasyseek.entities;
 
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;

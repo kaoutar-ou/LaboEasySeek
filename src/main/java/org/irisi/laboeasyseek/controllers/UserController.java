@@ -2,9 +2,7 @@ package org.irisi.laboeasyseek.controllers;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import org.irisi.laboeasyseek.entities.Post;
 import org.irisi.laboeasyseek.entities.Userr;
-import org.irisi.laboeasyseek.services.PostService;
 import org.irisi.laboeasyseek.services.UserrService;
 
 import java.io.Serializable;
@@ -14,10 +12,10 @@ import java.security.spec.InvalidKeySpecException;
 @Named("userController")
 @SessionScoped
 public class UserController implements Serializable {
-    UserrService userService;
+    UserrService userrService;
 
     public UserController () {
-        userService = new UserrService();
+        userrService = new UserrService();
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -64,7 +62,7 @@ public class UserController implements Serializable {
 
     public String addUser(Userr user) {
         Userr newUser = null;
-        newUser = userService.save(user);
+        newUser = userrService.save(user);
         if (newUser != null) return "created";
         return "error";
     }
@@ -79,7 +77,7 @@ public class UserController implements Serializable {
         userr.setPassword("123456789k");
         System.out.println("------------------------------hihihihi------------------------------------------");
 
-                boolean loggedIn = userService.login(user);
+                boolean loggedIn = userrService.login(user);
                 System.out.println(loggedIn);
         if (loggedIn) {
             return "loggedIn";

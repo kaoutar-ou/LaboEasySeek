@@ -34,6 +34,9 @@
    <h:form>
       <h:commandButton action="#{loginBean.testAddUser}" value="Add User Page" />
    </h:form>
+   <h:panelGroup rendered="#{not empty email}">
+      <p>Welcome #{email}, you have been logged in!</p>
+   </h:panelGroup>
    </body>
 </f:view>
 </html>

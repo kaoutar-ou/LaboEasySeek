@@ -4,11 +4,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import jakarta.servlet.http.HttpSession;
 import org.irisi.laboeasyseek.dao.EntityManagerFactorySingleton;
-import org.irisi.laboeasyseek.dao.UserrRepository;
+import org.irisi.laboeasyseek.dao.UserRepository;
 import org.irisi.laboeasyseek.entities.Userr;
 import org.irisi.laboeasyseek.utils.SessionUtils;
 
@@ -25,7 +23,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Objects;
 
-public class UserrService implements UserrRepository {
+public class UserrService implements UserRepository {
     private EntityManager em;
     private EntityTransaction et;
 
@@ -121,8 +119,8 @@ public class UserrService implements UserrRepository {
         if (dbUser != null) {
             if (validatePassword(user.getPassword(), dbUser.getPassword())) {
                 System.out.println("dbUser.getPassword()");
-//                HttpSession session = SessionUtils.getSession();
-//                session.setAttribute("email", user.getEmail());
+                HttpSession session = SessionUtils.getSession();
+                session.setAttribute("email", user.getEmail());
                 return true;
             }
         }
