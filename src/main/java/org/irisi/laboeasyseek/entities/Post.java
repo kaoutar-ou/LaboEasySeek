@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "post")
@@ -41,7 +41,6 @@ public class Post implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Long getId() {
         return id;

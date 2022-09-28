@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 public class EntityManagerFactorySingleton{
     private static final EntityManagerFactory EMF;
     static {
-        EMF = Persistence.createEntityManagerFactory("LAB");
+        EMF = Persistence.createEntityManagerFactory("hhh");
     }
     public static EntityManagerFactory getEntityManagerFactory() {
         return EMF;

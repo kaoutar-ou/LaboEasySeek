@@ -14,7 +14,7 @@ public class PostService implements PostRepository {
     private EntityTransaction et;
     public PostService() {
         em = EntityManagerFactorySingleton.getEntityManagerFactory().createEntityManager();
-        et = em.getTransaction( );
+        et = em.getTransaction();
     }
 
     @Override
@@ -29,5 +29,19 @@ public class PostService implements PostRepository {
         }
         return cp;
     }
+
+//    @Override
+//    public void save(User user) {
+//        System.out.println(user);
+//        try {
+//            et.begin();
+//            System.out.println(user);
+//            em.persist(user);
+//            et.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            et.rollback();
+//        }
+//    }
 
 }

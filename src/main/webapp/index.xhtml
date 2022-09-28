@@ -28,6 +28,12 @@
          Post name : #{post.name}
       </div>
    </ui:repeat>
+   <h:form>
+      <h:commandButton action="#{loginBean.testLogin}" value="Login Page" />
+   </h:form>
+   <h:form>
+      <h:commandButton action="#{loginBean.testAddUser}" value="Add User Page" />
+   </h:form>
    </body>
 </f:view>
 </html>

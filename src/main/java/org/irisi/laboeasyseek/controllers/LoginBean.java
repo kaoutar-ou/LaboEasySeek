@@ -40,4 +40,11 @@ public class LoginBean implements Serializable {
         XMLService.addPost(post);
         return password.equals( "007" ) ? "success" : "failure";
     }
+
+    public String testLogin() {
+        return "logIn";
+    }
+    public String testAddUser() {
+        return "addUser";
+    }
 }
