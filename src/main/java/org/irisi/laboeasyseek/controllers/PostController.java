@@ -14,6 +14,10 @@ public class PostController implements Serializable {
 
     private static final long serialVersionUID = -5433850275008415405L;
 
+    public String addPostPage() {
+        return "addPost";
+    }
+
     public void addPost() throws JAXBException {
         System.out.println("hi");
         Post post = new Post();

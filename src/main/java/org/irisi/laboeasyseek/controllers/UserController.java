@@ -1,6 +1,7 @@
 package org.irisi.laboeasyseek.controllers;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import org.irisi.laboeasyseek.entities.Userr;
 import org.irisi.laboeasyseek.services.UserrService;
@@ -53,11 +54,12 @@ public class UserController implements Serializable {
 
 
         // login test
-        Userr user = new Userr();
-        user.setEmail("kaoutar4@gmail.com");
-        user.setPassword("123586789k");
-        System.out.println(userrService.login(user));
+//        Userr user = new Userr();
+//        user.setEmail("kaoutar4@gmail.com");
+//        user.setPassword("123586789k");
+//        System.out.println(userrService.login(user));
 
+//        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
     }
 
     public String addUser(Userr user) {
@@ -73,6 +75,7 @@ public class UserController implements Serializable {
         Userr userr = new Userr();
 //        userr.setEmail(user.getEmail());
 //        userr.setPassword(user.getPassword());
+        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
         userr.setEmail("kaoutar4@gmail.com");
         userr.setPassword("123456789k");
         System.out.println("------------------------------hihihihi------------------------------------------");
@@ -87,10 +90,10 @@ public class UserController implements Serializable {
 //        return  "loggedIn";
     }
 //
-//    public String logout() {
-//        if (userService.logout()) {
-//            return "logIn";
-//        }
-//        return "test";
-//    }
+    public String logout() {
+        if (userrService.logout()) {
+            return "loggedOut";
+        }
+        return "test";
+    }
 }

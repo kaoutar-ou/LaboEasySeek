@@ -63,4 +63,8 @@ public class XMLController implements Serializable {
     public void addPost(Post post) throws JAXBException {
         XMLService.addPost(post);
     }
+
+
+
+
 }

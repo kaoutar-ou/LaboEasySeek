@@ -1,13 +1,16 @@
 package org.irisi.laboeasyseek.controllers;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpSession;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
-import org.irisi.laboeasyseek.entities.Post;
-import org.irisi.laboeasyseek.entities.Posts;
+import org.irisi.laboeasyseek.entities.*;
+import org.irisi.laboeasyseek.services.UserrService;
+import org.irisi.laboeasyseek.services.XMLService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -54,10 +57,38 @@ public class test implements Serializable {
 //            addPost(data, post);
 //        }
 
-        System.out.println("hi");
-        xpathTestFct();
+//        System.out.println("hi");
+//        xpathTestFct();
 
 //        test();
+
+
+//        // Add pub
+        UserrService userrService = new UserrService();
+
+        List<Photo> photos = new ArrayList<>();
+        photos.add(new Photo(1L, "jjjjjj"));
+        photos.add(new Photo(1L, "jjjj5j"));
+        Media media = new Media(photos);
+
+        Publication publication = new Publication();
+        publication.setId(1L);
+        publication.setTitle("tttt");
+        publication.setDescription("dddd");
+        publication.setDocuments(null);
+        publication.setMedia(media);
+//        Userr userr = userrService.findUserByEmail(((HttpSession)(FacesContext.getCurrentInstance()
+//                .getExternalContext())).getAttribute("email").toString());
+
+        Userr userr = userrService.findUserByEmail("kaoutar477@gmail.com");
+
+        User user = new User();
+        user.setId(userr.getId());
+        user.setEmail(userr.getEmail());
+
+        XMLService.addPublication(publication, user);
+
+        List<User> userList = XMLService.getAllUsersPublications();
     }
 
 

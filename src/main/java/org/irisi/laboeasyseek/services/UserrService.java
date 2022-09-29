@@ -132,7 +132,13 @@ public class UserrService implements UserRepository {
         return false;
     }
 
-    public Boolean validatePassword(String typedPassword, String dbPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean validatePassword(String typedPassword, String dbPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return Objects.equals(getSecurePassword(typedPassword), dbPassword);
+    }
+
+    public boolean logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return true;
     }
 }

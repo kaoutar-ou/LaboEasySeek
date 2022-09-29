@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <user id="302">
+        <email>kaoutar477@gmail.com</email>
+        <publications>
+            <publication id="1">
+                <title>jjj</title>
+                <description>fcdf</description>
+            </publication>
+            <publication id="1">
+                <title>jjj</title>
+                <description>fcdf</description>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+            <publication id="1">
+                <title>tttt</title>
+                <description>dddd</description>
+                <media>
+                    <photo id="1">
+                        <title>jjjjjj</title>
+                    </photo>
+                    <photo id="1">
+                        <title>jjjj5j</title>
+                    </photo>
+                </media>
+            </publication>
+        </publications>
+    </user>
+</root>
