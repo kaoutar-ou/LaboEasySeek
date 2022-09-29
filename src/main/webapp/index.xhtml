@@ -8,35 +8,22 @@
    </head>
    <body>
    <h1>Posts Page</h1>
-   <h:form>
+   <h:form enctype="multipart/form-data">
       ID :
       <h:inputText id="id" value="#{postBean.id}" />
       <br/>
       Name :
       <h:inputText id="name" value="#{postBean.name}" />
       <br/>
-      <h:commandButton action="#{xmlController.addPost(postBean)}" value="Add Post" />
-   </h:form>
-   <h:form>
-      Search :
-      <h:inputText id="search" value="#{xmlController.searchString}" />
+      Title :
+        <h:inputText id="title" value="#{postBean.title}" />
       <br/>
-      <h:commandButton action="#{xmlController.searchPostsByContent}" value="search Post" />
+      Photo <h:inputFile value="#{uploadManagedBean.part}"/>
+      <br/>
+      <h:commandButton action="#{postController.addPost(postBean,uploadManagedBean)}" value="Add Post" />
    </h:form>
-   <ui:repeat value="#{xmlController.allPosts}" var="post">
-      <div>
-         Post name : #{post.name}
-      </div>
-   </ui:repeat>
-   <h:form>
-      <h:commandButton action="#{loginBean.testLogin}" value="Login Page" />
-   </h:form>
-   <h:form>
-      <h:commandButton action="#{loginBean.testAddUser}" value="Add User Page" />
-   </h:form>
-   <h:panelGroup rendered="#{not empty email}">
-      <p>Welcome #{email}, you have been logged in!</p>
-   </h:panelGroup>
+
+
    </body>
 </f:view>
 </html>

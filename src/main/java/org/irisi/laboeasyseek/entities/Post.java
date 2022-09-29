@@ -2,6 +2,7 @@ package org.irisi.laboeasyseek.entities;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import jakarta.servlet.http.Part;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -18,7 +19,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table(name = "post")
 @XmlRootElement(name = "post")
-@XmlType(propOrder = { "id", "name" })
+@XmlType(propOrder = {"id", "name","photo","title"})
 @Named("postBean")
 @SessionScoped
 public class Post implements Serializable {
@@ -32,6 +33,25 @@ public class Post implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+
+    private String photo = "";
+
+    private String title = "";
+
+    public String getTitle() {
+        return title;
+    }
+
+    @XmlElement
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Post(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -50,5 +70,18 @@ public class Post implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    @XmlElement
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+
+
 
 }
