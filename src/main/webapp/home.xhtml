@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition template="base.xhtml">
     <ui:define name="body">
         <div class="bg-gray-100 h-screen p-9">
@@ -16,8 +16,10 @@
                 <div class="relative text-gray-500 focus-within:text-violet-500 m-3 col-span-4">
                     <h:form id="searchForm">
                           <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                              <h:commandButton id="searchButton" action="#{xmlController.searchPostsByContent}" style="display: none" />
-                              <button type="submit" id="searchForm:searchButton" name="searchForm:searchButton"><i class="fa fa-search fa-lg"></i></button>
+                              <h:commandButton id="searchButton" action="#{xmlController.searchPostsByContent}"
+                                               style="display: none"/>
+                              <button type="submit" id="searchForm:searchButton" name="searchForm:searchButton"><i
+                                      class="fa fa-search fa-lg"></i></button>
                           </span>
                         <h:inputText
                                 styleClass="rounded-2xl py-2 pl-12 w-full text-sm bg-white text-gray-600 hover:outline hover:outline-1 hover:outline-violet-500 focus:outline focus:outline-1 focus:outline-violet-500 focus:text-black"
@@ -39,7 +41,15 @@
             <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 gap-4">
                 <ui:repeat value="#{xmlController.allPosts}" var="post">
                     <div class="rounded-md shadow-md bg-white p-3">
-                        Post name : #{post.name}
+                        <div>
+                            Post title : #{post.title}
+                        </div>
+                        <div>
+                            Post description : #{post.description}
+                        </div>
+                        <div>
+                            Post media : <a href="#{facesContext.externalContext.requestContextPath}/resources/media/#{post.photo}">#{post.photo}</a>
+                        </div>
                     </div>
                 </ui:repeat>
             </div>

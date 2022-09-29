@@ -2,7 +2,6 @@ package org.irisi.laboeasyseek.entities;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -29,17 +28,17 @@ public class Publication implements Serializable {
     private String description;
 
 
-    private Media media;
+    private MediaTest mediaTest;
 
     private Documents documents;
 
-    public Media getMedia() {
-        return media;
+    public MediaTest getMediaTest() {
+        return mediaTest;
     }
 
     @XmlElement(name = "media")
-    public void setMedia(Media media) {
-        this.media = media;
+    public void setMediaTest(MediaTest mediaTest) {
+        this.mediaTest = mediaTest;
     }
 
     public Documents getDocuments() {

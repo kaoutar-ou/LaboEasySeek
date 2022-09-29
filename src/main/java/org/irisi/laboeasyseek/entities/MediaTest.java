@@ -9,15 +9,15 @@ import java.util.List;
 
 @XmlRootElement(name = "media")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Media {
+public class MediaTest {
     @XmlElement(name = "photo")
     private List<Photo> photos;
 
-    public Media(List<Photo> photos) {
+    public MediaTest(List<Photo> photos) {
         this.photos = photos;
     }
 
-    public Media() {
+    public MediaTest() {
     }
 
     public List<Photo> getPhotos() {

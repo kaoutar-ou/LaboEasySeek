@@ -11,7 +11,7 @@ public class presentation {
         PostService postService = new PostService();
 
         Post post = new Post();
-        post.setName("first post");
+        post.setTitle("first post");
         Post p = postService.save(post);
 //
 //        List<Compte> comptes = sm.findAll();

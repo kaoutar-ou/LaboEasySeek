@@ -12,8 +12,8 @@
                 Add a new post
             </div>
             <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 gap-4 bg-white shadow-md">
-                <h:form
-                        styleClass="p-3">
+
+                <h:form enctype="multipart/form-data" styleClass="p-3">
 
                     <div class="flex flex-col w-full my-5">
                         <h:outputText
@@ -22,34 +22,32 @@
                         <h:inputText
                                 class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                 id="title"
-                                required="true"
-                                value="#{userrBean.email}"
-                                requiredMessage="Email is required !"/>
+                                value="#{postBean.title}"/>
                         <h:message
                                 styleClass="text-red-400 w-full text-[0.7rem]"
-                                for="email"/>
+                                for="title"/>
                     </div>
 
                     <div class="flex flex-col w-full my-5">
                         <h:outputText
                                 styleClass="my-3"
-                                value="Password"/>
+                                value="Description"/>
                         <h:inputText
                                 class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                id="password"
-                                required="true"
-                                value="#{userrBean.password}"
-                                requiredMessage="Password is required !"/>
+                                id="description"
+                                value="#{postBean.description}"/>
                         <h:message
                                 styleClass="text-red-400 w-full text-[0.7rem]"
-                                for="password"/>
+                                for="description"/>
                     </div>
 
-                    <h:commandButton
-                            styleClass="bg-violet-500 w-full rounded-lg p-2 text-white"
-                            action="#{userController.login(userrBean)}"
-                            value="Login"/>
-
+                    <div class="flex flex-col w-full my-5">
+                        <h:outputText
+                                styleClass="my-3"
+                                value="Media"/>
+                        <h:inputFile value="#{uploadManagedBean.part}"/>
+                    </div>
+                    <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white" action="#{postController.addPost(postBean,uploadManagedBean)}" value="Add Post" />
                 </h:form>
             </div>
         </div>

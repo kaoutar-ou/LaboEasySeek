@@ -1,9 +1,7 @@
 package org.irisi.laboeasyseek.controllers;
 
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import jakarta.servlet.http.HttpSession;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -29,8 +27,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @Named("testController")
@@ -69,14 +65,14 @@ public class test implements Serializable {
         List<Photo> photos = new ArrayList<>();
         photos.add(new Photo(1L, "jjjjjj"));
         photos.add(new Photo(1L, "jjjj5j"));
-        Media media = new Media(photos);
+        MediaTest mediaTest = new MediaTest(photos);
 
         Publication publication = new Publication();
         publication.setId(1L);
         publication.setTitle("tttt");
         publication.setDescription("dddd");
         publication.setDocuments(null);
-        publication.setMedia(media);
+        publication.setMediaTest(mediaTest);
 //        Userr userr = userrService.findUserByEmail(((HttpSession)(FacesContext.getCurrentInstance()
 //                .getExternalContext())).getAttribute("email").toString());
 
@@ -125,7 +121,10 @@ public class test implements Serializable {
                 System.out.println("test : " + eElement.getAttribute("id"));
 //                System.out.println("test : " + );
 
-                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+//                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+                Post post = new Post();
+                post.setId(Long.parseLong(eElement.getAttribute("id")));
+                post.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
 //                post.setId(Long.parseLong(eElement.getAttribute("id")));
 //                post.setName(eElement
 //                        .getElementsByTagName("name")
@@ -173,7 +172,11 @@ public class test implements Serializable {
                 System.out.println("test : " + eElement.getAttribute("id"));
 //                System.out.println("test : " + );
 
-                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+//                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+
+                Post post = new Post();
+                post.setId(Long.parseLong(eElement.getAttribute("id")));
+                post.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
 
 //                Post post = new Post();
 //                post.setId(Long.parseLong(eElement.getAttribute("id")));
@@ -214,7 +217,7 @@ public class test implements Serializable {
 
             Post post = new Post();
             post.setId((long) j);
-            post.setName("j"+j);
+            post.setTitle("j"+j);
 
             postList.add(post);
         }

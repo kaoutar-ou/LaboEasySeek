@@ -1,5 +1,6 @@
 package org.irisi.laboeasyseek.services;
 
+import jakarta.faces.context.FacesContext;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -28,25 +29,35 @@ import java.util.Objects;
 
 public class XMLService {
 
-    private static final String fileLocation = "./root.xml";
+//    private static final String fileLocation = "./root.xml";
     private static final String filepath = "./roottest.xml";
 
-    private static void writeToFile(Object data, String filePath) throws JAXBException
+    private static final String fileLocation = (FacesContext.getCurrentInstance( ).getExternalContext( ).getRealPath("") + File.separator + "resources" + File.separator  + "XMLDataBase"+File.separator +"root.xml").replace("\\", "/");
+
+    public XMLService() {
+        File folder = new File(fileLocation);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+    }
+
+    private static void writeToFile(Posts data, String filePath) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(Object.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Posts.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         jaxbMarshaller.marshal(data, new File(filePath));
     }
 
-    private static Object readFromFile(String filePath) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(Object.class);
+    private static Posts readFromFile(String filePath) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(Posts.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        return (Object) jaxbUnmarshaller.unmarshal(new File(filePath));
+        return (Posts) jaxbUnmarshaller.unmarshal(new File(filePath));
     }
 
     public static void addPost(Post post) throws JAXBException {
+        System.out.println(fileLocation);
         File tempFile = new File(fileLocation);
         if (tempFile.exists()) {
             Posts data = (Posts) readFromFile(fileLocation);
@@ -75,8 +86,9 @@ public class XMLService {
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document xmlDocument = builder.parse(fileIS);
         XPath xPath = XPathFactory.newInstance().newXPath();
-        String expression = "/root/post" +
-                "[./name[contains(.,'j')] or @id=47]";
+        String expression = "/root/post";
+//        String expression = "/root/post" +
+//                "[./name[contains(.,'j')] or @id=47]";
         NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
 
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -86,7 +98,32 @@ public class XMLService {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
 
-                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+//                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+
+                Post post = new Post();
+                post.setId(Long.parseLong(eElement.getAttribute("id")));
+                if(eElement.hasChildNodes()) {
+                    System.out.println("***************" + eElement.getElementsByTagName("title").item(0));
+                    if (eElement.getElementsByTagName("title").item(0) != null) {
+                        post.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
+                    }
+//                }
+//                if(eElement.hasAttribute("description")) {
+                    System.out.println("Element type :" + eElement.getElementsByTagName("description").item(0).getTextContent());
+
+                    System.out.println("***************" + eElement.getElementsByTagName("description").item(0).getTextContent());
+                    if (eElement.getElementsByTagName("description").item(0) != null) {
+                        post.setDescription(eElement.getElementsByTagName("description").item(0).getTextContent());
+                    }
+//                }
+//                if(eElement.hasAttribute("photo")) {
+                    if (eElement.getElementsByTagName("photo").item(0) != null) {
+                        System.out.println("***************" + eElement.getElementsByTagName("photo").item(0).getTextContent());
+                        post.setPhoto(eElement.getElementsByTagName("photo").item(0).getTextContent());
+                    }
+                }
+                System.out.println("-----------------________________-----------------__________-----------____________ :" + post.getTitle());
+
 
                 postList.add(post);
             }
@@ -104,7 +141,7 @@ public class XMLService {
         Document xmlDocument = builder.parse(fileIS);
         XPath xPath = XPathFactory.newInstance().newXPath();
         String expression = "/root/post" +
-                "[./name[contains(.,'"+searchString+"')]]";
+                "[./title[contains(.,'"+searchString+"')] or ./description[contains(.,'"+searchString+"')]]";
         NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
 
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -112,7 +149,38 @@ public class XMLService {
 
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+//                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
+
+
+//                Post post = new Post();
+//                post.setId(Long.parseLong(eElement.getAttribute("id")));
+//                post.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
+//                postList.add(post);
+
+
+                Post post = new Post();
+                post.setId(Long.parseLong(eElement.getAttribute("id")));
+                if(eElement.hasChildNodes()) {
+                    System.out.println("***************" + eElement.getElementsByTagName("title").item(0));
+                    if (eElement.getElementsByTagName("title").item(0) != null) {
+                        post.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
+                    }
+//                }
+//                if(eElement.hasAttribute("description")) {
+                    System.out.println("Element type :" + eElement.getElementsByTagName("description").item(0).getTextContent());
+                    if (eElement.getElementsByTagName("description").item(0) != null) {
+                        post.setDescription(eElement.getElementsByTagName("description").item(0).getTextContent());
+                    }
+//                }
+//                if(eElement.hasAttribute("photo")) {
+
+                    if (eElement.getElementsByTagName("photo").item(0) != null) {
+                        post.setPhoto(eElement.getElementsByTagName("photo").item(0).getTextContent());
+                    }
+                }
+                System.out.println("-----------------________________-----------------__________-----------____________ :" + post.getTitle());
+
+
                 postList.add(post);
             }
         }

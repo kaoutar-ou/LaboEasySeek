@@ -19,6 +19,10 @@ public class UserController implements Serializable {
         userrService = new UserrService();
     }
 
+    public String homePage() {
+        return "home";
+    }
+
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
 //        User user = new User();
 ////        UserService userService1 = new UserService();
@@ -33,11 +37,11 @@ public class UserController implements Serializable {
 
         UserrService userrService = new UserrService();
 
-        // add user test
-//        Userr user = new Userr();
-//        user.setEmail("kaoutar2@gmail.com");
-//        user.setPassword("123586789k");
-//        userrService.save(user);
+       //  add user test
+        Userr user = new Userr();
+        user.setEmail("abdelhadi2@gmail.com");
+        user.setPassword("896618abdelhadi");
+        userrService.save(user);
 
 
         // find user test

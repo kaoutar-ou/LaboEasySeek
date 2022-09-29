@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 @Named("xmlController")
 @SessionScoped
@@ -61,6 +62,7 @@ public class XMLController implements Serializable {
 //    }
 
     public void addPost(Post post) throws JAXBException {
+
         XMLService.addPost(post);
     }
 

@@ -6,6 +6,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "root")
@@ -13,7 +14,7 @@ import java.util.List;
 public class Posts {
 
     @XmlElement(name = "post")
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
 
     public Posts(List<Post> posts) {
         this.posts = posts;

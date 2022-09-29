@@ -36,7 +36,7 @@ public class LoginBean implements Serializable {
         System.out.println("hi");
         Post post = new Post();
         post.setId(147L);
-        post.setName("fffff");
+        post.setTitle("fffff");
         XMLService.addPost(post);
         return password.equals( "007" ) ? "success" : "failure";
     }

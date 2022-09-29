@@ -8,8 +8,8 @@
 <!--<f:view>-->
 <ui:composition template="base.xhtml">
     <ui:define name="body">
-        <div class="flex w-full min-h-screen justify-center">
-            <div class="shadow-md w-4/6 self-center p-5">
+        <div class="flex w-full min-h-screen justify-center bg-gray-100">
+            <div class="shadow-md w-4/6 self-center p-5 bg-white">
                 <h1 class="w-full text-center">Login</h1>
 
                 <h:form
@@ -34,7 +34,7 @@
                         <h:outputText
                                 styleClass="my-3"
                                 value="Password"/>
-                        <h:inputText
+                        <h:inputSecret
                                 class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                 id="password"
                                 required="true"

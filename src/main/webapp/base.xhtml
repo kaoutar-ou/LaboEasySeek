@@ -9,6 +9,7 @@
    <h:head>
       <script src="https://use.fontawesome.com/ca82e29416.js" type="application/javascript"></script>
       <script src="https://cdn.tailwindcss.com" type="application/javascript"></script>
+       <script type="application/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/js/download.js"></script>
    </h:head>
    <h:body>
       <div>
@@ -17,16 +18,29 @@
                <div
                   class="w-full shadow-md h-12 bg-white flex items-center relative"
                >
-                  <div>
-                     Header
-                  </div>
+<!--                  <div>-->
+<!--                     Header-->
+<!--                  </div>-->
+                  <h:panelGroup rendered="#{empty email}">
+                     <h:form>
+                        <h:commandButton class="p-1 cursor-pointer focus:outline-none"
+                                         action="home" value="Home">
+                        </h:commandButton>
+                     </h:form>
+                  </h:panelGroup>
                   <div class="absolute inset-y-0 right-3 flex items-center">
                      <h:panelGroup rendered="#{not empty email}">
                         <div>#{email}</div>
                      </h:panelGroup>
                      <h:panelGroup rendered="#{empty email}">
-                        <div>Test</div>
+                        <div>...</div>
                      </h:panelGroup>
+                      <h:panelGroup rendered="#{not empty email}">
+                          <h:form id="logoutForm" styleClass="mx-3">
+                              <h:commandButton id="logoutButton" action="#{userController.logout}" style="display: none" />
+                              <button type="submit" id="logoutForm:logoutButton" name="logoutForm:logoutButton"><i class="fa fa-sign-out fa-lg"></i></button>
+                          </h:form>
+                      </h:panelGroup>
                   </div>
                </div>
             </ui:insert>
