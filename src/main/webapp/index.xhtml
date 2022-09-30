@@ -3,46 +3,19 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <f:view>
-   <head>
+   <h:head>
       <title>Posts Page</title>
-   </head>
-   <body>
-   <h1>Posts Page</h1>
-   <h:form enctype="multipart/form-data">
-      ID :
-      <h:inputText id="id" value="#{postBean.id}" />
-      <br/>
-      Name :
-      <h:inputText id="name" value="#{postBean.title}" />
-      <br/>
-      Title :
-        <h:inputText id="title" value="#{postBean.title}" />
-      <br/>
-      Photo <h:inputFile value="#{uploadManagedBean.part}"/>
-      <br/>
-      <h:commandButton action="#{postController.addPost(postBean,uploadManagedBean)}" value="Add Post" />
-   </h:form>
-
-
-   <ui:repeat value="#{xmlController.allPosts}" var="post">
-      <div>
-         Post name : #{post.title}
+      <script src="https://cdn.tailwindcss.com" type="application/javascript"></script>
+   </h:head>
+   <body class="relative">
+      <img src="#{facesContext.externalContext.requestContextPath}/resources/images/Websites.png" class="w-screen h-screen" />
+      <div class="absolute bottom-64 left-64">
+         <h:form>
+            <h:commandButton styleClass="text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-xl bg-white p-2" action="#{userController.loginPage}" value="Get started" />
+         </h:form>
       </div>
-   </ui:repeat>
-   <h:form>
-      <h:commandButton action="#{loginBean.testLogin}" value="Login Page" />
-   </h:form>
-   <h:form>
-      <h:commandButton action="#{loginBean.testAddUser}" value="Add User Page" />
-   </h:form>
-   <h:form>
-      <h:commandButton action="#{userController.logout}" value="Logout" />
-   </h:form>
-   <h:panelGroup rendered="#{not empty email}">
-      <p>Welcome #{email}</p>
-   </h:panelGroup>
-
    </body>
+
 </f:view>
 </html>
 

@@ -7,6 +7,7 @@ import org.irisi.laboeasyseek.entities.Post;
 import org.irisi.laboeasyseek.entities.UploadManagedBean;
 import org.irisi.laboeasyseek.services.UploadHelper;
 import org.irisi.laboeasyseek.services.XMLService;
+import org.irisi.laboeasyseek.utils.SessionUtils;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -20,11 +21,15 @@ public class PostController implements Serializable {
     public String addPostPage() {
         return "addPost";
     }
+    public String homePage() {
+        return "home";
+    }
 
     public void addPost(Post post, UploadManagedBean uploadManagedBean) throws JAXBException {
         processUpload(post,uploadManagedBean);
         Random random = new Random();
         post.setId(random.nextLong());
+        post.setPublisher(SessionUtils.getEmail());
         XMLService.addPost(post);
     }
 

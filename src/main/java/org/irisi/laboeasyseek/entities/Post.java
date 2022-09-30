@@ -19,7 +19,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table(name = "post")
 @XmlRootElement(name = "post")
-@XmlType(propOrder = {"id","title","photo","description"})
+@XmlType(propOrder = {"id","title","photo","description", "website", "category", "publisher", "eventName", "eventDate", "eventLocal", "tag", "version"})
 @Named("postBean")
 @SessionScoped
 public class Post implements Serializable {
@@ -39,6 +39,94 @@ public class Post implements Serializable {
     private String title;
 
     private String description;
+
+    private String website;
+
+    private String category;
+
+    private String publisher;
+
+    private String eventName;
+
+    private String eventDate;
+
+    private String eventLocal;
+
+    private String tag;
+
+    private String version;
+
+    public String getVersion() {
+        return version;
+    }
+
+    @XmlElement(name = "version")
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    @XmlElement(name = "eventName")
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    @XmlElement(name = "eventDate")
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public String getEventLocal() {
+        return eventLocal;
+    }
+
+    @XmlElement(name = "eventLocal")
+    public void setEventLocal(String eventLocal) {
+        this.eventLocal = eventLocal;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    @XmlElement(name = "tag")
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    @XmlElement(name = "website")
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    @XmlElement(name = "category")
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    @XmlElement(name = "publisher")
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
     public String getDescription() {
         return description;

@@ -98,8 +98,6 @@ public class XMLService {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
 
-//                Post post = new Post(Long.parseLong(eElement.getAttribute("id")), eElement.getElementsByTagName("name").item(0).getTextContent());
-
                 Post post = new Post();
                 post.setId(Long.parseLong(eElement.getAttribute("id")));
                 if(eElement.hasChildNodes()) {
@@ -107,19 +105,39 @@ public class XMLService {
                     if (eElement.getElementsByTagName("title").item(0) != null) {
                         post.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
                     }
-//                }
-//                if(eElement.hasAttribute("description")) {
                     System.out.println("Element type :" + eElement.getElementsByTagName("description").item(0).getTextContent());
 
                     System.out.println("***************" + eElement.getElementsByTagName("description").item(0).getTextContent());
                     if (eElement.getElementsByTagName("description").item(0) != null) {
                         post.setDescription(eElement.getElementsByTagName("description").item(0).getTextContent());
                     }
-//                }
-//                if(eElement.hasAttribute("photo")) {
                     if (eElement.getElementsByTagName("photo").item(0) != null) {
                         System.out.println("***************" + eElement.getElementsByTagName("photo").item(0).getTextContent());
                         post.setPhoto(eElement.getElementsByTagName("photo").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("website").item(0) != null) {
+                        post.setWebsite(eElement.getElementsByTagName("website").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("category").item(0) != null) {
+                        post.setCategory(eElement.getElementsByTagName("category").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("publisher").item(0) != null) {
+                        post.setPublisher(eElement.getElementsByTagName("publisher").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("eventName").item(0) != null) {
+                        post.setEventName(eElement.getElementsByTagName("eventName").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("eventDate").item(0) != null) {
+                        post.setEventDate(eElement.getElementsByTagName("eventDate").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("eventLocal").item(0) != null) {
+                        post.setEventLocal(eElement.getElementsByTagName("eventLocal").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("tag").item(0) != null) {
+                        post.setTag(eElement.getElementsByTagName("tag").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("version").item(0) != null) {
+                        post.setVersion(eElement.getElementsByTagName("version").item(0).getTextContent());
                     }
                 }
                 System.out.println("-----------------________________-----------------__________-----------____________ :" + post.getTitle());
@@ -141,7 +159,7 @@ public class XMLService {
         Document xmlDocument = builder.parse(fileIS);
         XPath xPath = XPathFactory.newInstance().newXPath();
         String expression = "/root/post" +
-                "[./title[contains(.,'"+searchString+"')] or ./description[contains(.,'"+searchString+"')]]";
+                "[./title[contains(.,'"+searchString+"')] or ./description[contains(.,'\"+searchString+\"')] or ./eventName[contains(.,'"+searchString+"')] or ./eventLocal[contains(.,'"+searchString+"')]]";
         NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
 
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -176,6 +194,31 @@ public class XMLService {
 
                     if (eElement.getElementsByTagName("photo").item(0) != null) {
                         post.setPhoto(eElement.getElementsByTagName("photo").item(0).getTextContent());
+                    }
+
+                    if (eElement.getElementsByTagName("website").item(0) != null) {
+                        post.setWebsite(eElement.getElementsByTagName("website").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("category").item(0) != null) {
+                        post.setCategory(eElement.getElementsByTagName("category").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("publisher").item(0) != null) {
+                        post.setPublisher(eElement.getElementsByTagName("publisher").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("eventName").item(0) != null) {
+                        post.setEventName(eElement.getElementsByTagName("eventName").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("eventDate").item(0) != null) {
+                        post.setEventDate(eElement.getElementsByTagName("eventDate").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("eventLocal").item(0) != null) {
+                        post.setEventLocal(eElement.getElementsByTagName("eventLocal").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("tag").item(0) != null) {
+                        post.setTag(eElement.getElementsByTagName("tag").item(0).getTextContent());
+                    }
+                    if (eElement.getElementsByTagName("version").item(0) != null) {
+                        post.setVersion(eElement.getElementsByTagName("version").item(0).getTextContent());
                     }
                 }
                 System.out.println("-----------------________________-----------------__________-----------____________ :" + post.getTitle());

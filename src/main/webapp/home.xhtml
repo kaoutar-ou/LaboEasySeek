@@ -42,13 +42,35 @@
                 <ui:repeat value="#{xmlController.allPosts}" var="post">
                     <div class="rounded-md shadow-md bg-white p-3">
                         <div>
-                            Post title : #{post.title}
+                            <span class="font-semibold"> Post title : </span> #{post.title}
                         </div>
                         <div>
-                            Post description : #{post.description}
+                            <span class="font-semibold"> Post description : </span> #{post.description}
                         </div>
                         <div>
-                            Post media : <a href="#{facesContext.externalContext.requestContextPath}/resources/media/#{post.photo}">#{post.photo}</a>
+                            <span class="font-semibold"> Post media : </span> <a class="text-violet-500" href="#{facesContext.externalContext.requestContextPath}/resources/media/#{post.photo}">#{post.photo}</a>
+                        </div>
+
+
+                        <div>
+                            <span class="font-semibold"> Event name : </span> #{post.eventName}
+                        </div>
+                        <div>
+                            <span class="font-semibold"> Event date : </span> #{post.eventDate}
+                        </div>
+                        <div>
+                            <span class="font-semibold"> Event local : </span> #{post.eventLocal}
+                        </div>
+
+
+                        <div>
+                            <span class="font-semibold"> Website : </span> #{post.website}
+                        </div>
+                        <div>
+                            <span class="font-semibold"> Tag : </span> #{post.tag}
+                        </div>
+                        <div>
+                            <span class="font-semibold"> Version : </span> #{post.version}
                         </div>
                     </div>
                 </ui:repeat>

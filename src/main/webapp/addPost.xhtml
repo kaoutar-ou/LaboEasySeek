@@ -7,50 +7,145 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="base.xhtml">
     <ui:define name="body">
-        <div class="bg-gray-100 h-screen p-9">
+        <div class="bg-gray-100 min-h-screen p-9">
             <div class="text-center m-3">
                 Add a new post
             </div>
-            <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 gap-4 bg-white shadow-md">
+            <h:form enctype="multipart/form-data" styleClass="p-3">
+            <div class="p-5 bg-white shadow-md m-5">
 
-                <h:form enctype="multipart/form-data" styleClass="p-3">
+                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    <div class="flex flex-col w-full my-5">
-                        <h:outputText
-                                styleClass="my-3"
-                                value="Title"/>
-                        <h:inputText
-                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                id="title"
-                                value="#{postBean.title}"/>
-                        <h:message
-                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                for="title"/>
+                    <div class="col-span-1 p-3">
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Title"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="title"
+                                    value="#{postBean.title}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="title"/>
+                        </div>
+
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Description"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="description"
+                                    value="#{postBean.description}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="description"/>
+                        </div>
+
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Media"/>
+                            <h:inputFile value="#{uploadManagedBean.part}"/>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col w-full my-5">
-                        <h:outputText
-                                styleClass="my-3"
-                                value="Description"/>
-                        <h:inputText
-                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                id="description"
-                                value="#{postBean.description}"/>
-                        <h:message
-                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                for="description"/>
+
+                    <div class="col-span-1 p-3">
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Event Name"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="eventName"
+                                    value="#{postBean.eventName}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="eventName"/>
+                        </div>
+
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Event Date"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="eventDate"
+                                    value="#{postBean.eventDate}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="eventDate"/>
+                        </div>
+
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Event Local"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="eventLocal"
+                                    value="#{postBean.eventLocal}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="eventLocal"/>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col w-full my-5">
-                        <h:outputText
-                                styleClass="my-3"
-                                value="Media"/>
-                        <h:inputFile value="#{uploadManagedBean.part}"/>
+
+
+                    <div class="col-span-1 p-3">
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Website"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="website"
+                                    value="#{postBean.website}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="website"/>
+                        </div>
+
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Tag"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="tag"
+                                    value="#{postBean.tag}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="tag"/>
+                        </div>
+
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Version"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="version"
+                                    value="#{postBean.version}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="version"/>
+                        </div>
                     </div>
-                    <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white" action="#{postController.addPost(postBean,uploadManagedBean)}" value="Add Post" />
-                </h:form>
             </div>
-        </div>
+                <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white" action="#{postController.addPost(postBean,uploadManagedBean)}" value="Add Post" />
+            </div>
+
+            </h:form>
+
+            <h:form>
+            <h:commandButton styleClass=" text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-md p-2" action="#{postController.homePage}" value="Return" />
+        </h:form>
+
+    </div>
     </ui:define>
 </ui:composition>
 </html>

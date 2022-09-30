@@ -23,6 +23,10 @@ public class UserController implements Serializable {
         return "home";
     }
 
+    public String loginPage() {
+        return "login";
+    }
+
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
 //        User user = new User();
 ////        UserService userService1 = new UserService();

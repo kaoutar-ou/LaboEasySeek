@@ -31,17 +31,18 @@ public class AuthorizationFilter implements Filter {
             String requestURI = httpServletRequest.getRequestURI();
             if (httpSession != null && httpSession.getAttribute("email") != null) {
                 if (requestURI.contains("/login.xhtml")) {
-                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/index.xhtml");
+                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/home.xhtml");
                 }
             }
 //            else {
                 if (requestURI.contains("/login.xhtml")
+                        || requestURI.contains("/index.xhtml")
                     || (httpSession != null && httpSession.getAttribute("email") != null)
                     || requestURI.contains("/public/")
                     || requestURI.contains("javax.faces.resource")) {
                     chain.doFilter(request, response);
                 }
-            else {
+                else {
                     httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.xhtml");
                 }
 //            }
