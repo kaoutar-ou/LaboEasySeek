@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h:head>
+      <script src="https://use.fontawesome.com/ca82e29416.js" type="application/javascript"></script>
+      <script src="https://cdn.tailwindcss.com" type="application/javascript"></script>
+       <script type="application/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/js/download.js"></script>
+   </h:head>
+   <h:body>
+      <div>
+         <div id="header">
+            <ui:insert name="header">
+               <div
+                  class="w-full shadow-md h-12 bg-white flex items-center relative"
+               >
+<!--                  <div>-->
+<!--                     Header-->
+<!--                  </div>-->
+                  <h:panelGroup rendered="#{empty email}">
+                     <h:form>
+                        <h:commandButton class="p-1 cursor-pointer focus:outline-none"
+                                         action="home" value="Home">
+                        </h:commandButton>
+                     </h:form>
+                  </h:panelGroup>
+                  <div class="absolute inset-y-0 right-3 flex items-center">
+                     <h:panelGroup rendered="#{not empty email}">
+                        <div>#{email}</div>
+                     </h:panelGroup>
+                     <h:panelGroup rendered="#{empty email}">
+                        <div>...</div>
+                     </h:panelGroup>
+                      <h:panelGroup rendered="#{not empty email}">
+                          <h:form id="logoutForm" styleClass="mx-3">
+                              <h:commandButton id="logoutButton" action="#{userController.logout}" style="display: none" />
+                              <button type="submit" id="logoutForm:logoutButton" name="logoutForm:logoutButton"><i class="fa fa-sign-out fa-lg"></i></button>
+                          </h:form>
+                      </h:panelGroup>
+                  </div>
+               </div>
+            </ui:insert>
+         </div>
+         <div id="body">
+            <ui:insert name="body">
+
+            </ui:insert>
+         </div>
+      </div>
+   </h:body>
+</f:view>
+</html>

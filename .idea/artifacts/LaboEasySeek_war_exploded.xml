@@ -46,6 +46,16 @@
           <element id="library" level="project" name="Maven: org.antlr:antlr4-runtime:4.10" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.5.0" />
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:3.8.0" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongodb-driver-sync:4.7.1" />
+          <element id="library" level="project" name="Maven: org.mongodb:bson:4.7.1" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongodb-driver-core:4.7.1" />
+          <element id="library" level="project" name="Maven: org.mongodb:bson-record-codec:4.7.1" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongodb-crypt:1.5.2" />
+          <element id="library" level="project" name="Maven: net.java.dev.jna:jna:5.11.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.36" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.2.11" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.11" />
         </element>
       </element>
       <element id="directory" name="META-INF">

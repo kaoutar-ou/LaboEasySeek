@@ -14,8 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @XmlRootElement(name = "event")
 @XmlType(propOrder = { "id", "eventName", "eventDate", "eventLocal" })
-@Named("eventBean")
-@SessionScoped
+
 public class Event implements Serializable {
 
     private String eventName;

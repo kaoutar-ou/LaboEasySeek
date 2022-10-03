@@ -24,7 +24,7 @@
                             <h:inputText
                                     class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                     id="title"
-                                    value="#{publicationBean.title}"/>
+                                    value="#{postBean.title}"/>
                             <h:message
                                     styleClass="text-red-400 w-full text-[0.7rem]"
                                     for="title"/>
@@ -37,18 +37,18 @@
                             <h:inputText
                                     class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                     id="description"
-                                    value="#{publicationBean.description}"/>
+                                    value="#{postBean.description}"/>
                             <h:message
                                     styleClass="text-red-400 w-full text-[0.7rem]"
                                     for="description"/>
                         </div>
 
-<!--                        <div class="flex flex-col w-full my-5">-->
-<!--                            <h:outputText-->
-<!--                                    styleClass="my-3"-->
-<!--                                    value="Media"/>-->
-<!--                            <h:inputFile value="#{uploadManagedBean.part}"/>-->
-<!--                        </div>-->
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Media"/>
+                            <h:inputFile value="#{uploadManagedBean.part}"/>
+                        </div>
                     </div>
 
 
@@ -60,7 +60,7 @@
                             <h:inputText
                                     class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                     id="eventName"
-                                    value="#{eventBean.name}"/>
+                                    value="#{postBean.eventName}"/>
                             <h:message
                                     styleClass="text-red-400 w-full text-[0.7rem]"
                                     for="eventName"/>
@@ -73,7 +73,7 @@
                             <h:inputText
                                     class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                     id="eventDate"
-                                    value="#{eventBean.date}"/>
+                                    value="#{postBean.eventDate}"/>
                             <h:message
                                     styleClass="text-red-400 w-full text-[0.7rem]"
                                     for="eventDate"/>
@@ -86,7 +86,7 @@
                             <h:inputText
                                     class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                     id="eventLocal"
-                                    value="#{eventBean.local}"/>
+                                    value="#{postBean.eventLocal}"/>
                             <h:message
                                     styleClass="text-red-400 w-full text-[0.7rem]"
                                     for="eventLocal"/>
@@ -96,18 +96,18 @@
 
 
                     <div class="col-span-1 p-3">
-<!--                        <div class="flex flex-col w-full my-5">-->
-<!--                            <h:outputText-->
-<!--                                    styleClass="my-3"-->
-<!--                                    value="Website"/>-->
-<!--                            <h:inputText-->
-<!--                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"-->
-<!--                                    id="website"-->
-<!--                                    value="#{postBean.website}"/>-->
-<!--                            <h:message-->
-<!--                                    styleClass="text-red-400 w-full text-[0.7rem]"-->
-<!--                                    for="website"/>-->
-<!--                        </div>-->
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Website"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="website"
+                                    value="#{postBean.website}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="website"/>
+                        </div>
 
                         <div class="flex flex-col w-full my-5">
                             <h:outputText
@@ -116,27 +116,27 @@
                             <h:inputText
                                     class="border border-violet-500 rounded-lg focus:outline-none p-2"
                                     id="tag"
-                                    value="#{tagBean.name}"/>
+                                    value="#{postBean.tag}"/>
                             <h:message
                                     styleClass="text-red-400 w-full text-[0.7rem]"
                                     for="tag"/>
                         </div>
 
-<!--                        <div class="flex flex-col w-full my-5">-->
-<!--                            <h:outputText-->
-<!--                                    styleClass="my-3"-->
-<!--                                    value="Version"/>-->
-<!--                            <h:inputText-->
-<!--                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"-->
-<!--                                    id="version"-->
-<!--                                    value="#{postBean.version}"/>-->
-<!--                            <h:message-->
-<!--                                    styleClass="text-red-400 w-full text-[0.7rem]"-->
-<!--                                    for="version"/>-->
-<!--                        </div>-->
+                        <div class="flex flex-col w-full my-5">
+                            <h:outputText
+                                    styleClass="my-3"
+                                    value="Version"/>
+                            <h:inputText
+                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                    id="version"
+                                    value="#{postBean.version}"/>
+                            <h:message
+                                    styleClass="text-red-400 w-full text-[0.7rem]"
+                                    for="version"/>
+                        </div>
                     </div>
             </div>
-                <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white" action="#{publicationController.addPublication(publicationBean, eventBean, tagBean)}" value="Add Post" />
+                <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white" action="#{postController.addPost(postBean,uploadManagedBean)}" value="Add Post" />
             </div>
 
             </h:form>

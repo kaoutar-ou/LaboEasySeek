@@ -17,8 +17,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @XmlRootElement(name = "publication")
 @XmlType(propOrder = { "id", "title", "description", "media", "documents" })
-@Named("publicationBean")
-@SessionScoped
+//@Named("publicationBean")
+//@SessionScoped
 public class Publication implements Serializable {
 
     private Long id;

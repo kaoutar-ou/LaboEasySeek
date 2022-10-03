@@ -92,6 +92,32 @@
             <version>42.5.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-crypt</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

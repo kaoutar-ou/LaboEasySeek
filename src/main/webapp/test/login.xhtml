@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--<f:view>-->
+<ui:composition template="base.xhtml">
+    <ui:define name="body">
+        <div class="flex w-full min-h-screen justify-center bg-gray-100">
+            <div class="shadow-md w-2/6 self-center p-5 bg-white">
+                <h1 class="w-full text-center text-3xl">Login</h1>
+
+                <h:form
+                styleClass="p-3">
+
+                    <div class="flex flex-col w-full my-5">
+                        <h:outputText
+                                styleClass="my-3"
+                                value="Email"/>
+                        <h:inputText
+                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                id="email"
+                                required="true"
+                                value="#{userrBean.email}"
+                                requiredMessage="Email is required !"/>
+                        <h:message
+                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                for="email"/>
+                    </div>
+
+                    <div class="flex flex-col w-full my-5">
+                        <h:outputText
+                                styleClass="my-3"
+                                value="Password"/>
+                        <h:inputSecret
+                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                id="password"
+                                required="true"
+                                value="#{userrBean.password}"
+                                requiredMessage="Password is required !"/>
+                        <h:message
+                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                for="password"/>
+                    </div>
+
+                    <h:commandButton
+                            styleClass="bg-violet-500 w-full rounded-lg p-2 text-white"
+                            action="#{userController.login(userrBean)}"
+                            value="Login"/>
+
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+<!--</f:view>-->
+</html>
