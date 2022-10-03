@@ -1,5 +1,6 @@
 package org.irisi.laboeasyseek.models;
 
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
@@ -13,12 +14,12 @@ import org.bson.types.ObjectId;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Getter
-@Setter
 @ToString
 @Named("eventBean")
-@SessionScoped
+@RequestScoped
 public class Event implements Serializable {
     @BsonId()
     @BsonRepresentation(BsonType.OBJECT_ID)
@@ -29,4 +30,26 @@ public class Event implements Serializable {
     private String date;
     @BsonProperty(value = "local")
     private String local;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        if (!Objects.equals(name, "")) {
+            this.name = name;
+        }
+    }
+
+    public void setDate(String date) {
+        if (!Objects.equals(date, "")) {
+            this.date = date;
+        }
+    }
+
+    public void setLocal(String local) {
+        if (!Objects.equals(local, "")) {
+            this.local = local;
+        }
+    }
 }

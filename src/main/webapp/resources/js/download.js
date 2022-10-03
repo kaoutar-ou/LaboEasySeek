@@ -1,6 +1,6 @@
 // var addDownload = function () {
 window.onload = (e) => {
-    document.querySelectorAll('a').forEach(function(e) { e.setAttribute('download', ''); });
+    document.querySelectorAll('.media-download').forEach(function(e) { e.setAttribute('download', ''); });
 }
 // };
 //

@@ -1,5 +1,6 @@
 package org.irisi.laboeasyseek.models;
 
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
@@ -12,16 +13,26 @@ import org.bson.codecs.pojo.annotations.BsonRepresentation;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
-@Setter
 @ToString
 @Named("tagBean")
-@SessionScoped
+@RequestScoped
 public class Tag implements Serializable {
     @BsonId()
     @BsonRepresentation(BsonType.OBJECT_ID)
     private String id;
     @BsonProperty(value = "name")
     private String name;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        if (!Objects.equals(name, "")) {
+            this.name = name;
+        }
+    }
 }
