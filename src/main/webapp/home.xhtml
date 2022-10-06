@@ -39,70 +39,153 @@
             </div>
 
 
-
             <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <ui:repeat value="#{publicationController.publications}" var="publication">
+
                     <div class="rounded-md shadow-md bg-white p-3">
 
-                        <h:panelGroup rendered="#{not empty publication.title}">
-                            <div>
-                            <span class="font-semibold"> Post title : </span> #{publication.title}
-                            </div>
-                        </h:panelGroup>
+                        <!--                        <h:panelGroup rendered="#{not empty publication.title}">-->
+                        <!--                            <div>-->
+                        <!--                                <span class="font-semibold"> Post title : </span> #{publication.title}-->
+                        <!--                            </div>-->
+                        <!--                        </h:panelGroup>-->
 
-                        <h:panelGroup rendered="#{not empty publication.description}">
-                            <div>
-                                <span class="font-semibold"> Post description : </span> #{publication.description}
-                            </div>
-                        </h:panelGroup>
+                        <!--                        <h:panelGroup rendered="#{not empty publication.description}">-->
+                        <!--                            <div>-->
+                        <!--                                <span class="font-semibold"> Post description : </span> #{publication.description}-->
+                        <!--                            </div>-->
+                        <!--                        </h:panelGroup>-->
 
-                        <h:panelGroup rendered="#{not empty publication.media and not empty publication.media.title}">
-                                <div>
-                                    <span class="font-semibold"> Post media : </span> <span class="mx-1">#{publication.media.title}</span>
-                                    <a class="text-violet-500 mx-1"
-                                       href="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}">view</a>
-                                    <a class="text-violet-500 mx-1 media-download"
-                                       href="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}">download</a>
-                                </div>
-                        </h:panelGroup>
+                        <!--                        <h:panelGroup rendered="#{not empty publication.media and not empty publication.media.title}">-->
+                        <!--                            <div>-->
+                        <!--                                <span class="font-semibold"> Post media : </span> <span-->
+                        <!--                                    class="mx-1">#{publication.media.title}</span>-->
+                        <!--                                <a class="text-violet-500 mx-1"-->
+                        <!--                                   href="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}">view</a>-->
+                        <!--                                <a class="text-violet-500 mx-1 media-download"-->
+                        <!--                                   href="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}">download</a>-->
+                        <!--                            </div>-->
+                        <!--                        </h:panelGroup>-->
 
                         <h:panelGroup rendered="#{not empty publication.event.name}">
                             <div>
-                            <span class="font-semibold"> Event name : </span> #{publication.event.name}
+                                <span class="font-semibold"> Event name : </span> #{publication.event.name}
                             </div>
                         </h:panelGroup>
 
                         <h:panelGroup rendered="#{not empty publication.event.date}">
                             <div>
-                            <span class="font-semibold"> Event date : </span> #{publication.event.date}
+                                <span class="font-semibold"> Event date : </span> #{publication.event.date}
                             </div>
                         </h:panelGroup>
 
                         <h:panelGroup rendered="#{not empty publication.event.local}">
                             <div>
-                            <span class="font-semibold"> Event local : </span> #{publication.event.local}
+                                <span class="font-semibold"> Event local : </span> #{publication.event.local}
                             </div>
                         </h:panelGroup>
 
 
-                        <ui:repeat value="#{publication.tags}" rendered="#{not empty publication.tags}" var="tag">
-                            <h:panelGroup rendered="#{not empty tag.name}">
-                                <div>
-                                <span class="font-semibold"> Post tag : </span> #{tag.name}
-                                </div>
-                            </h:panelGroup>
-                        </ui:repeat>
+                        <!--                        <ui:repeat value="#{publication.tags}" rendered="#{not empty publication.tags}" var="tag">-->
+                        <!--                            <h:panelGroup rendered="#{not empty tag.name}">-->
+                        <!--                                <div>-->
+                        <!--                                    <span class="font-semibold"> Post tag : </span> #{tag.name}-->
+                        <!--                                </div>-->
+                        <!--                            </h:panelGroup>-->
+                        <!--                        </ui:repeat>-->
 
-                        <h:panelGroup rendered="#{not empty publication.viewsNumber}">
-                            <div>
-                            <span class="font-semibold"> Post views : </span> #{publication.viewsNumber}
-                            </div>
-                        </h:panelGroup>
+                        <!--                        <h:panelGroup rendered="#{not empty publication.viewsNumber}">-->
+                        <!--                            <div>-->
+                        <!--                                <span class="font-semibold"> Post views : </span> #{publication.viewsNumber}-->
+                        <!--                            </div>-->
+                        <!--                        </h:panelGroup>-->
 
                     </div>
+
+
+                    <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-1 divide-y relative">
+                        <div>
+                            <a href="#">
+
+                                <h:panelGroup styleClass="flex items-center w-full"
+                                              rendered="#{not empty publication.media and not empty publication.media.title}">
+                                    <!--                                <img width="100%" class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}" alt=""></img>-->
+                                    <!--                                <div class="w-64 bg-cover bg-center" style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}')"></div>-->
+
+                                    <div class="bg-cover bg-center w-full h-64"
+                                         style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}')">
+
+                                    </div>
+                                </h:panelGroup>
+
+                                <!--                            <img class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}" alt=""></img>-->
+                            </a>
+
+                        </div>
+
+                        <div>
+                            <div class="p-5">
+
+                                <h:panelGroup rendered="#{not empty publication.title}">
+                                    <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> #{publication.title} </span>
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{not empty publication.description}">
+                                    <div>
+                                        <span class="mb-3 font-normal text-gray-700"> #{publication.description} </span>
+                                    </div>
+                                </h:panelGroup>
+                            </div>
+                        </div>
+
+                        <div>
+                            <ui:repeat value="#{publication.tags}" rendered="#{not empty publication.tags}"
+                                       var="tag">
+                                <h:panelGroup rendered="#{not empty tag.name}">
+                                    <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                        #{tag.name}
+                                    </button>
+                                </h:panelGroup>
+                            </ui:repeat>
+                        </div>
+                        <div>
+                            <div class="h-16"></div>
+                            <div class="absolute bottom-3">
+                                <h:panelGroup rendered="#{not empty publication.viewsNumber}">
+                                    <div class="flex flex-row mx-3">
+                                        <div>
+                                            <img src="https://img.icons8.com/sf-regular-filled/24/1A1A1A/visible.png" alt="views"/>
+                                        </div>
+                                        <div class="mx-2">
+                                            #{publication.viewsNumber}
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                 </ui:repeat>
             </div>
 
+
+            <!--            <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">-->
+            <!--                <a href="#">-->
+            <!--                    <img class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/bbjh.png" alt=""></img>-->
+            <!--                </a>-->
+            <!--                <div class="p-5">-->
+            <!--                    <a href="#">-->
+            <!--                        <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</span>-->
+            <!--                    </a>-->
+            <!--                    <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>-->
+            <!--                    <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">-->
+            <!--                        Read more-->
+            <!--                        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>-->
+            <!--                    </a>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
 
         </div>

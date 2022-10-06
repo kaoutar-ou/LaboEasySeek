@@ -83,21 +83,6 @@ public class PublicationController implements Serializable {
 
     public void addPublication(Publication publication, Event event, UploadManagedBean uploadManagedBean) {
 
-
-//        MongoCollection<User> userCollection = mongoDatabase.getCollection("users", User.class);
-//        MongoCollection<Publication> publicationCollection = mongoDatabase.getCollection("publications", Publication.class);
-//        MongoCollection<Event> eventCollection = mongoDatabase.getCollection("events", Event.class);
-//        MongoCollection<Tag> tagCollection = mongoDatabase.getCollection("tags", Tag.class);
-
-
-
-//        Collection<Publication> publications = new ArrayList<>();
-//        publications.add(publication);
-//        User user = new User();
-//        user.setEmail(SessionUtils.getEmail());
-//        user.setPublications(publications);
-//        userCollection.insertOne(user);
-
         if (event != null
                 && (!Objects.equals(event.getName(), "")
                 || !Objects.equals(event.getDate(), "")
@@ -106,31 +91,12 @@ public class PublicationController implements Serializable {
             publication.setEvent(event);
         }
 
-//        for (Tag tag: tags) {
-//            if (tag != null
-//                    && !Objects.equals(tag.getName(), "")) {
-//                Tag existingTag = null;
-//                existingTag = tagCollection.find(eq("name", tag.getName())).first();
-//                if (existingTag != null) {
-//                    publication.setTag(existingTag);
-//                }
-//                else {
-//                    tagCollection.insertOne(tag);
-//                    publication.setTag(tag);
-//                }
-//            }
-//        }
-
         System.out.println("tags---------------------------------------------------");
         System.out.println(tags.toString());
 
         List<Tag> tagList = new ArrayList<>();
         for (Tag tag: tags
              ) {
-//            Tag tag1 = new Tag();
-//            tag1.setName(it.getName());
-//            tagCollection.insertOne(tag1);
-//            ttt.add(tag1);
 
 
             if (tag != null
@@ -193,50 +159,6 @@ public class PublicationController implements Serializable {
         setTags(new ArrayList<Tag>());
 
     }
-
-
-
-
-
-////        ConnectionString connectionString = new ConnectionString("");
-//        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/");
-////        ConnectionString connectionString = new ConnectionString("");
-//        CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
-//        CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
-//
-//        MongoClientSettings clientSettings = MongoClientSettings.builder()
-//                .applyConnectionString(connectionString)
-//                .codecRegistry(codecRegistry)
-//                .build();
-//
-////        try () {
-//            MongoClient mongoClient = MongoClients.create(clientSettings);
-//            MongoDatabase db = mongoClient.getDatabase("app");
-//            MongoCollection<User> userCollection = db.getCollection("users", User.class);
-//            MongoCollection<Publication> publicationCollection = db.getCollection("publications", Publication.class);
-////            System.out.println(users.listIndexes());
-//            System.out.println("----------------------------------------------------------------------------------------");
-//            System.out.println("users.find(eq(\"email\", \"kaoutar@gmail.com\")).first()");
-//            System.out.println(userCollection.find(eq("email", "hahaha2@gmail.com")).first());
-//            System.out.println("----------------------------------------------------------------------------------------");
-//
-//            Document query = new Document().append("email", "hahaha2@gmail.com");
-//
-//            Bson updates = Updates.combine(
-//                    Updates.set("username", "updated username 3")
-//            );
-//
-//            UpdateOptions options = new UpdateOptions().upsert(true);
-//
-//            try {
-//                UpdateResult result = userCollection.updateOne(query, updates, options);
-//                System.out.println("Modified document count: " + result.getModifiedCount());
-//                System.out.println("Upserted id: " + result.getUpsertedId());
-//            } catch (MongoException me) {
-//                System.err.println("Unable to update due to an error: " + me);
-//            }
-//        }
-////    }
 
 
     public Publication processUpload(Publication publication, UploadManagedBean uploadManagedBean) {
