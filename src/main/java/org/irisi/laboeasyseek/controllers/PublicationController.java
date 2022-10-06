@@ -25,8 +25,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -35,6 +36,19 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class PublicationController implements Serializable {
 
     MongoDatabase mongoDatabase = DBConfig.getDbConfig().getDb();
+    private String search = "";
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    public void searchByString(String searchString) {
+        setSearch(searchString);
+    }
 
     MongoCollection<User> userCollection = mongoDatabase.getCollection("users", User.class);
     MongoCollection<Publication> publicationCollection = mongoDatabase.getCollection("publications", Publication.class);
@@ -44,12 +58,10 @@ public class PublicationController implements Serializable {
     MongoCollection<Image> imageCollection = mongoDatabase.getCollection("images", Image.class);
 
 
-
-
     private List<Tag> tags = new ArrayList<Tag>();
 
     public List<Tag> getTags() {
-        if(tags.size()==0) {
+        if (tags.size() == 0) {
             tags.add(new Tag());
         }
         return tags;
@@ -68,18 +80,24 @@ public class PublicationController implements Serializable {
     }
 
 
-
-
-
     public List<Publication> getPublications() {
         List<Publication> publicationList = new ArrayList<>();
-        FindIterable<Publication> publicationFindIterable = publicationCollection.find();
-        for (Publication pub: publicationFindIterable) {
+        FindIterable<Publication> publicationFindIterable = null;
+
+        System.out.println("-------------------------------------" + search);
+        if (!Objects.equals(search, "")) {
+            publicationFindIterable = publicationCollection.find(or(regex("title", ".*" + Pattern.quote(search) + ".*"), regex("description", ".*" + Pattern.quote(search) + ".*"), regex("publisher", ".*" + Pattern.quote(search) + ".*")));
+        } else {
+            publicationFindIterable = publicationCollection.find();
+        }
+
+        for (Publication pub : publicationFindIterable) {
             System.out.println(pub.toString());
             publicationList.add(pub);
         }
         return publicationList;
     }
+
 
     public void addPublication(Publication publication, Event event, UploadManagedBean uploadManagedBean) {
 
@@ -91,12 +109,13 @@ public class PublicationController implements Serializable {
             publication.setEvent(event);
         }
 
+
         System.out.println("tags---------------------------------------------------");
         System.out.println(tags.toString());
 
         List<Tag> tagList = new ArrayList<>();
-        for (Tag tag: tags
-             ) {
+        for (Tag tag : tags
+        ) {
 
 
             if (tag != null
@@ -105,8 +124,7 @@ public class PublicationController implements Serializable {
                 existingTag = tagCollection.find(eq("name", tag.getName())).first();
                 if (existingTag != null) {
                     tagList.add(existingTag);
-                }
-                else {
+                } else {
                     Tag newTag = new Tag();
                     newTag.setName(tag.getName());
                     tagCollection.insertOne(newTag);
@@ -146,8 +164,7 @@ public class PublicationController implements Serializable {
             } catch (MongoException me) {
                 System.err.println("Unable to update due to an error: " + me);
             }
-        }
-        else {
+        } else {
             Collection<Publication> publications = new ArrayList<>();
             publications.add(publication);
             user = new User();
@@ -171,7 +188,7 @@ public class PublicationController implements Serializable {
 //        imageCollection.insertOne(image);
 //        media.setImage(image);
 
-        media.setTitle(uploadHelper.processUpload(uploadManagedBean.getPart(),publication.getTitle()));
+        media.setTitle(uploadHelper.processUpload(uploadManagedBean.getPart(), publication.getTitle()));
         mediaCollection.insertOne(media);
         publication.setMedia(media);
         return publication;
