@@ -28,33 +28,33 @@
                             <h:form id="categoryForm">
                                 <div class="flex flex-row justify-center p-3">
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="articleButton" value=""><i
+                                        <h:outputLabel for="articleButton" styleClass="cursor-pointer" value=""><i
                                                 class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
                                         <h:commandButton id="articleButton"
-                                                         styleClass="px-2"
+                                                         styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('article')}"
                                                          value="Article"/>
                                     </div>
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="reportButton" value=""><i
+                                        <h:outputLabel for="reportButton" styleClass="cursor-pointer" value=""><i
                                                 class="fa fa-file-text-o fa-lg"></i></h:outputLabel>
                                         <h:commandButton id="reportButton"
-                                                         styleClass="px-2"
+                                                         styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('report')}"
                                                          value="Report"/>
                                     </div>
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="eventButton" value=""><i
+                                        <h:outputLabel for="eventButton" styleClass="cursor-pointer" value=""><i
                                                 class="fa fa-calendar fa-lg"></i></h:outputLabel>
                                         <h:commandButton id="eventButton"
-                                                         styleClass="px-2"
+                                                         styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('event')}"
                                                          value="Event"/>
                                     </div>
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="otherButton" value=""><i class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
+                                        <h:outputLabel for="otherButton" styleClass="cursor-pointer" value=""><i class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
                                         <h:commandButton id="otherButton"
-                                                         styleClass="px-2"
+                                                         styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('other')}"
                                                          value="Other"/>
                                     </div>
@@ -276,7 +276,7 @@
                         </div>
                     </h:panelGroup>
 
-                    <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white"
+                    <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white cursor-pointer"
                                      action="#{publicationController.addPublication(publicationBean, eventBean, reportBean, articleBean, mediaImageBean, mediaDocumentBean)}"
                                      value="Add Post"/>
                 </div>

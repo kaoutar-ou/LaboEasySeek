@@ -34,7 +34,7 @@ public class Publication implements Serializable {
 
 
     @BsonProperty(value = "views_number")
-    private int viewsNumber = 0;
+    private int viewsNumber;
 
     @BsonProperty(value = "category")
     private String category;
@@ -47,6 +47,20 @@ public class Publication implements Serializable {
 
     @BsonProperty(value = "created_at")
     private Date createdAt;
+
+    @BsonProperty(value = "media")
+    private Media media;
+
+    @BsonProperty(value = "event")
+    private Event event;
+
+    private List<Tag> tags;
+
+    private List<Comment> comments;
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -64,15 +78,6 @@ public class Publication implements Serializable {
         this.category = category;
     }
 
-    @BsonProperty(value = "media")
-    private Media media;
-
-    @BsonProperty(value = "event")
-    private Event event;
-//    private Tag tag;
-
-    private List<Tag> tags;
-
     public List<Tag> getTags() {
         return tags;
     }
@@ -80,20 +85,6 @@ public class Publication implements Serializable {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
-
-//    private List<Tag> tags = new ArrayList<>();
-//
-//    public List<Tag> getTags() {
-//        if(tags.size()==0) {
-//            tags.add(new Tag()); // adding the first item
-//        }
-//        return tags;
-////        return tags;
-//    }
-//
-//    public void setTags(List<Tag> tags) {
-//        this.tags = tags;
-//    }
 
     public void setId(String id) {
         this.id = id;
@@ -127,7 +118,4 @@ public class Publication implements Serializable {
         this.event = event;
     }
 
-//    public void setTag(Tag tag) {
-//        this.tag = tag;
-//    }
 }

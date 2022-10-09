@@ -58,7 +58,8 @@
 
                                 <!--                            <img class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}" alt=""></img>-->
 
-                                <h:panelGroup rendered="#{not empty publication.publisher or not empty publication.category}">
+                                <h:panelGroup
+                                        rendered="#{not empty publication.publisher or not empty publication.category}">
                                     <div class="p-5">
 
                                         <h:panelGroup rendered="#{not empty publication.publisher}">
@@ -135,82 +136,95 @@
                                 </h:panelGroup>
 
 
-                                <h:panelGroup rendered="#{not empty publication.viewsNumber}">
-                                    <div class="p-5">
-                                        <div class="absolute bottom-3">
-                                            <h:panelGroup rendered="#{not empty publication.viewsNumber}">
-                                                <div class="flex flex-row ">
-                                                    <div>
+                                <h:panelGroup
+                                        rendered="#{not empty publication.viewsNumber || not empty publication.comments}">
+                                    <div class="py-5">
+                                        <div class="absolute bottom-3 w-full">
+                                            <div class="grid grid-cols-4 gap-4 justify-items-stretch mx-3">
+                                                <div class="col-span-1">
+                                                    <div class="flex flex-row items-center">
                                                         <img src="https://img.icons8.com/sf-regular-filled/24/1A1A1A/visible.png"
                                                              alt="views"/>
-                                                    </div>
-                                                    <div class="mx-2">
-                                                        #{publication.viewsNumber}
+                                                        <span class="mx-2">
+                                                            #{not empty publication.viewsNumber ? publication.viewsNumber : 0}
+                                                        </span>
                                                     </div>
                                                 </div>
-                                            </h:panelGroup>
+                                                <div class="col-span-1">
+                                                <div class="flex flex-row items-center">
+                                                        <i class="fa fa-comments-o fa-lg"></i>
+                                                        <span class="mx-2">
+                                                            #{not empty publication.comments ? publication.comments.size() : 0}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-span-2 justify-self-end">
+                                                    <div class="">
+                                                        <h:commandLink styleClass="text-black hover:text-violet-500">
+                                                            View more
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </h:panelGroup>
                             </div>
-
-
                         </ui:repeat>
-                        <!--                <div class="row-span-3">hi</div>-->
                     </div>
                 </div>
 
                 <div class="sm:order-first lg:order-last sm:col-span-5 lg:col-span-1 m-3 rounded-md outline outline-1 outline-violet-500 text-center text-violet-500">
-                        <h:form styleClass="" id="searchCategoryForm">
-                    <div class="flex flex-wrap">
+                    <h:form styleClass="" id="searchCategoryForm">
+                        <div class="flex flex-wrap">
 
                             <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == '' ? 'text-white bg-violet-500' : ''}">
-                                <h:outputLabel for="searchAllCategoryButton" value=""><i
+                                <h:outputLabel for="searchAllCategoryButton" styleClass="cursor-pointer" value=""><i
                                         class="fa fa-globe fa-lg"></i></h:outputLabel>
                                 <h:commandButton id="searchAllCategoryButton"
-                                                 styleClass="px-2"
+                                                 styleClass="px-2 cursor-pointer"
                                                  action="#{publicationController.searchByCategory('')}"
                                                  value="All"/>
                             </div>
 
                             <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'article' ? 'text-white bg-violet-500' : ''}">
-                                <h:outputLabel for="searchCategoryArticleButton" value=""><i
+                                <h:outputLabel for="searchCategoryArticleButton" styleClass="cursor-pointer" value=""><i
                                         class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
                                 <h:commandButton id="searchCategoryArticleButton"
-                                                 styleClass="px-2"
+                                                 styleClass="px-2 cursor-pointer"
                                                  action="#{publicationController.searchByCategory('article')}"
                                                  value="Article"/>
                             </div>
 
                             <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'report' ? 'text-white bg-violet-500' : ''}">
-                                <h:outputLabel for="searchCategoryReportButton" value=""><i
+                                <h:outputLabel for="searchCategoryReportButton" styleClass="cursor-pointer" value=""><i
                                         class="fa fa-file-text-o fa-lg"></i></h:outputLabel>
                                 <h:commandButton id="searchCategoryReportButton"
-                                                 styleClass="px-2"
+                                                 styleClass="px-2 cursor-pointer"
                                                  action="#{publicationController.searchByCategory('report')}"
                                                  value="Report"/>
                             </div>
 
                             <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'event' ? 'text-white bg-violet-500' : ''}">
-                                <h:outputLabel for="searchCategoryEventButton" value=""><i
+                                <h:outputLabel for="searchCategoryEventButton" styleClass="cursor-pointer" value=""><i
                                         class="fa fa-calendar fa-lg"></i></h:outputLabel>
                                 <h:commandButton id="searchCategoryEventButton"
-                                                 styleClass="px-2"
+                                                 styleClass="px-2 cursor-pointer"
                                                  action="#{publicationController.searchByCategory('event')}"
                                                  value="Event"/>
                             </div>
 
                             <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'other' ? 'text-white bg-violet-500' : ''}">
-                                <h:outputLabel for="searchCategoryOtherButton" value=""><i
+                                <h:outputLabel for="searchCategoryOtherButton" styleClass="cursor-pointer" value=""><i
                                         class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
                                 <h:commandButton id="searchCategoryOtherButton"
-                                                 styleClass="px-2"
+                                                 styleClass="px-2 cursor-pointer"
                                                  action="#{publicationController.searchByCategory('other')}"
                                                  value="Other"/>
                             </div>
 
-                    </div>
-                        </h:form>
+                        </div>
+                    </h:form>
 
 
                     <div class="flex flex-wrap">
@@ -219,7 +233,7 @@
                             <h:commandButton id="searchAllTagButton"
                                              value="All"
                                              action="#{publicationController.searchByTag('')}"
-                                             styleClass="#{publicationController.searchTag == '' ? 'bg-violet-500' : 'bg-gray-500'} ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
+                                             styleClass="#{publicationController.searchTag == '' ? 'bg-violet-500' : 'bg-gray-500'} cursor-pointer ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
                             />
 
                             <ui:repeat value="#{publicationController.allTags}"
@@ -230,7 +244,7 @@
                                     <h:commandButton id="searchTagButton"
                                                      value="#{tag.name}"
                                                      action="#{publicationController.searchByTag(tag.name)}"
-                                                     styleClass="#{publicationController.searchTag == tag.name ? 'bg-violet-500' : 'bg-gray-500'} ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
+                                                     styleClass="#{publicationController.searchTag == tag.name ? 'bg-violet-500' : 'bg-gray-500'} cursor-pointer ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
                                     />
 
 
@@ -240,7 +254,6 @@
                     </div>
                 </div>
             </div>
-
 
 
         </div>
