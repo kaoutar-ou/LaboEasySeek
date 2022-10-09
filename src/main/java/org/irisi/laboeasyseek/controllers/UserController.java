@@ -80,16 +80,12 @@ public class UserController implements Serializable {
     public String login(Userr user) throws NoSuchAlgorithmException, InvalidKeySpecException {
         System.out.println(user.getEmail());
         System.out.println(user.getPassword());
-        Userr userr = new Userr();
-//        userr.setEmail(user.getEmail());
-//        userr.setPassword(user.getPassword());
-        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
-        userr.setEmail("kaoutar4@gmail.com");
-        userr.setPassword("123456789k");
-        System.out.println("------------------------------hihihihi------------------------------------------");
 
-                boolean loggedIn = userrService.login(user);
-                System.out.println(loggedIn);
+        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
+
+        boolean loggedIn = userrService.login(user);
+        System.out.println(loggedIn);
+
         if (loggedIn) {
             return "loggedIn";
         }
@@ -100,8 +96,8 @@ public class UserController implements Serializable {
 //
     public String logout() {
         if (userrService.logout()) {
-            return "loggedOut";
+            return "index";
         }
-        return "test";
+        return "home";
     }
 }

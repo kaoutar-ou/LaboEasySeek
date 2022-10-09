@@ -9,152 +9,287 @@
     <ui:define name="body">
         <div class="bg-gray-100 min-h-screen p-9">
             <div class="text-center m-3">
-                Add a new post
+                <h:panelGroup rendered="#{publicationController.category eq ''}">
+                    Add a new publication
+                </h:panelGroup>
+                <h:panelGroup rendered="#{publicationController.category != ''}">
+                    Add a new #{publicationController.category}
+                </h:panelGroup>
             </div>
             <h:form enctype="multipart/form-data" styleClass="p-3">
-            <div class="p-5 bg-white shadow-md m-5">
+                <div class="p-5 bg-white shadow-md m-5">
 
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                    <div class="col-span-1 p-3">
-                        <div class="flex flex-col w-full my-5">
-                            <h:outputText
-                                    styleClass="my-3"
-                                    value="Title"/>
-                            <h:inputText
-                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                    id="title"
-                                    value="#{publicationBean.title}"/>
-                            <h:message
-                                    styleClass="text-red-400 w-full text-[0.7rem]"
-                                    for="title"/>
-                        </div>
-
-                        <div class="flex flex-col w-full my-5">
-                            <h:outputText
-                                    styleClass="my-3"
-                                    value="Description"/>
-                            <h:inputText
-                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                    id="description"
-                                    value="#{publicationBean.description}"/>
-                            <h:message
-                                    styleClass="text-red-400 w-full text-[0.7rem]"
-                                    for="description"/>
-                        </div>
-
-                        <div class="flex flex-col w-full my-5">
-                            <h:outputText
-                                    styleClass="my-3"
-                                    value="Media"/>
-                            <h:inputFile value="#{uploadManagedBean.part}"/>
-                        </div>
-                    </div>
-
-
-                    <div class="col-span-1 p-3">
-                        <div class="flex flex-col w-full my-5">
-                            <h:outputText
-                                    styleClass="my-3"
-                                    value="Event Name"/>
-                            <h:inputText
-                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                    id="eventName"
-                                    value="#{eventBean.name}"/>
-                            <h:message
-                                    styleClass="text-red-400 w-full text-[0.7rem]"
-                                    for="eventName"/>
-                        </div>
-
-                        <div class="flex flex-col w-full my-5">
-                            <h:outputText
-                                    styleClass="my-3"
-                                    value="Event Date"/>
-                            <h:inputText
-                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                    id="eventDate"
-                                    value="#{eventBean.date}"/>
-                            <h:message
-                                    styleClass="text-red-400 w-full text-[0.7rem]"
-                                    for="eventDate"/>
-                        </div>
-
-                        <div class="flex flex-col w-full my-5">
-                            <h:outputText
-                                    styleClass="my-3"
-                                    value="Event Local"/>
-                            <h:inputText
-                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                    id="eventLocal"
-                                    value="#{eventBean.local}"/>
-                            <h:message
-                                    styleClass="text-red-400 w-full text-[0.7rem]"
-                                    for="eventLocal"/>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-span-1 p-3">
-<!--                        <div class="flex flex-col w-full my-5">-->
-<!--                            <h:outputText-->
-<!--                                    styleClass="my-3"-->
-<!--                                    value="Website"/>-->
-<!--                            <h:inputText-->
-<!--                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"-->
-<!--                                    id="website"-->
-<!--                                    value="#{postBean.website}"/>-->
-<!--                            <h:message-->
-<!--                                    styleClass="text-red-400 w-full text-[0.7rem]"-->
-<!--                                    for="website"/>-->
-<!--                        </div>-->
-
-
-
-
-
-                            <div class="flex flex-col w-full my-5">
-                                <h:outputLabel styleClass="my-3" value="Tag" for="tagName" />
-                                <div  class="flex flex-wrap w-full">
-                                    <ui:repeat value="#{publicationController.tags}" var="tag">
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2 w-2/12 m-1"
-                                                id="tagName"
-                                                value="#{tag.name}"/>
-                                    </ui:repeat>
-                                <h:commandLink styleClass="rounded rounded-full text-violet-500 text-center p-1 w-2/12 m-2" action="#{publicationController.addTag(tag)}">+</h:commandLink>
-                                </div>
-                                    <h:message
-                                        styleClass="text-red-400 w-full text-[0.7rem]"
-                                        for="tagName"/>
+                    <h:panelGroup rendered="#{publicationController.category eq ''}">
+                        <div>
+                            <div class="text-center m-3">
+                                Please choose one of the following categories
                             </div>
 
+                            <h:form id="categoryForm">
+                                <div class="flex flex-row justify-center p-3">
+                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
+                                        <h:outputLabel for="articleButton" value=""><i
+                                                class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
+                                        <h:commandButton id="articleButton"
+                                                         styleClass="px-2"
+                                                         action="#{publicationController.handleSetCategory('article')}"
+                                                         value="Article"/>
+                                    </div>
+                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
+                                        <h:outputLabel for="reportButton" value=""><i
+                                                class="fa fa-file-text-o fa-lg"></i></h:outputLabel>
+                                        <h:commandButton id="reportButton"
+                                                         styleClass="px-2"
+                                                         action="#{publicationController.handleSetCategory('report')}"
+                                                         value="Report"/>
+                                    </div>
+                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
+                                        <h:outputLabel for="eventButton" value=""><i
+                                                class="fa fa-calendar fa-lg"></i></h:outputLabel>
+                                        <h:commandButton id="eventButton"
+                                                         styleClass="px-2"
+                                                         action="#{publicationController.handleSetCategory('event')}"
+                                                         value="Event"/>
+                                    </div>
+                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
+                                        <h:outputLabel for="otherButton" value=""><i class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
+                                        <h:commandButton id="otherButton"
+                                                         styleClass="px-2"
+                                                         action="#{publicationController.handleSetCategory('other')}"
+                                                         value="Other"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{publicationController.category != ''}">
+                        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <h:panelGroup rendered="#{publicationController.category != ''}">
+                                <div class="col-span-3 text-center m-3">
+                                    <h:form>
+                                        <h:commandButton
+                                                styleClass="p-2 text-violet-500 outline outline-1 outline-violet-500 rounded-md hover:text-white hover:bg-violet-500"
+                                                action="#{publicationController.handleSetCategory('')}"
+                                                value="Choose another category"/>
+                                    </h:form>
+                                </div>
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{publicationController.category != ''}">
+                                <div class="col-span-1 p-3">
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Title"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="title"
+                                                value="#{publicationBean.title}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="title"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Description"/>
+                                        <h:inputTextarea
+                                                rows="5"
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="description"
+                                                value="#{publicationBean.description}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="description"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{publicationController.category == 'event'}">
+                                <div class="col-span-1 p-3">
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Event Name"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="eventName"
+                                                value="#{eventBean.name}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="eventName"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Event Date"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="eventDate"
+                                                value="#{eventBean.date}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="eventDate"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Event Local"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="eventLocal"
+                                                value="#{eventBean.local}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="eventLocal"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
 
 
-<!--                        <div class="flex flex-col w-full my-5">-->
-<!--                            <h:outputText-->
-<!--                                    styleClass="my-3"-->
-<!--                                    value="Version"/>-->
-<!--                            <h:inputText-->
-<!--                                    class="border border-violet-500 rounded-lg focus:outline-none p-2"-->
-<!--                                    id="version"-->
-<!--                                    value="#{postBean.version}"/>-->
-<!--                            <h:message-->
-<!--                                    styleClass="text-red-400 w-full text-[0.7rem]"-->
-<!--                                    for="version"/>-->
-<!--                        </div>-->
-                    </div>
-            </div>
-                <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white" action="#{publicationController.addPublication(publicationBean, eventBean, uploadManagedBean)}" value="Add Post" />
-            </div>
+                            <h:panelGroup rendered="#{publicationController.category == 'article'}">
+                                <div class="col-span-1 p-3">
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Article Title"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="articleTitle"
+                                                value="#{articleBean.title}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="articleTitle"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Article Content"/>
+                                        <h:inputTextarea
+                                                rows="5"
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="articleContent"
+                                                value="#{articleBean.content}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="articleContent"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Article Reference"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="articleReference"
+                                                value="#{articleBean.reference}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="articleReference"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+
+                            <h:panelGroup rendered="#{publicationController.category == 'report'}">
+                                <div class="col-span-1 p-3">
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Report Title"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="reportTitle"
+                                                value="#{reportBean.title}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="reportTitle"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Report Version"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="reportVersion"
+                                                value="#{reportBean.version}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="reportVersion"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+
+                            <h:panelGroup rendered="#{publicationController.category != ''}">
+                                <div class="col-span-1 p-3">
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Image"/>
+                                        <h:inputFile value="#{mediaImageBean.part}"/>
+                                    </div>
+
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Document"/>
+                                        <h:inputFile value="#{mediaDocumentBean.part}"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{publicationController.category != ''}">
+                                <div class="#{publicationController.category == 'other' ? 'col-span-1 p-3' : 'col-span-3 p-3'}">
+                                    <div class="flex flex-col w-full my-5">
+                                        <!--                                    <h:selectOneMenu value="#{publicationBean.category}">-->
+                                        <!--                                        <f:selectItem itemValue="1" itemLabel="Article"/>-->
+                                        <!--                                        <f:selectItem itemValue="2" itemLabel="Event"/>-->
+                                        <!--                                        <f:selectItem itemValue="3" itemLabel="Report"/>-->
+                                        <!--                                    </h:selectOneMenu>-->
+
+                                        <h:outputLabel styleClass="my-3" value="Tag" for="tagName"/>
+                                        <div class="flex flex-wrap w-full">
+                                            <ui:repeat value="#{publicationController.tags}" var="tag">
+                                                <h:inputText
+                                                        class="#{publicationController.category == 'other' ? 'w-1/12' : 'w-2/12'} border border-violet-500 rounded-lg focus:outline-none p-2 m-1"
+                                                        id="tagName"
+                                                        value="#{tag.name}"/>
+                                            </ui:repeat>
+                                            <h:commandLink
+                                                    styleClass="#{publicationController.category == 'other' ? 'w-1/12' : 'w-2/12'} rounded rounded-full text-violet-500 text-center p-1 m-2"
+                                                    action="#{publicationController.addTag(tag)}">+</h:commandLink>
+                                        </div>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="tagName"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+                        </div>
+                    </h:panelGroup>
+
+                    <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white"
+                                     action="#{publicationController.addPublication(publicationBean, eventBean, reportBean, articleBean, mediaImageBean, mediaDocumentBean)}"
+                                     value="Add Post"/>
+                </div>
 
             </h:form>
 
             <h:form>
-            <h:commandButton styleClass=" text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-md p-2" action="#{publicationController.homePage}" value="Return" />
-        </h:form>
+                <h:commandButton
+                        styleClass=" text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-md p-2"
+                        action="#{publicationController.homePage}" value="Return"/>
+            </h:form>
 
-    </div>
+        </div>
     </ui:define>
 </ui:composition>
 </html>

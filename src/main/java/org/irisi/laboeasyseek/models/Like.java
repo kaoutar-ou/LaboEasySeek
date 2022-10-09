@@ -1,9 +1,6 @@
 package org.irisi.laboeasyseek.models;
 
-
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.inject.Named;
 import jakarta.servlet.http.Part;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,17 +17,11 @@ import java.io.Serializable;
 @Setter
 @ToString
 @SessionScoped
-@Named( "mediaDocumentBean" )
-public class Document implements Serializable {
+public class Like implements Serializable {
     @BsonId()
     @BsonRepresentation(BsonType.OBJECT_ID)
     private String id;
-    @BsonProperty(value = "title")
-    private String title;
 
-    @BsonProperty(value = "type")
-    private String type;
-
-    @BsonIgnore
-    private Part part;
+    @BsonProperty(value = "user")
+    private String user;
 }

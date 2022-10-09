@@ -28,7 +28,7 @@ public class UploadHelper {
                     } else {
                         String currentFileName = submittedFileName;
                         String extension = currentFileName.substring(currentFileName.lastIndexOf("."), currentFileName.length());
-                        String newfilename = name + extension;
+                        String newfilename = System.currentTimeMillis() + extension;
                         fileSaveData = newfilename;
                         String fileSavePath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("") + this.path_to;
                         System.out.println("fileSavePath : " + fileSavePath);

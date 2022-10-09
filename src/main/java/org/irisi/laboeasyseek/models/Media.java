@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.bson.BsonType;
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.codecs.pojo.annotations.BsonRepresentation;
 import org.bson.types.ObjectId;
@@ -18,8 +19,17 @@ public class Media {
     private String id;
     @BsonProperty(value = "title")
     private String title;
-    @BsonProperty(value = "type")
+    @BsonIgnore
     private String type;
+
+    public void setType(String title) {
+        if (title.length() > 0) {
+            String[] parts = title.split("\\.");
+            if (parts.length > 0) {
+                this.type = parts[parts.length - 1];
+            }
+        }
+    }
 
     private Image image;
     private Document document;

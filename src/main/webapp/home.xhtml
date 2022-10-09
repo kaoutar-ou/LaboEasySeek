@@ -16,7 +16,8 @@
                 <div class="relative text-gray-500 focus-within:text-violet-500 m-3 col-span-4">
                     <h:form id="searchForm">
                           <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                              <h:commandButton id="searchButton" action="#{publicationController.searchByString(publicationController.search)}"
+                              <h:commandButton id="searchButton"
+                                               action="#{publicationController.searchByString(publicationController.search)}"
                                                style="display: none"/>
                               <button type="submit" id="searchForm:searchButton" name="searchForm:searchButton"><i
                                       class="fa fa-search fa-lg"></i></button>
@@ -39,125 +40,207 @@
             </div>
 
 
-            <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <ui:repeat value="#{publicationController.publications}" var="publication">
+            <div class="grid grid-cols-5 gap-4">
+                <div class="m-3 sm:col-span-5 lg:col-span-4">
+                    <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <ui:repeat value="#{publicationController.publications}" var="publication">
 
-                    <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-1 divide-y relative">
+                            <div class=" bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-1 divide-y relative">
 
 
                                 <h:panelGroup styleClass="flex items-center w-full"
-                                              rendered="#{not empty publication.media and not empty publication.media.title}">
-                                    <!--                                <img width="100%" class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}" alt=""></img>-->
-                                    <!--                                <div class="w-64 bg-cover bg-center" style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}')"></div>-->
-
+                                              rendered="#{not empty publication.media.image and not empty publication.media.image.title}">
                                     <div class="bg-cover bg-center w-full h-64"
-                                         style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}')">
+                                         style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.image.title}')">
 
                                     </div>
                                 </h:panelGroup>
 
                                 <!--                            <img class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.title}" alt=""></img>-->
 
-                        <h:panelGroup rendered="#{not empty publication.publisher}">
-                            <div class="p-5">
+                                <h:panelGroup rendered="#{not empty publication.publisher or not empty publication.category}">
+                                    <div class="p-5">
 
-                                <h:panelGroup rendered="#{not empty publication.publisher}">
-                                    <span class="mb-2 text-xl tracking-tight text-gray-900"> #{publication.publisher} </span>
+                                        <h:panelGroup rendered="#{not empty publication.publisher}">
+                                            <span class="mb-2 text-xl tracking-tight text-gray-900"> #{publication.publisher} </span>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup rendered="#{not empty publication.category}">
+                                            <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
+                                                #{publication.category}
+                                            </button>
+                                        </h:panelGroup>
+
+                                    </div>
                                 </h:panelGroup>
 
-                            </div>
-                        </h:panelGroup>
-
-                        <h:panelGroup rendered="#{not empty publication.title or not empty publication.description}">
-                            <div class="p-5">
-
-                                <h:panelGroup rendered="#{not empty publication.title}">
-                                    <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> #{publication.title} </span>
+                                <h:panelGroup styleClass="flex items-center w-full"
+                                              rendered="#{not empty publication.media.document and not empty publication.media.document.title}">
+                                    <div class="p-5">
+                                        <a class="text-violet-500"
+                                           href="#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.media.document.title}">View Attachement</a>
+                                    </div>
                                 </h:panelGroup>
 
-                                <h:panelGroup rendered="#{not empty publication.description}">
-                                    <div>
-                                        <span class="mb-3 font-normal text-gray-700"> #{publication.description} </span>
+                                <h:panelGroup
+                                        rendered="#{not empty publication.title or not empty publication.description}">
+                                    <div class="p-5">
+
+                                        <h:panelGroup rendered="#{not empty publication.title}">
+                                            <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> #{publication.title} </span>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup rendered="#{not empty publication.description}">
+                                            <div>
+                                                <span class="mb-3 font-normal text-gray-700"> #{publication.description} </span>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                </h:panelGroup>
+
+                                <h:panelGroup
+                                        rendered="#{not empty publication.event.name or not empty publication.event.date or not empty publication.event.local}">
+                                    <div class="p-5">
+                                        <h:panelGroup rendered="#{not empty publication.event.name}">
+                                            <div>
+                                                <span class="font-semibold"> Event name : </span> #{publication.event.name}
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup rendered="#{not empty publication.event.date}">
+                                            <div>
+                                                <span class="font-semibold"> Event date : </span> #{publication.event.date}
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup rendered="#{not empty publication.event.local}">
+                                            <div>
+                                                <span class="font-semibold"> Event local : </span> #{publication.event.local}
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{not empty publication.tags}">
+                                    <div class="p-5">
+                                        <ui:repeat value="#{publication.tags}" rendered="#{not empty publication.tags}"
+                                                   var="tag">
+                                            <h:panelGroup rendered="#{not empty tag.name}">
+                                                <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                                    #{tag.name}
+                                                </button>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                    </div>
+                                </h:panelGroup>
+
+
+                                <h:panelGroup rendered="#{not empty publication.viewsNumber}">
+                                    <div class="p-5">
+                                        <div class="absolute bottom-3">
+                                            <h:panelGroup rendered="#{not empty publication.viewsNumber}">
+                                                <div class="flex flex-row ">
+                                                    <div>
+                                                        <img src="https://img.icons8.com/sf-regular-filled/24/1A1A1A/visible.png"
+                                                             alt="views"/>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        #{publication.viewsNumber}
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                        </div>
                                     </div>
                                 </h:panelGroup>
                             </div>
-                        </h:panelGroup>
 
-                        <h:panelGroup rendered="#{not empty publication.event.name or not empty publication.event.date or not empty publication.event.local}">
-                            <div class="p-5">
-                            <h:panelGroup rendered="#{not empty publication.event.name}">
-                                <div>
-                                    <span class="font-semibold"> Event name : </span> #{publication.event.name}
-                                </div>
-                            </h:panelGroup>
 
-                            <h:panelGroup rendered="#{not empty publication.event.date}">
-                                <div>
-                                    <span class="font-semibold"> Event date : </span> #{publication.event.date}
-                                </div>
-                            </h:panelGroup>
+                        </ui:repeat>
+                        <!--                <div class="row-span-3">hi</div>-->
+                    </div>
+                </div>
 
-                            <h:panelGroup rendered="#{not empty publication.event.local}">
-                                <div>
-                                    <span class="font-semibold"> Event local : </span> #{publication.event.local}
-                                </div>
-                            </h:panelGroup>
+                <div class="sm:order-first lg:order-last sm:col-span-5 lg:col-span-1 m-3 rounded-md outline outline-1 outline-violet-500 text-center text-violet-500">
+                        <h:form styleClass="" id="searchCategoryForm">
+                    <div class="flex flex-wrap">
+
+                            <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == '' ? 'text-white bg-violet-500' : ''}">
+                                <h:outputLabel for="searchAllCategoryButton" value=""><i
+                                        class="fa fa-globe fa-lg"></i></h:outputLabel>
+                                <h:commandButton id="searchAllCategoryButton"
+                                                 styleClass="px-2"
+                                                 action="#{publicationController.searchByCategory('')}"
+                                                 value="All"/>
                             </div>
-                        </h:panelGroup>
 
-                        <h:panelGroup rendered="#{not empty publication.tags}">
-                            <div class="p-5">
-                            <ui:repeat value="#{publication.tags}" rendered="#{not empty publication.tags}"
+                            <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'article' ? 'text-white bg-violet-500' : ''}">
+                                <h:outputLabel for="searchCategoryArticleButton" value=""><i
+                                        class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
+                                <h:commandButton id="searchCategoryArticleButton"
+                                                 styleClass="px-2"
+                                                 action="#{publicationController.searchByCategory('article')}"
+                                                 value="Article"/>
+                            </div>
+
+                            <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'report' ? 'text-white bg-violet-500' : ''}">
+                                <h:outputLabel for="searchCategoryReportButton" value=""><i
+                                        class="fa fa-file-text-o fa-lg"></i></h:outputLabel>
+                                <h:commandButton id="searchCategoryReportButton"
+                                                 styleClass="px-2"
+                                                 action="#{publicationController.searchByCategory('report')}"
+                                                 value="Report"/>
+                            </div>
+
+                            <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'event' ? 'text-white bg-violet-500' : ''}">
+                                <h:outputLabel for="searchCategoryEventButton" value=""><i
+                                        class="fa fa-calendar fa-lg"></i></h:outputLabel>
+                                <h:commandButton id="searchCategoryEventButton"
+                                                 styleClass="px-2"
+                                                 action="#{publicationController.searchByCategory('event')}"
+                                                 value="Event"/>
+                            </div>
+
+                            <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{publicationController.searchCategory == 'other' ? 'text-white bg-violet-500' : ''}">
+                                <h:outputLabel for="searchCategoryOtherButton" value=""><i
+                                        class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
+                                <h:commandButton id="searchCategoryOtherButton"
+                                                 styleClass="px-2"
+                                                 action="#{publicationController.searchByCategory('other')}"
+                                                 value="Other"/>
+                            </div>
+
+                    </div>
+                        </h:form>
+
+
+                    <div class="flex flex-wrap">
+                        <h:form styleClass="" id="searchTagForm">
+
+                            <h:commandButton id="searchAllTagButton"
+                                             value="All"
+                                             action="#{publicationController.searchByTag('')}"
+                                             styleClass="#{publicationController.searchTag == '' ? 'bg-violet-500' : 'bg-gray-500'} ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
+                            />
+
+                            <ui:repeat value="#{publicationController.allTags}"
+                                       rendered="#{not empty publicationController.allTags}"
                                        var="tag">
                                 <h:panelGroup rendered="#{not empty tag.name}">
-                                    <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
-                                        #{tag.name}
-                                    </button>
+
+                                    <h:commandButton id="searchTagButton"
+                                                     value="#{tag.name}"
+                                                     action="#{publicationController.searchByTag(tag.name)}"
+                                                     styleClass="#{publicationController.searchTag == tag.name ? 'bg-violet-500' : 'bg-gray-500'} ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
+                                    />
+
+
                                 </h:panelGroup>
                             </ui:repeat>
-                            </div>
-                        </h:panelGroup>
-
-
-
-                        <h:panelGroup rendered="#{not empty publication.viewsNumber}">
-                            <div class="p-5">
-                            <div class="absolute bottom-3">
-                                <h:panelGroup rendered="#{not empty publication.viewsNumber}">
-                                    <div class="flex flex-row ">
-                                        <div>
-                                            <img src="https://img.icons8.com/sf-regular-filled/24/1A1A1A/visible.png" alt="views"/>
-                                        </div>
-                                        <div class="mx-2">
-                                            #{publication.viewsNumber}
-                                        </div>
-                                    </div>
-                                </h:panelGroup>
-                            </div>
-                            </div>
-                        </h:panelGroup>
+                        </h:form>
                     </div>
-
-
-                </ui:repeat>
+                </div>
             </div>
 
-
-            <!--            <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">-->
-            <!--                <a href="#">-->
-            <!--                    <img class="rounded-t-lg" src="#{facesContext.externalContext.requestContextPath}/resources/media/bbjh.png" alt=""></img>-->
-            <!--                </a>-->
-            <!--                <div class="p-5">-->
-            <!--                    <a href="#">-->
-            <!--                        <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</span>-->
-            <!--                    </a>-->
-            <!--                    <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>-->
-            <!--                    <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">-->
-            <!--                        Read more-->
-            <!--                        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>-->
-            <!--                    </a>-->
-            <!--                </div>-->
-            <!--            </div>-->
 
 
         </div>

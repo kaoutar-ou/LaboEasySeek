@@ -14,10 +14,7 @@ import org.bson.types.ObjectId;
 import org.irisi.laboeasyseek.utils.SessionUtils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @ToString
@@ -39,7 +36,38 @@ public class Publication implements Serializable {
     @BsonProperty(value = "views_number")
     private int viewsNumber = 0;
 
+    @BsonProperty(value = "category")
+    private String category;
+
+    @BsonProperty(value = "report")
+    private Report report;
+
+    @BsonProperty(value = "article")
+    private Article article;
+
+    @BsonProperty(value = "created_at")
+    private Date createdAt;
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @BsonProperty(value = "media")
     private Media media;
+
+    @BsonProperty(value = "event")
     private Event event;
 //    private Tag tag;
 

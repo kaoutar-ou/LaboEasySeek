@@ -110,12 +110,8 @@ public class UserrService implements UserRepository {
 
     public Boolean login(Userr user) throws NoSuchAlgorithmException, InvalidKeySpecException {
         Userr dbUser = findUserByEmail(user.getEmail());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-        System.out.println(getSecurePassword(user.getPassword()));
 
-        System.out.println(dbUser.getEmail());
-        System.out.println(dbUser.getPassword());
+
         if (dbUser != null) {
             if (validatePassword(user.getPassword(), dbUser.getPassword())) {
                 System.out.println("dbUser.getPassword()");
