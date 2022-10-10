@@ -151,7 +151,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-span-1">
-                                                <div class="flex flex-row items-center">
+                                                    <div class="flex flex-row items-center">
                                                         <i class="fa fa-comments-o fa-lg"></i>
                                                         <span class="mx-2">
                                                             #{not empty publication.comments ? publication.comments.size() : 0}
@@ -222,7 +222,6 @@
                                                  action="#{publicationController.searchByCategory('other')}"
                                                  value="Other"/>
                             </div>
-
                         </div>
                     </h:form>
 
@@ -246,7 +245,6 @@
                                                      action="#{publicationController.searchByTag(tag.name)}"
                                                      styleClass="#{publicationController.searchTag == tag.name ? 'bg-violet-500' : 'bg-gray-500'} cursor-pointer ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
                                     />
-
 
                                 </h:panelGroup>
                             </ui:repeat>

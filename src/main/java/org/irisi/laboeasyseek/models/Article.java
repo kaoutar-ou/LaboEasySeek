@@ -17,7 +17,6 @@ public class Article {
     @BsonId()
     @BsonRepresentation(BsonType.OBJECT_ID)
     private String id;
-
     @BsonProperty(value = "title")
     private String title;
 

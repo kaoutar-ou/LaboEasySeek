@@ -22,6 +22,7 @@ import java.io.Serializable;
 @SessionScoped
 @Named( "mediaDocumentBean" )
 public class Document implements Serializable {
+
     @BsonId()
     @BsonRepresentation(BsonType.OBJECT_ID)
     private String id;

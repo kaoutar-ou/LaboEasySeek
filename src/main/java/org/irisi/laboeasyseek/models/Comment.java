@@ -31,4 +31,5 @@ public class Comment implements Serializable {
 
     @BsonProperty(value = "created_at")
     private Date createdAt;
+
 }
