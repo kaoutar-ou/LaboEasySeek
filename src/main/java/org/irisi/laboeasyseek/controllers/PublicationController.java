@@ -4,15 +4,18 @@ import com.mongodb.*;
 import com.mongodb.client.*;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Sorts;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.event.ActionEvent;
 import jakarta.inject.Named;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 import org.irisi.laboeasyseek.configuration.DBConfig;
 import org.irisi.laboeasyseek.entities.Post;
 import org.irisi.laboeasyseek.entities.UploadManagedBean;
@@ -48,6 +51,7 @@ public class PublicationController implements Serializable {
         setSearch(searchString);
         setSearchTag("");
         setSearchCategory("");
+        setPageIndex(0);
     }
 
 
@@ -66,6 +70,7 @@ public class PublicationController implements Serializable {
         setSearchTag(searchTag);
         setSearch("");
         setSearchCategory("");
+        setPageIndex(0);
     }
 
     private String searchCategory = "";
@@ -83,6 +88,7 @@ public class PublicationController implements Serializable {
         setSearchCategory(searchCategory);
         setSearch("");
         setSearchTag("");
+        setPageIndex(0);
     }
 
 //    private boolean showTest = false;
@@ -105,6 +111,22 @@ public class PublicationController implements Serializable {
     MongoCollection<Image> imageCollection = mongoDatabase.getCollection("images", Image.class);
     MongoCollection<org.irisi.laboeasyseek.models.Document> documentCollection = mongoDatabase.getCollection("documents", org.irisi.laboeasyseek.models.Document.class);
 
+    MongoCollection<Comment> commentCollection = mongoDatabase.getCollection("comments", Comment.class);
+
+    private int pageIndex;
+    private int pageSize = 6;
+    private int pagesNumber;
+
+    public int getPagesNumber() {
+        return pagesNumber;
+    }
+
+    public int getPageIndex() {
+        return pageIndex;
+    }
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
 
     private List<Tag> tags = new ArrayList<Tag>();
 
@@ -154,18 +176,34 @@ public class PublicationController implements Serializable {
         FindIterable<Publication> publicationFindIterable = null;
 
         System.out.println("-------------------------------------" + search);
+
         if (!Objects.equals(search, "")) {
-            publicationFindIterable = publicationCollection.find(or(regex("title", ".*" + Pattern.quote(search) + ".*"), regex("description", ".*" + Pattern.quote(search) + ".*"), regex("publisher", ".*" + Pattern.quote(search) + ".*")));
+            publicationFindIterable = publicationCollection.find(
+                    or(
+                            regex("title", ".*" + Pattern.quote(search) + ".*"),
+                            regex("description", ".*" + Pattern.quote(search) + ".*"),
+                            regex("publisher", ".*" + Pattern.quote(search) + ".*")));
             setSearchTag("");
             setSearchCategory("");
+
 //            for (Publication pub : publicationFindIterable) {
 //                System.out.println(pub.toString());
 //                publicationList.add(pub);
 //            }
-        } else if(!Objects.equals(searchCategory, "")) {
+
+
+            pagesNumber = (int) publicationCollection.countDocuments(or(
+                    regex("title", ".*" + Pattern.quote(search) + ".*"),
+                    regex("description", ".*" + Pattern.quote(search) + ".*"),
+                    regex("publisher", ".*" + Pattern.quote(search) + ".*")));
+        } else if (!Objects.equals(searchCategory, "")) {
             System.out.println("search by category" + searchCategory);
-            publicationFindIterable = publicationCollection.find(regex("category", ".*" + Pattern.quote(searchCategory) + ".*"));
+            publicationFindIterable = publicationCollection.find(
+                    regex("category", ".*" + Pattern.quote(searchCategory) + ".*"));
             setSearchTag("");
+
+
+            pagesNumber = (int) publicationCollection.countDocuments(regex("category", ".*" + Pattern.quote(searchCategory) + ".*"));
 //            for (Publication pub : publicationFindIterable) {
 //                System.out.println(pub.toString());
 //                publicationList.add(pub);
@@ -174,8 +212,11 @@ public class PublicationController implements Serializable {
 
             System.out.println("search by tag" + searchTag);
 
-            publicationFindIterable = publicationCollection.find(regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
+            publicationFindIterable = publicationCollection.find(
+                    regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
 
+            pagesNumber = (int) publicationCollection.countDocuments(regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
+//            pagesNumber = (int) publicationCollection.countDocuments(regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
 //            for (Publication pub : publicationFindIterable) {
 //                System.out.println(pub.toString());
 //                publicationList.add(pub);
@@ -183,18 +224,34 @@ public class PublicationController implements Serializable {
 
         } else {
             publicationFindIterable = publicationCollection.find();
+            pagesNumber = (int) publicationCollection.countDocuments();
 //            for (Publication pub : publicationFindIterable) {
 //                System.out.println(pub.toString());
 //                publicationList.add(pub);
 //            }
         }
 
+//        pagesNumber = publicationFindIterable.into(new ArrayList<>()).size() / pageSize;
+
+//        pagesNumber =
+//        pagesNumber = 3;
+        System.out.println("index" + pageIndex);
+
+        if (pagesNumber != 0) {
+            pagesNumber = (pagesNumber / pageSize) + 1;
+        }
+
+        publicationFindIterable = publicationFindIterable.sort(Sorts.descending("created_at"))
+                .skip(pageIndex * pageSize)
+                .limit(pageSize);
+        System.out.println("pagesNumber" + pagesNumber);
+
         for (Publication pub : publicationFindIterable) {
             System.out.println(pub.toString());
             publicationList.add(pub);
         }
 
-        Collections.reverse(publicationList);
+//        Collections.reverse(publicationList);
         return publicationList;
     }
 
@@ -209,7 +266,7 @@ public class PublicationController implements Serializable {
             publication.setCategory(category);
         }
 
-        if (Objects.equals(publication.getCategory(), "event")) {
+        if (Objects.equals(publication.getCategory(), "event") || Objects.equals(publication.getCategory(), "") || Objects.equals(publication.getCategory(), null)) {
             if (event != null
                     && (!Objects.equals(event.getName(), "")
                     || !Objects.equals(event.getDate(), "")
@@ -219,7 +276,7 @@ public class PublicationController implements Serializable {
             }
         }
 
-        if (Objects.equals(publication.getCategory(), "report")) {
+        if (Objects.equals(publication.getCategory(), "report") || Objects.equals(publication.getCategory(), "") || Objects.equals(publication.getCategory(), null)) {
             if (report != null
                     && (!Objects.equals(report.getTitle(), "")
                     || !Objects.equals(report.getVersion(), ""))) {
@@ -228,7 +285,7 @@ public class PublicationController implements Serializable {
             }
         }
 
-        if (Objects.equals(publication.getCategory(), "article")) {
+        if (Objects.equals(publication.getCategory(), "article") || Objects.equals(publication.getCategory(), "") || Objects.equals(publication.getCategory(), null)) {
             if (article != null
                     && (!Objects.equals(article.getTitle(), "")
                     || !Objects.equals(article.getContent(), ""))) {
@@ -327,17 +384,19 @@ public class PublicationController implements Serializable {
                 imageCollection.insertOne(image);
                 media.setImage(image);
             }
-
         }
-        if (documentPart != null) {
+
+        if (documentPart != null && documentPart.getPart() != null && !Objects.equals(documentPart.getPart().getSubmittedFileName(), "")) {
             String title = uploadHelper.processUpload(documentPart.getPart(), publication.getTitle());
             media.setType(title);
 
             org.irisi.laboeasyseek.models.Document document = new org.irisi.laboeasyseek.models.Document();
             document.setTitle(title);
+            if (document.getTitle() != null) {
             document.setType(media.getType());
             documentCollection.insertOne(document);
             media.setDocument(document);
+            }
 
         }
 
@@ -349,6 +408,125 @@ public class PublicationController implements Serializable {
     public String homePage() {
         setTags(new ArrayList<Tag>());
         handleSetCategory("");
+        setPublication(null);
         return "home";
     }
+
+
+    private Publication publication;
+
+    public Publication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        this.publication = publication;
+    }
+
+    public String postPage(Publication publication) {
+        setPublication(publication);
+
+//////        Publication publication1 = publicationCollection.find(eq("_id", publication.getId())).first();
+////
+////        publicationCollection.updateOne(eq("_id", publication.getId()), Updates.inc("views_number", 1));
+//////        publicationCollection.findOneAndUpdate(eq("_id", publication.getId()), new Document("$set", new Document("viewsNumber", publication1.getViewsNumber() + 1)));
+////
+//
+//
+//        Document query = new Document().append("id", publication.getId());
+//        Bson updates = Updates.combine(
+//                Updates.set("views_number", 1));
+//        UpdateOptions options = new UpdateOptions().upsert(true);
+//        try {
+////        userCollection.updateOne(eq("publications._id", publication.getId()), Updates.inc("publications.$.views_number", 1));
+//            UpdateResult result = publicationCollection.updateOne(query, updates, options);
+//            System.out.println("Modified document count: " + result.getModifiedCount());
+//            System.out.println("Upserted id: " + result.getUpsertedId()); // only contains a value when an upsert is performed
+//        } catch (MongoException me) {
+//            System.err.println("Unable to update due to an error: " + me);
+//        }
+
+
+        System.out.println("publication--------------------------------------------------hhh-" + publication.getId());
+
+        Document publicationQuery = new Document().append("_id",  new ObjectId(publication.getId()));
+        Bson updates = Updates.combine(
+                Updates.set("views_number", publication.getViewsNumber() + 1)
+        );
+
+        UpdateOptions options = new UpdateOptions().upsert(true);
+
+        try {
+            UpdateResult result = publicationCollection.updateOne(publicationQuery, updates, options);
+            System.out.println("Modified Publication count: " + result.getModifiedCount());
+            System.out.println("Upserted id: " + result.getUpsertedId());
+        } catch (MongoException me) {
+            System.err.println("Unable to update due to an error: " + me);
+        }
+
+        return "post";
+    }
+
+    public void processPreviousAction(ActionEvent event) {
+        System.out.println("previous" + getPageIndex());
+        if (pageIndex > 0) {
+            System.out.println("previous2" + getPageIndex());
+            setPageIndex(pageIndex - 1);
+            System.out.println("previous3" + getPageIndex());
+        }
+    }
+
+    public void processNextAction(ActionEvent event) {
+        System.out.println("next" + getPageIndex());
+        if (pageIndex < pagesNumber - 1) {
+//            pageIndex++;
+            System.out.println("next2" + getPageIndex());
+            setPageIndex(pageIndex + 1);
+            System.out.println("next3" + getPageIndex());
+        }
+//        pageIndex++;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public String addComment(Comment comment, Publication publication) {
+
+        comment.setCreatedAt(new Date());
+        comment.setUser(SessionUtils.getEmail());
+
+        commentCollection.insertOne(comment);
+
+        Document publicationQuery = new Document().append("_id",  new ObjectId(publication.getId()));
+        Bson updates = Updates.combine(
+                Updates.addToSet("comments", comment)
+        );
+        UpdateOptions options = new UpdateOptions().upsert(true);
+
+        try {
+            UpdateResult result = publicationCollection.updateOne(publicationQuery, updates, options);
+            System.out.println("Modified Publication count: " + result.getModifiedCount());
+            System.out.println("Upserted id: " + result.getUpsertedId());
+
+        } catch (MongoException me) {
+            System.err.println("Unable to update due to an error: " + me);
+        }
+
+        setPublication(publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first());
+//        publication = publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first();
+        return "post";
+    }
+
 }
+
+// TODO .. update in userCollection

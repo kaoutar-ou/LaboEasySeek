@@ -48,7 +48,8 @@ public class DBConfig {
                 .build();
 
         MongoClient mongoClient = MongoClients.create(clientSettings);
-        this.db = mongoClient.getDatabase("app");
+        this.db = mongoClient.getDatabase("ttt");
+//        this.db = mongoClient.getDatabase("laboeasyseek");
     }
 
     public static DBConfig getDbConfig() {

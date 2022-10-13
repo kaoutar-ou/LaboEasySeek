@@ -41,6 +41,10 @@
                               <button type="submit" id="logoutForm:logoutButton" name="logoutForm:logoutButton"><i class="fa fa-sign-out fa-lg"></i></button>
                           </h:form>
                       </h:panelGroup>
+                      <h:form>
+                          <h:commandLink styleClass="p-1 mx-2 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none #{languageSwitcher.locale == 'us' ? 'bg-violet-500 text-gray-50' : 'text-violet-500'}" action="#{languageSwitcher.changeLanguage('us')}" value="EN"/>
+                          <h:commandLink styleClass="p-1 mx-2 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none #{languageSwitcher.locale == 'fr' ? 'bg-violet-500 text-gray-50' : 'text-violet-500'}" action="#{languageSwitcher.changeLanguage('fr')}" value="FR"/>
+                      </h:form>
                   </div>
                </div>
             </ui:insert>

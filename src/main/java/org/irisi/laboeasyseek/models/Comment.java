@@ -1,5 +1,6 @@
 package org.irisi.laboeasyseek.models;
 
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
@@ -12,11 +13,11 @@ import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Getter
-@Setter
 @ToString
-@SessionScoped
+@RequestScoped
 @Named( "commentBean" )
 public class Comment implements Serializable {
     @BsonId()
@@ -32,4 +33,23 @@ public class Comment implements Serializable {
     @BsonProperty(value = "created_at")
     private Date createdAt;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUser(String user) {
+        if (!Objects.equals(user, "")) {
+        this.user = user;
+        }
+    }
+
+    public void setContent(String content) {
+        if (!Objects.equals(content, "")) {
+        this.content = content;
+        }
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }

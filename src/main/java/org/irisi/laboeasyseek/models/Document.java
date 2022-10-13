@@ -15,9 +15,9 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
-@Setter
 @ToString
 @SessionScoped
 @Named( "mediaDocumentBean" )
@@ -34,4 +34,24 @@ public class Document implements Serializable {
 
     @BsonIgnore
     private Part part;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        if (!Objects.equals(title, "")) {
+        this.title = title;
+        }
+    }
+
+    public void setType(String type) {
+        if (!Objects.equals(type, "")) {
+        this.type = type;
+        }
+    }
+
+    public void setPart(Part part) {
+        this.part = part;
+    }
 }

@@ -9,6 +9,8 @@ import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
+import java.util.Objects;
+
 @Getter
 @ToString
 @Named("articleBean")
@@ -26,19 +28,32 @@ public class Article {
     @BsonProperty(value = "reference")
     private String reference;
 
+    @BsonProperty(value = "language")
+    private String language;
+
     @BsonProperty(value = "media")
     private Media media;
+
+    public void setLanguage(String language) {
+        if (!Objects.equals(language, "")) {
+            this.language = language;
+        }
+    }
 
     public void setId(String id) {
         this.id = id;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if (!Objects.equals(title, "")) {
+            this.title = title;
+        }
     }
 
     public void setReference(String reference) {
+        if (!Objects.equals(reference, "")) {
         this.reference = reference;
+        }
     }
 
     public void setMedia(Media media) {
@@ -46,6 +61,8 @@ public class Article {
     }
 
     public void setContent(String content) {
+        if (!Objects.equals(content, "")) {
         this.content = content;
+        }
     }
 }

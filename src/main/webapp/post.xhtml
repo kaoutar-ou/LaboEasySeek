@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="base.xhtml">
+    <ui:define name="body">
+        <div class="bg-gray-100 min-h-screen p-9">
+            <div class="text-center m-3">
+                Publication details
+            </div>
+            <div class="p-3">
+                <div class="p-5 bg-white shadow-md m-5">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="sm:col-span-3 md:col-span-2 lg:col-span-2">
+                            <h:panelGroup styleClass="flex items-center w-full"
+                                          rendered="#{not empty publicationController.publication.media.image and not empty publicationController.publication.media.image.title}">
+                                <div class="bg-cover bg-center w-full h-64"
+                                     style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publicationController.publication.media.image.title}')">
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <div class="my-3">
+                                    <h:outputLabel value="Posted by "/>
+                                    <h:outputText styleClass="font-bold"
+                                                  value="#{publicationController.publication.publisher}"/>
+                                    <!--                                <h:outputText value="#{publicationController.publication.category}"/>-->
+                                    <h:panelGroup rendered="#{not empty publicationController.publication.category and publicationController.publication.category != ''}">
+                                        <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
+                                            #{publicationController.publication.category}
+                                        </button>
+                                    </h:panelGroup>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <div class="my-3">
+                                    <h:outputText styleClass="font-bold" value="#{publicationController.publication.title}"/>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <div class="my-3">
+                                    <h:outputText value="#{publicationController.publication.description}"/>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup styleClass="flex items-center w-full"
+                                          rendered="#{not empty publicationController.publication.media.document and not empty publicationController.publication.media.document.title}">
+                                <div class="p-3">
+                                    <a class="text-violet-500"
+                                       href="#{facesContext.externalContext.requestContextPath}/resources/media/#{publicationController.publication.media.document.title}">#{msg['home.view_attachments']}</a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <div class="my-3">
+                                    <h:outputText value="#{publicationController.publication.website}"/>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty publicationController.publication.article}">
+                                <div class="my-3">
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.article.title}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.article.content}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.article.language}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputLabel value="Ref : "/>
+                                        <h:outputText styleClass="font-bold"
+                                                      value="#{publicationController.publication.article.reference}"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty publicationController.publication.report}">
+                                <div class="my-3">
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.report.title}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.report.language}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.report.version}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText
+                                                value="#{publicationController.publication.report.media.document}"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty publicationController.publication.event}">
+                                <div class="my-3">
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.event.name}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.event.local}"/>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{publicationController.publication.event.date}"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty publicationController.publication.tags}">
+                                <div class="my-3">
+                                    <ui:repeat value="#{publicationController.publication.tags}"
+                                               rendered="#{not empty publicationController.publication.tags}"
+                                               var="tag">
+                                        <h:panelGroup rendered="#{not empty tag.name}">
+                                            <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                                #{tag.name}
+                                            </button>
+                                        </h:panelGroup>
+                                    </ui:repeat>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                        <div class="sm:col-span-3 md:col-span-1 lg:col-span-1">
+                            <h:form>
+                                <h:panelGroup>
+                                    <div class="">
+<!--                                        <h:outputLabel value="Comment"/>-->
+                                        <h:inputText id="comment"
+                                                     value="#{commentBean.content}"
+                                                     class="w-full border border-violet-500 rounded-lg focus:outline-none p-2"
+                                        />
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <div class="my-3">
+                                        <h:commandButton value="Comment"
+                                                         action="#{publicationController.addComment(commentBean, publicationController.publication)}"
+                                                         styleClass="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"/>
+                                    </div>
+                                </h:panelGroup>
+                            </h:form>
+                            <ui:repeat value="#{publicationController.publication.comments}" var="comment">
+                                <div class="my-3">
+                                    <h:panelGroup>
+                                        <div class="font-bold">
+                                            <h:outputText value="#{comment.user}"/>
+                                        </div>
+                                        <div class="">
+                                            <h:outputText value="#{comment.content}"/>
+                                        </div>
+                                    </h:panelGroup>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h:form>
+                <h:commandButton
+                        styleClass=" text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-md p-2"
+                        action="#{publicationController.homePage}" value="#{msg['home.return']}"/>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

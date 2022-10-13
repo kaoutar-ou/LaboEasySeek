@@ -23,6 +23,7 @@ import java.util.*;
 public class Publication implements Serializable {
     @BsonId()
     @BsonRepresentation(BsonType.OBJECT_ID)
+//    @BsonProperty("id")
     private String id;
     @BsonProperty(value = "title")
     private String title;
@@ -54,9 +55,21 @@ public class Publication implements Serializable {
     @BsonProperty(value = "event")
     private Event event;
 
+    @BsonProperty(value = "website")
+    private String website;
+
     private List<Tag> tags;
 
     private List<Comment> comments;
+
+
+
+    public void setWebsite(String website) {
+
+        if (!Objects.equals(website, "")) {
+        this.website = website;
+        }
+    }
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
@@ -75,7 +88,9 @@ public class Publication implements Serializable {
     }
 
     public void setCategory(String category) {
+        if (!Objects.equals(category, "")) {
         this.category = category;
+        }
     }
 
     public List<Tag> getTags() {
@@ -103,7 +118,9 @@ public class Publication implements Serializable {
     }
 
     public void setPublisher(String publisher) {
+        if (!Objects.equals(publisher, "")) {
         this.publisher = publisher;
+        }
     }
 
     public void setViewsNumber(int viewsNumber) {

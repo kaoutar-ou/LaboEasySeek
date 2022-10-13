@@ -5,6 +5,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 
 import jakarta.servlet.http.HttpSession;
+import org.irisi.laboeasyseek.configuration.PGConfig;
 import org.irisi.laboeasyseek.dao.EntityManagerFactorySingleton;
 import org.irisi.laboeasyseek.dao.UserRepository;
 import org.irisi.laboeasyseek.entities.Userr;
@@ -28,8 +29,11 @@ public class UserrService implements UserRepository {
     private EntityTransaction et;
 
     public UserrService() {
-        em = EntityManagerFactorySingleton.getEntityManagerFactory().createEntityManager();
-        et = em.getTransaction();
+//        em = EntityManagerFactorySingleton.getEntityManagerFactory().createEntityManager();
+//        et = em.getTransaction();
+
+        em = PGConfig.getEm();
+        et = PGConfig.getEt();
     }
 
     @Override

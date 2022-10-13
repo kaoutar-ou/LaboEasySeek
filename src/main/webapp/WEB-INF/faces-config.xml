@@ -39,4 +39,18 @@
             <to-view-id>/addPost.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+
+
+    <application>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>fr</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>com.translations.message</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
 </faces-config>

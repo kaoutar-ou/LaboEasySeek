@@ -10,10 +10,10 @@
         <div class="bg-gray-100 min-h-screen p-9">
             <div class="text-center m-3">
                 <h:panelGroup rendered="#{publicationController.category eq ''}">
-                    Add a new publication
+                    #{msg['home.title']}
                 </h:panelGroup>
                 <h:panelGroup rendered="#{publicationController.category != ''}">
-                    Add a new #{publicationController.category}
+                    #{msg['home.aad_new']} #{publicationController.category}
                 </h:panelGroup>
             </div>
             <h:form enctype="multipart/form-data" styleClass="p-3">
@@ -22,18 +22,26 @@
                     <h:panelGroup rendered="#{publicationController.category eq ''}">
                         <div>
                             <div class="text-center m-3">
-                                Please choose one of the following categories
+                                #{msg['home.please']}
                             </div>
 
                             <h:form id="categoryForm">
                                 <div class="flex flex-row justify-center p-3">
+                                    <div class="px-2 py-1 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
+                                        <h:outputLabel for="shuffleButton" styleClass="cursor-pointer" value=""><i
+                                                class="fa fa-random fa-lg"></i></h:outputLabel>
+                                        <h:commandButton id="shuffleButton"
+                                                         styleClass="cursor-pointer"
+                                                         action="#{publicationController.handleSetCategory('all')}"/>
+                                    </div>
+
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
                                         <h:outputLabel for="articleButton" styleClass="cursor-pointer" value=""><i
                                                 class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
                                         <h:commandButton id="articleButton"
                                                          styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('article')}"
-                                                         value="Article"/>
+                                                         value="#{msg['home.article']}"/>
                                     </div>
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
                                         <h:outputLabel for="reportButton" styleClass="cursor-pointer" value=""><i
@@ -41,7 +49,7 @@
                                         <h:commandButton id="reportButton"
                                                          styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('report')}"
-                                                         value="Report"/>
+                                                         value="#{msg['home.report']}"/>
                                     </div>
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
                                         <h:outputLabel for="eventButton" styleClass="cursor-pointer" value=""><i
@@ -49,14 +57,14 @@
                                         <h:commandButton id="eventButton"
                                                          styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('event')}"
-                                                         value="Event"/>
+                                                         value="#{msg['home.event']}"/>
                                     </div>
                                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
                                         <h:outputLabel for="otherButton" styleClass="cursor-pointer" value=""><i class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
                                         <h:commandButton id="otherButton"
                                                          styleClass="px-2 cursor-pointer"
                                                          action="#{publicationController.handleSetCategory('other')}"
-                                                         value="Other"/>
+                                                         value="#{msg['home.other']}"/>
                                     </div>
                                 </div>
                             </h:form>
@@ -104,10 +112,41 @@
                                                 styleClass="text-red-400 w-full text-[0.7rem]"
                                                 for="description"/>
                                     </div>
+
+
+                                    <h:panelGroup rendered="#{publicationController.category == 'article'}">
+                                        <div class="flex flex-col w-full my-5">
+                                            <h:outputText
+                                                    styleClass="my-3"
+                                                    value="Article language"/>
+                                            <h:selectOneMenu value = "#{articleBean.language}" class="border border-violet-500 rounded-lg focus:outline-none p-2">
+                                                <f:selectItem itemValue = "en" itemLabel = "English" />
+                                                <f:selectItem itemValue = "fr" itemLabel = "French" />
+                                                <f:selectItem itemValue = "ar" itemLabel = "Arabe" />
+                                                <f:selectItem itemValue = "es" itemLabel = "Spanish" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup rendered="#{publicationController.category == 'report'}">
+                                        <div class="flex flex-col w-full my-5">
+                                            <h:outputText
+                                                    styleClass="my-3"
+                                                    value="Report language"/>
+                                            <h:selectOneMenu value = "#{reportBean.language}" class="border border-violet-500 rounded-lg focus:outline-none p-2">
+                                                <f:selectItem itemValue = "en" itemLabel = "English" />
+                                                <f:selectItem itemValue = "fr" itemLabel = "French" />
+                                                <f:selectItem itemValue = "ar" itemLabel = "Arabe" />
+                                                <f:selectItem itemValue = "es" itemLabel = "Spanish" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </h:panelGroup>
+
+
                                 </div>
                             </h:panelGroup>
 
-                            <h:panelGroup rendered="#{publicationController.category == 'event'}">
+                            <h:panelGroup rendered="#{publicationController.category == 'event' || publicationController.category == 'all'}">
                                 <div class="col-span-1 p-3">
                                     <div class="flex flex-col w-full my-5">
                                         <h:outputText
@@ -151,7 +190,7 @@
                             </h:panelGroup>
 
 
-                            <h:panelGroup rendered="#{publicationController.category == 'article'}">
+                            <h:panelGroup rendered="#{publicationController.category == 'article' || publicationController.category == 'all'}">
                                 <div class="col-span-1 p-3">
                                     <div class="flex flex-col w-full my-5">
                                         <h:outputText
@@ -196,7 +235,7 @@
                             </h:panelGroup>
 
 
-                            <h:panelGroup rendered="#{publicationController.category == 'report'}">
+                            <h:panelGroup rendered="#{publicationController.category == 'report' || publicationController.category == 'all'}">
                                 <div class="col-span-1 p-3">
                                     <div class="flex flex-col w-full my-5">
                                         <h:outputText
@@ -227,6 +266,27 @@
                             </h:panelGroup>
 
 
+
+                            <h:panelGroup rendered="#{publicationController.category == 'other' || publicationController.category == 'all'}">
+                                <div class="col-span-1 p-3">
+                                    <div class="flex flex-col w-full my-5">
+                                        <h:outputText
+                                                styleClass="my-3"
+                                                value="Website"/>
+                                        <h:inputText
+                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
+                                                id="website"
+                                                value="#{publicationBean.website}"/>
+                                        <h:message
+                                                styleClass="text-red-400 w-full text-[0.7rem]"
+                                                for="website"/>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+
+
+
                             <h:panelGroup rendered="#{publicationController.category != ''}">
                                 <div class="col-span-1 p-3">
                                     <div class="flex flex-col w-full my-5">
@@ -246,7 +306,8 @@
                             </h:panelGroup>
 
                             <h:panelGroup rendered="#{publicationController.category != ''}">
-                                <div class="#{publicationController.category == 'other' ? 'col-span-1 p-3' : 'col-span-3 p-3'}">
+<!--                                <div class="#{publicationController.category == 'other' ? 'col-span-1 p-3' : 'col-span-3 p-3'}">-->
+                                <div class="#{'col-span-3 p-3'}">
                                     <div class="flex flex-col w-full my-5">
                                         <!--                                    <h:selectOneMenu value="#{publicationBean.category}">-->
                                         <!--                                        <f:selectItem itemValue="1" itemLabel="Article"/>-->
@@ -263,7 +324,7 @@
                                             </ui:repeat>
                                             <h:commandLink
                                                     styleClass="#{publicationController.category == 'other' ? 'w-1/12' : 'w-2/12'} rounded rounded-full text-violet-500 text-center p-1 m-2"
-                                                    action="#{publicationController.addTag(tag)}">+</h:commandLink>
+                                                    actionListener="#{publicationController.addTag(tag)}">+</h:commandLink>
                                         </div>
                                         <h:message
                                                 styleClass="text-red-400 w-full text-[0.7rem]"
@@ -277,7 +338,7 @@
 
                     <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white cursor-pointer"
                                      action="#{publicationController.addPublication(publicationBean, eventBean, reportBean, articleBean, mediaImageBean, mediaDocumentBean)}"
-                                     value="Add Post"/>
+                                     value="#{msg['home.add']}"/>
                 </div>
 
             </h:form>
@@ -285,7 +346,7 @@
             <h:form>
                 <h:commandButton
                         styleClass=" text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-md p-2"
-                        action="#{publicationController.homePage}" value="Return"/>
+                        action="#{publicationController.homePage}" value="#{msg['home.return']}"/>
             </h:form>
 
         </div>

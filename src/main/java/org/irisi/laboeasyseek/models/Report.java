@@ -9,6 +9,8 @@ import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
+import java.util.Objects;
+
 @Getter
 @ToString
 @Named("reportBean")
@@ -24,19 +26,32 @@ public class Report {
     @BsonProperty(value = "version")
     private String version;
 
+    @BsonProperty(value = "language")
+    private String language;
+
     @BsonProperty(value = "media")
     private Media media;
+
+    public void setLanguage(String language) {
+        if (!Objects.equals(language, "")) {
+        this.language = language;
+        }
+    }
 
     public void setId(String id) {
         this.id = id;
     }
 
     public void setTitle(String title) {
+        if (!Objects.equals(title, "")) {
         this.title = title;
+        }
     }
 
     public void setVersion(String version) {
+        if (!Objects.equals(version, "")) {
         this.version = version;
+        }
     }
 
     public void setMedia(Media media) {
