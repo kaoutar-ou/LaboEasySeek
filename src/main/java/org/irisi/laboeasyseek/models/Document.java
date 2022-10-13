@@ -15,6 +15,7 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -34,6 +35,20 @@ public class Document implements Serializable {
 
     @BsonIgnore
     private Part part;
+
+    @BsonProperty(value = "file_path")
+    private String filePath;
+
+    private List<String> keywords;
+
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
+    }
+
+    public void setFilePath(String filePath) {
+
+        this.filePath = filePath;
+    }
 
     public void setId(String id) {
         this.id = id;

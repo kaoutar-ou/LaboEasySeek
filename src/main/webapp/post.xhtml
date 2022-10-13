@@ -117,6 +117,26 @@
                                     </ui:repeat>
                                 </div>
                             </h:panelGroup>
+                            <h:panelGroup styleClass=""
+                                          rendered="#{not empty publicationController.publication.media.document.filePath and not empty publicationController.publication.media.document.filePath}">
+                                <div class="flex items-center w-full my-3">
+                                    <img src="#{facesContext.externalContext.requestContextPath}/resources/media/#{publicationController.publication.media.document.filePath}" alt="img"/>
+
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty publicationController.publication.media.document.keywords}">
+                                <div class="my-3">
+                                    <ui:repeat value="#{publicationController.publication.media.document.keywords}"
+                                               rendered="#{not empty publicationController.publication.media.document.keywords}"
+                                               var="keyword">
+                                        <h:panelGroup rendered="#{not empty keyword}">
+                                            <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                                #{keyword}
+                                            </button>
+                                        </h:panelGroup>
+                                    </ui:repeat>
+                                </div>
+                            </h:panelGroup>
                         </div>
                         <div class="sm:col-span-3 md:col-span-1 lg:col-span-1">
                             <h:form>

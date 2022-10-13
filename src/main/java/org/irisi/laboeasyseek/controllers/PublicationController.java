@@ -24,6 +24,7 @@ import org.irisi.laboeasyseek.models.Tag;
 import org.irisi.laboeasyseek.services.UploadHelper;
 import org.irisi.laboeasyseek.utils.SessionUtils;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -125,6 +126,7 @@ public class PublicationController implements Serializable {
     public int getPageIndex() {
         return pageIndex;
     }
+
     public void setPageIndex(int pageIndex) {
         this.pageIndex = pageIndex;
     }
@@ -257,7 +259,7 @@ public class PublicationController implements Serializable {
     }
 
 
-    public void addPublication(Publication publication, Event event, Report report, Article article, Image image, org.irisi.laboeasyseek.models.Document document) {
+    public void addPublication(Publication publication, Event event, Report report, Article article, Image image, org.irisi.laboeasyseek.models.Document document) throws IOException {
         System.out.println("here1");
 
         List<String> categories = Arrays.asList("article", "report", "event", "other");
@@ -365,7 +367,7 @@ public class PublicationController implements Serializable {
     }
 
 
-    public Publication processUpload(Publication publication, Image imagePart, org.irisi.laboeasyseek.models.Document documentPart) {
+    public Publication processUpload(Publication publication, Image imagePart, org.irisi.laboeasyseek.models.Document documentPart) throws IOException {
 
         System.out.println("pub------------------------------------------------dd---");
         UploadHelper uploadHelper = new UploadHelper();
@@ -391,13 +393,24 @@ public class PublicationController implements Serializable {
             String title = uploadHelper.processUpload(documentPart.getPart(), publication.getTitle());
             media.setType(title);
 
+
             org.irisi.laboeasyseek.models.Document document = new org.irisi.laboeasyseek.models.Document();
             document.setTitle(title);
             if (document.getTitle() != null) {
-            document.setType(media.getType());
-            documentCollection.insertOne(document);
-            media.setDocument(document);
+                document.setType(media.getType());
+                List<String> listWords = new ArrayList<>();
+                if (!Objects.equals(media.getType(), "pdf")) {
+                    listWords = UploadHelper.generateWordCloud(title);
+                } else {
+                    String file = UploadHelper.pdfToTextFile(title);
+                    listWords = UploadHelper.generateWordCloud(file);
+                }
+                document.setFilePath(title.split("\\.")[0] + ".png");
+                document.setKeywords(listWords);
+                documentCollection.insertOne(document);
+                media.setDocument(document);
             }
+
 
         }
 
@@ -450,7 +463,7 @@ public class PublicationController implements Serializable {
 
         System.out.println("publication--------------------------------------------------hhh-" + publication.getId());
 
-        Document publicationQuery = new Document().append("_id",  new ObjectId(publication.getId()));
+        Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
         Bson updates = Updates.combine(
                 Updates.set("views_number", publication.getViewsNumber() + 1)
         );
@@ -489,18 +502,6 @@ public class PublicationController implements Serializable {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public String addComment(Comment comment, Publication publication) {
 
         comment.setCreatedAt(new Date());
@@ -508,7 +509,7 @@ public class PublicationController implements Serializable {
 
         commentCollection.insertOne(comment);
 
-        Document publicationQuery = new Document().append("_id",  new ObjectId(publication.getId()));
+        Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
         Bson updates = Updates.combine(
                 Updates.addToSet("comments", comment)
         );
