@@ -120,6 +120,15 @@
                         </div>
                         <div class="sm:col-span-3 md:col-span-1 lg:col-span-1">
                             <h:form>
+                                <div class="flex justify-center w-full">
+                                    <h:commandLink styleClass="py-3 px-5 mx-2 mb-3 shadow-md no-underline rounded-full text-violet-500 font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none hover:text-white hover:bg-violet-500" action="#{publicationController.addRating(1)}" value="1"/>
+                                    <h:commandLink styleClass="py-3 px-5 mx-2 mb-3 shadow-md no-underline rounded-full text-violet-500 font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none hover:text-white hover:bg-violet-500" action="#{publicationController.addRating(2)}" value="2"/>
+                                    <h:commandLink styleClass="py-3 px-5 mx-2 mb-3 shadow-md no-underline rounded-full text-violet-500 font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none hover:text-white hover:bg-violet-500" action="#{publicationController.addRating(3)}" value="3"/>
+                                    <h:commandLink styleClass="py-3 px-5 mx-2 mb-3 shadow-md no-underline rounded-full text-violet-500 font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none hover:text-white hover:bg-violet-500" action="#{publicationController.addRating(4)}" value="4"/>
+                                    <h:commandLink styleClass="py-3 px-5 mx-2 mb-3 shadow-md no-underline rounded-full text-violet-500 font-sans font-semibold text-sm outline outline-1 outline-violet-500 btn-primary focus:outline-none active:shadow-none hover:text-white hover:bg-violet-500" action="#{publicationController.addRating(5)}" value="5"/>
+                                </div>
+                            </h:form>
+                            <h:form>
                                 <h:panelGroup>
                                     <div class="">
 <!--                                        <h:outputLabel value="Comment"/>-->

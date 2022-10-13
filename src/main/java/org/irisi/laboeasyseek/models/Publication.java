@@ -58,11 +58,16 @@ public class Publication implements Serializable {
     @BsonProperty(value = "website")
     private String website;
 
+
     private List<Tag> tags;
 
     private List<Comment> comments;
 
+    private List<Rating> ratings;
 
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
 
     public void setWebsite(String website) {
 

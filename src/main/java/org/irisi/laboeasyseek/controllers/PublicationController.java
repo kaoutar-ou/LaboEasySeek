@@ -107,6 +107,7 @@ public class PublicationController implements Serializable {
     MongoCollection<Article> articleCollection = mongoDatabase.getCollection("articles", Article.class);
     MongoCollection<Report> reportCollection = mongoDatabase.getCollection("reports", Report.class);
     MongoCollection<Tag> tagCollection = mongoDatabase.getCollection("tags", Tag.class);
+    MongoCollection<Rating> ratingCollection = mongoDatabase.getCollection("ratings", Rating.class);
     MongoCollection<Media> mediaCollection = mongoDatabase.getCollection("medias", Media.class);
     MongoCollection<Image> imageCollection = mongoDatabase.getCollection("images", Image.class);
     MongoCollection<org.irisi.laboeasyseek.models.Document> documentCollection = mongoDatabase.getCollection("documents", org.irisi.laboeasyseek.models.Document.class);
@@ -524,6 +525,37 @@ public class PublicationController implements Serializable {
 
         setPublication(publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first());
 //        publication = publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first();
+        return "post";
+    }
+
+
+    public String addRating(int rating) {
+
+        Rating newRating = new Rating();
+        newRating.setRating(rating);
+        newRating.setUser(SessionUtils.getEmail());
+        System.out.println("rating : " + rating);
+
+        ratingCollection.insertOne(newRating);
+        System.out.println("rating : " + rating);
+
+        Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
+        Bson updates = Updates.combine(
+                Updates.addToSet("ratings", newRating)
+        );
+        UpdateOptions options = new UpdateOptions().upsert(true);
+
+        try {
+            UpdateResult result = publicationCollection.updateOne(publicationQuery, updates, options);
+            System.out.println("Modified Publication count: " + result.getModifiedCount());
+            System.out.println("Upserted id: " + result.getUpsertedId());
+
+        } catch (MongoException me) {
+            System.err.println("Unable to update due to an error: " + me);
+        }
+
+        setPublication(publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first());
+
         return "post";
     }
 
