@@ -249,12 +249,12 @@
                             <ui:repeat value="#{publicationController.allTags}"
                                        rendered="#{not empty publicationController.allTags}"
                                        var="tag">
-                                <h:panelGroup rendered="#{not empty tag.name}">
+                                <h:panelGroup rendered="#{not empty tag}">
 
                                     <h:commandButton id="searchTagButton"
-                                                     value="#{tag.name}"
-                                                     action="#{publicationController.searchByTag(tag.name)}"
-                                                     styleClass="#{publicationController.searchTag == tag.name ? 'bg-violet-500' : 'bg-gray-500'} cursor-pointer ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
+                                                     value="#{tag}"
+                                                     action="#{publicationController.searchByTag(tag)}"
+                                                     styleClass="#{publicationController.searchTag == tag ? 'bg-violet-500' : 'bg-gray-500'} cursor-pointer ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
                                     />
 
                                 </h:panelGroup>

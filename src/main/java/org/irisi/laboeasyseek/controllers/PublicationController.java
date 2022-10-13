@@ -3,10 +3,7 @@ package org.irisi.laboeasyseek.controllers;
 import com.mongodb.*;
 import com.mongodb.client.*;
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Sorts;
-import com.mongodb.client.model.UpdateOptions;
-import com.mongodb.client.model.Updates;
+import com.mongodb.client.model.*;
 import com.mongodb.client.result.UpdateResult;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.event.ActionEvent;
@@ -153,15 +150,46 @@ public class PublicationController implements Serializable {
     }
 
 
-    public List<Tag> getAllTags() {
-        List<Tag> tagList = new ArrayList<>();
+//    public List<Tag> getAllTags() {
+        public List<String> getAllTags() {
+//        List<Tag> tagList = new ArrayList<>();
+//        FindIterable<Tag> tagFindIterable = null;
+//        tagFindIterable = tagCollection.find();
+//        for (Tag pub : tagFindIterable) {
+//            System.out.println(pub.toString());
+//            tagList.add(pub);
+//        }
+
+
+//        List<Tag> tagList = new ArrayList<>();
+        List<String> tagNames = new ArrayList<>();
+
         FindIterable<Tag> tagFindIterable = null;
-        tagFindIterable = tagCollection.find();
-        for (Tag pub : tagFindIterable) {
-            System.out.println(pub.toString());
-            tagList.add(pub);
+        FindIterable<Publication> publicationFindIterable = null;
+
+        Bson projection = Projections.fields(Projections.include("tags"), Projections.excludeId());
+
+        publicationFindIterable = publicationCollection.find().projection(projection);
+
+        for (Publication pub : publicationFindIterable) {
+            for (Tag tag : pub.getTags()) {
+//                if (!tagList.contains(tag)) {
+//                    tagList.add(tag);
+//                }
+                if (!tagNames.contains(tag.getName())) {
+                    tagNames.add(tag.getName());
+                }
+            }
         }
-        return tagList;
+
+//        for (Tag pub : tagFindIterable) {
+//            System.out.println(pub.toString());
+//            tagList.add(pub);
+//        }
+
+
+//        return tagList;
+        return tagNames;
     }
 
     private String category = "";
@@ -219,25 +247,11 @@ public class PublicationController implements Serializable {
                     regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
 
             pagesNumber = (int) publicationCollection.countDocuments(regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
-//            pagesNumber = (int) publicationCollection.countDocuments(regex("tags.name", ".*" + Pattern.quote(searchTag) + ".*"));
-//            for (Publication pub : publicationFindIterable) {
-//                System.out.println(pub.toString());
-//                publicationList.add(pub);
-//            }
-
         } else {
             publicationFindIterable = publicationCollection.find();
             pagesNumber = (int) publicationCollection.countDocuments();
-//            for (Publication pub : publicationFindIterable) {
-//                System.out.println(pub.toString());
-//                publicationList.add(pub);
-//            }
         }
 
-//        pagesNumber = publicationFindIterable.into(new ArrayList<>()).size() / pageSize;
-
-//        pagesNumber =
-//        pagesNumber = 3;
         System.out.println("index" + pageIndex);
 
         if (pagesNumber != 0) {
@@ -254,7 +268,6 @@ public class PublicationController implements Serializable {
             publicationList.add(pub);
         }
 
-//        Collections.reverse(publicationList);
         return publicationList;
     }
 
@@ -274,7 +287,7 @@ public class PublicationController implements Serializable {
                     && (!Objects.equals(event.getName(), "")
                     || !Objects.equals(event.getDate(), "")
                     || !Objects.equals(event.getLocal(), ""))) {
-                eventCollection.insertOne(event);
+//                eventCollection.insertOne(event);
                 publication.setEvent(event);
             }
         }
@@ -283,7 +296,7 @@ public class PublicationController implements Serializable {
             if (report != null
                     && (!Objects.equals(report.getTitle(), "")
                     || !Objects.equals(report.getVersion(), ""))) {
-                reportCollection.insertOne(report);
+//                reportCollection.insertOne(report);
                 publication.setReport(report);
             }
         }
@@ -292,7 +305,7 @@ public class PublicationController implements Serializable {
             if (article != null
                     && (!Objects.equals(article.getTitle(), "")
                     || !Objects.equals(article.getContent(), ""))) {
-                articleCollection.insertOne(article);
+//                articleCollection.insertOne(article);
                 publication.setArticle(article);
             }
         }
@@ -313,7 +326,7 @@ public class PublicationController implements Serializable {
                 } else {
                     Tag newTag = new Tag();
                     newTag.setName(tag.getName());
-                    tagCollection.insertOne(newTag);
+//                    tagCollection.insertOne(newTag);
                     tagList.add(newTag);
                 }
             }
@@ -363,13 +376,10 @@ public class PublicationController implements Serializable {
 
         setTags(new ArrayList<Tag>());
         handleSetCategory("");
-
     }
-
 
     public Publication processUpload(Publication publication, Image imagePart, org.irisi.laboeasyseek.models.Document documentPart) throws IOException {
 
-        System.out.println("pub------------------------------------------------dd---");
         UploadHelper uploadHelper = new UploadHelper();
         Media media = new Media();
 
@@ -384,7 +394,7 @@ public class PublicationController implements Serializable {
                 Image image = new Image();
                 image.setTitle(title);
                 image.setType(media.getType());
-                imageCollection.insertOne(image);
+//                imageCollection.insertOne(image);
                 media.setImage(image);
             }
         }
@@ -407,14 +417,14 @@ public class PublicationController implements Serializable {
                 }
                 document.setFilePath(title.split("\\.")[0] + ".png");
                 document.setKeywords(listWords);
-                documentCollection.insertOne(document);
+//                documentCollection.insertOne(document);
                 media.setDocument(document);
             }
 
 
         }
 
-        mediaCollection.insertOne(media);
+//        mediaCollection.insertOne(media);
         publication.setMedia(media);
         return publication;
     }
@@ -439,27 +449,6 @@ public class PublicationController implements Serializable {
 
     public String postPage(Publication publication) {
         setPublication(publication);
-
-//////        Publication publication1 = publicationCollection.find(eq("_id", publication.getId())).first();
-////
-////        publicationCollection.updateOne(eq("_id", publication.getId()), Updates.inc("views_number", 1));
-//////        publicationCollection.findOneAndUpdate(eq("_id", publication.getId()), new Document("$set", new Document("viewsNumber", publication1.getViewsNumber() + 1)));
-////
-//
-//
-//        Document query = new Document().append("id", publication.getId());
-//        Bson updates = Updates.combine(
-//                Updates.set("views_number", 1));
-//        UpdateOptions options = new UpdateOptions().upsert(true);
-//        try {
-////        userCollection.updateOne(eq("publications._id", publication.getId()), Updates.inc("publications.$.views_number", 1));
-//            UpdateResult result = publicationCollection.updateOne(query, updates, options);
-//            System.out.println("Modified document count: " + result.getModifiedCount());
-//            System.out.println("Upserted id: " + result.getUpsertedId()); // only contains a value when an upsert is performed
-//        } catch (MongoException me) {
-//            System.err.println("Unable to update due to an error: " + me);
-//        }
-
 
         System.out.println("publication--------------------------------------------------hhh-" + publication.getId());
 
@@ -493,12 +482,10 @@ public class PublicationController implements Serializable {
     public void processNextAction(ActionEvent event) {
         System.out.println("next" + getPageIndex());
         if (pageIndex < pagesNumber - 1) {
-//            pageIndex++;
             System.out.println("next2" + getPageIndex());
             setPageIndex(pageIndex + 1);
             System.out.println("next3" + getPageIndex());
         }
-//        pageIndex++;
     }
 
 
@@ -507,7 +494,7 @@ public class PublicationController implements Serializable {
         comment.setCreatedAt(new Date());
         comment.setUser(SessionUtils.getEmail());
 
-        commentCollection.insertOne(comment);
+//        commentCollection.insertOne(comment);
 
         Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
         Bson updates = Updates.combine(
@@ -525,7 +512,6 @@ public class PublicationController implements Serializable {
         }
 
         setPublication(publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first());
-//        publication = publicationCollection.find(eq("_id", new ObjectId(publication.getId()))).first();
         return "post";
     }
 
@@ -537,7 +523,7 @@ public class PublicationController implements Serializable {
         newRating.setUser(SessionUtils.getEmail());
         System.out.println("rating : " + rating);
 
-        ratingCollection.insertOne(newRating);
+//        ratingCollection.insertOne(newRating);
         System.out.println("rating : " + rating);
 
         Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
