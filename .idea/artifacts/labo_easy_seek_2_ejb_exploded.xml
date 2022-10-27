@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="labo-easy-seek-2:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/labo_easy_seek_2_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="labo-easy-seek-2/ejb/EJB" />
+      <element id="javaee-facet-classes" facet="labo-easy-seek-2/ejb/EJB" />
+    </root>
+  </artifact>
+</component>

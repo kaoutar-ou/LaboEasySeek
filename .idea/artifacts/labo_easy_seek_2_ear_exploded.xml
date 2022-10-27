@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="labo-easy-seek-2:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/labo_easy_seek_2_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="labo-easy-seek-2/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>
