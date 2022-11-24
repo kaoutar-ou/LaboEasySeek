@@ -1,56 +1,35 @@
 package org.irisi.laboeasyseek.entities;
 
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.inject.Named;
-import jakarta.xml.bind.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-@XmlSeeAlso({User.class})
-@AllArgsConstructor
-@NoArgsConstructor
-@XmlRootElement(name = "user")
-@XmlType(propOrder = { "id", "email", "publications" })
-@Named("userXMLBean")
-@SessionScoped
-public class User implements Serializable {
-    private static final long serialVersionUID = -5435850275007435405L;
-
+@Entity
+@Table(name = "user")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    private String email;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>();
 
-    private Publications publications;
-
-
-    public String getEmail() {
-        return email;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    @XmlElement(name = "email")
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
-
-    public Publications getPublications() {
-        return publications;
-    }
-
-    @XmlElement(name = "publications")
-    public void setPublications(Publications publications) {
-        this.publications = publications;
-    }
-
 
     public Long getId() {
         return id;
     }
 
-    @XmlAttribute()
     public void setId(Long id) {
         this.id = id;
     }
+
 }

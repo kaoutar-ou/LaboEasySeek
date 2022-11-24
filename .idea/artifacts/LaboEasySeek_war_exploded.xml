@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="LaboEasySeek:war exploded">
-    <output-path>$PROJECT_DIR$/target/LaboEasySeek</output-path>
+    <output-path>$PROJECT_DIR$/target/Labo</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>

@@ -2,20 +2,15 @@ package org.irisi.laboeasyseek.controllers;
 
 import com.mongodb.*;
 import com.mongodb.client.*;
-import com.mongodb.client.MongoClient;
 import com.mongodb.client.model.*;
 import com.mongodb.client.result.UpdateResult;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.event.ActionEvent;
 import jakarta.inject.Named;
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import org.irisi.laboeasyseek.configuration.DBConfig;
-import org.irisi.laboeasyseek.entities.Post;
-import org.irisi.laboeasyseek.entities.UploadManagedBean;
 import org.irisi.laboeasyseek.models.*;
 import org.irisi.laboeasyseek.models.Tag;
 import org.irisi.laboeasyseek.services.UploadHelper;
@@ -89,28 +84,9 @@ public class PublicationController implements Serializable {
         setPageIndex(0);
     }
 
-//    private boolean showTest = false;
-//
-//    public boolean isShowTest() {
-//        return showTest;
-//    }
-//
-//    public void handleSetShowTest(boolean showTest) {
-//        this.showTest = showTest;
-//    }
-
     MongoCollection<User> userCollection = mongoDatabase.getCollection("users", User.class);
     MongoCollection<Publication> publicationCollection = mongoDatabase.getCollection("publications", Publication.class);
-    MongoCollection<Event> eventCollection = mongoDatabase.getCollection("events", Event.class);
-    MongoCollection<Article> articleCollection = mongoDatabase.getCollection("articles", Article.class);
-    MongoCollection<Report> reportCollection = mongoDatabase.getCollection("reports", Report.class);
     MongoCollection<Tag> tagCollection = mongoDatabase.getCollection("tags", Tag.class);
-    MongoCollection<Rating> ratingCollection = mongoDatabase.getCollection("ratings", Rating.class);
-    MongoCollection<Media> mediaCollection = mongoDatabase.getCollection("medias", Media.class);
-    MongoCollection<Image> imageCollection = mongoDatabase.getCollection("images", Image.class);
-    MongoCollection<org.irisi.laboeasyseek.models.Document> documentCollection = mongoDatabase.getCollection("documents", org.irisi.laboeasyseek.models.Document.class);
-
-    MongoCollection<Comment> commentCollection = mongoDatabase.getCollection("comments", Comment.class);
 
     private int pageIndex;
     private int pageSize = 6;
@@ -149,19 +125,7 @@ public class PublicationController implements Serializable {
         }
     }
 
-
-//    public List<Tag> getAllTags() {
         public List<String> getAllTags() {
-//        List<Tag> tagList = new ArrayList<>();
-//        FindIterable<Tag> tagFindIterable = null;
-//        tagFindIterable = tagCollection.find();
-//        for (Tag pub : tagFindIterable) {
-//            System.out.println(pub.toString());
-//            tagList.add(pub);
-//        }
-
-
-//        List<Tag> tagList = new ArrayList<>();
         List<String> tagNames = new ArrayList<>();
 
         FindIterable<Tag> tagFindIterable = null;
@@ -182,13 +146,6 @@ public class PublicationController implements Serializable {
             }
         }
 
-//        for (Tag pub : tagFindIterable) {
-//            System.out.println(pub.toString());
-//            tagList.add(pub);
-//        }
-
-
-//        return tagList;
         return tagNames;
     }
 
@@ -217,11 +174,6 @@ public class PublicationController implements Serializable {
             setSearchTag("");
             setSearchCategory("");
 
-//            for (Publication pub : publicationFindIterable) {
-//                System.out.println(pub.toString());
-//                publicationList.add(pub);
-//            }
-
 
             pagesNumber = (int) publicationCollection.countDocuments(or(
                     regex("title", ".*" + Pattern.quote(search) + ".*"),
@@ -235,10 +187,7 @@ public class PublicationController implements Serializable {
 
 
             pagesNumber = (int) publicationCollection.countDocuments(regex("category", ".*" + Pattern.quote(searchCategory) + ".*"));
-//            for (Publication pub : publicationFindIterable) {
-//                System.out.println(pub.toString());
-//                publicationList.add(pub);
-//            }
+
         } else if (!Objects.equals(searchTag, "")) {
 
             System.out.println("search by tag" + searchTag);
@@ -274,6 +223,7 @@ public class PublicationController implements Serializable {
 
     public void addPublication(Publication publication, Event event, Report report, Article article, Image image, org.irisi.laboeasyseek.models.Document document) throws IOException {
         System.out.println("here1");
+
 
         List<String> categories = Arrays.asList("article", "report", "event", "other");
 
@@ -326,7 +276,6 @@ public class PublicationController implements Serializable {
                 } else {
                     Tag newTag = new Tag();
                     newTag.setName(tag.getName());
-//                    tagCollection.insertOne(newTag);
                     tagList.add(newTag);
                 }
             }
@@ -343,7 +292,6 @@ public class PublicationController implements Serializable {
             System.out.println("img------------------------------------------------dd---" + image.getPart());
             publication = processUpload(publication, image, document);
         }
-
 
         publication.setCreatedAt(new Date());
         publicationCollection.insertOne(publication);
@@ -494,8 +442,6 @@ public class PublicationController implements Serializable {
         comment.setCreatedAt(new Date());
         comment.setUser(SessionUtils.getEmail());
 
-//        commentCollection.insertOne(comment);
-
         Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
         Bson updates = Updates.combine(
                 Updates.addToSet("comments", comment)
@@ -523,7 +469,6 @@ public class PublicationController implements Serializable {
         newRating.setUser(SessionUtils.getEmail());
         System.out.println("rating : " + rating);
 
-//        ratingCollection.insertOne(newRating);
         System.out.println("rating : " + rating);
 
         Document publicationQuery = new Document().append("_id", new ObjectId(publication.getId()));
@@ -547,5 +492,3 @@ public class PublicationController implements Serializable {
     }
 
 }
-
-// TODO .. update in userCollection

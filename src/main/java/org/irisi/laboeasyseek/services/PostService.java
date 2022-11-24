@@ -3,7 +3,6 @@ package org.irisi.laboeasyseek.services;
 
 import org.irisi.laboeasyseek.dao.EntityManagerFactorySingleton;
 import org.irisi.laboeasyseek.dao.PostRepository;
-import org.irisi.laboeasyseek.entities.Post;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

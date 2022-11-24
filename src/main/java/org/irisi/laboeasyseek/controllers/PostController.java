@@ -3,7 +3,6 @@ package org.irisi.laboeasyseek.controllers;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.xml.bind.JAXBException;
-import org.irisi.laboeasyseek.entities.Post;
 import org.irisi.laboeasyseek.entities.UploadManagedBean;
 import org.irisi.laboeasyseek.services.UploadHelper;
 import org.irisi.laboeasyseek.services.XMLService;

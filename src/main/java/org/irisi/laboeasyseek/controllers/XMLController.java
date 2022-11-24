@@ -6,7 +6,6 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ActionEvent;
 import jakarta.inject.Named;
 import jakarta.xml.bind.JAXBException;
-import org.irisi.laboeasyseek.entities.Post;
 import org.irisi.laboeasyseek.services.XMLService;
 import org.xml.sax.SAXException;
 
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 @Named("xmlController")
 @SessionScoped

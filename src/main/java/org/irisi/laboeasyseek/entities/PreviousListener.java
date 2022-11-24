@@ -6,20 +6,23 @@ import jakarta.faces.event.ActionEvent;
 import jakarta.faces.event.ActionListener;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.irisi.laboeasyseek.controllers.PublicationController;
 import org.irisi.laboeasyseek.controllers.XMLController;
 
 import java.io.Serializable;
 
-@Named
+@Named("previousListenerBean")
 @SessionScoped
 public class PreviousListener implements Serializable, ActionListener {
-    private static final long serialVersionUID = -7752358388239089979L;
+    private static final long serialVersionUID = -7752358385239089979L;
 
     @Inject
-    private XMLController xmlController;
+    private PublicationController publicationController;
 
     @Override
     public void processAction( ActionEvent event ) throws AbortProcessingException {
-
+        if (publicationController.getPageIndex() > 0) {
+            publicationController.setPageIndex(publicationController.getPageIndex() - 1);
+        }
     }
 }

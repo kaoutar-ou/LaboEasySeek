@@ -7,6 +7,11 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.irisi.laboeasyseek.entities.Userr</class>
         <class>org.irisi.laboeasyseek.entities.Publication</class>
+        <class>org.irisi.laboeasyseek.entities.Post</class>
+        <class>org.irisi.laboeasyseek.entities.User</class>
+        <class>org.irisi.laboeasyseek.entities.Comment</class>
+        <class>org.irisi.laboeasyseek.entities.Category</class>
+        <class>org.irisi.laboeasyseek.entities.Tag</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/hhhhh" />
             <property name="hibernate.connection.username" value="postgres" />

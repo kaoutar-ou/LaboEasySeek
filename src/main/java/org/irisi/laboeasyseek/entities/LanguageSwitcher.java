@@ -1,4 +1,4 @@
-package org.irisi.laboeasyseek.models;
+package org.irisi.laboeasyseek.entities;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
