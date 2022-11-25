@@ -2,7 +2,7 @@ package org.irisi.laboeasyseek.services;
 
 import jakarta.ejb.Stateless;
 import jakarta.servlet.http.HttpSession;
-import org.irisi.laboeasyseek.dao.UserDao;
+import org.irisi.laboeasyseek.dao.UserRepository;
 import org.irisi.laboeasyseek.models.User;
 import org.irisi.laboeasyseek.utils.SessionUtils;
 import org.irisi.laboeasyseek.utils.UserUtils;
@@ -13,12 +13,12 @@ public class UserServiceImpl implements IUserService {
 
 
     public Boolean login (User user) {
-        UserDao userDao = new UserDao();
+        UserRepository userDao = new UserService();
         UserUtils userUtils = new UserUtils();
 
         System.out.println("loginService");
         User dbUser = null;
-        dbUser = userDao.findUserByEmailOrUsername(user.getEmail());
+        dbUser = userDao.findUserByEmail(user.getEmail());
 
         System.out.println("dbUser: " + user.getPassword());
 

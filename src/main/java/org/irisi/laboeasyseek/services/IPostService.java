@@ -2,7 +2,6 @@ package org.irisi.laboeasyseek.services;
 
 import jakarta.ejb.Remote;
 import org.irisi.laboeasyseek.models.Post;
-import org.irisi.laboeasyseek.models.User;
 
 import java.util.List;
 

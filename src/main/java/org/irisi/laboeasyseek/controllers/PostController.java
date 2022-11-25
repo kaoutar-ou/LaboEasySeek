@@ -1,7 +1,6 @@
 package org.irisi.laboeasyseek.controllers;
 
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.model.Sorts;
+
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import org.irisi.laboeasyseek.models.Post;
@@ -11,11 +10,7 @@ import jakarta.ejb.EJB;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
-import static com.mongodb.client.model.Filters.or;
-import static com.mongodb.client.model.Filters.regex;
 
 @SessionScoped
 @Named("postController")
@@ -72,13 +67,6 @@ public class PostController implements Serializable {
         }
         return "addPost";
     }
-
-
-
-
-
-
-
 
 
 
