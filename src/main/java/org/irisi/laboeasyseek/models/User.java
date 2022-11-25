@@ -1,32 +1,54 @@
 package org.irisi.laboeasyseek.models;
 
-import jakarta.enterprise.context.RequestScoped;
+import javax.persistence.*;
+
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-import org.bson.BsonType;
-import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.codecs.pojo.annotations.BsonProperty;
-import org.bson.types.ObjectId;
-//import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
+@SessionScoped
+@Named("user")
+@Table(name = "users")
+@Entity
 @Getter
 @Setter
-@ToString
-@RequestScoped
-@Named("user")
 public class User {
-    @BsonProperty("_id")
-    @BsonId()
-//    @BsonRepresentation(BsonType.OBJECT_ID)
-    private ObjectId id;
-    @BsonProperty(value = "username")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Column(name = "username", nullable = false)
     private String username;
-    @BsonProperty(value = "email")
-    private String email;
-    @BsonProperty(value = "password")
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Post> posts = new ArrayList<>( );
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
