@@ -4,304 +4,232 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="base.xhtml">
     <ui:define name="body">
+        <style type="text/css">
+            p {
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            .navigation-container {
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            body .ui-inputfield.ui-state-drag {
+                background: #ffffd6;
+            }
+
+        </style>
+    </ui:define>
+    <ui:define name="body">
         <div class="bg-gray-100 min-h-screen p-9">
-            <div class="text-center m-3">
-                <h:panelGroup rendered="#{postController.postCategory eq ''}">
-                    Add a new post
-                </h:panelGroup>
-                <h:panelGroup rendered="#{postController.postCategory != ''}">
-                    Add a new #{postController.postCategory}
-                </h:panelGroup>
-            </div>
-            <h:form enctype="multipart/form-data" styleClass="p-3">
-                <div class="p-5 bg-white shadow-md m-5">
 
-                    <h:panelGroup rendered="#{postController.postCategory eq ''}">
-                        <div>
-                            <div class="text-center m-3">
-                                Please choose one of the following categories
-                            </div>
 
-                            <h:form id="categoryForm">
-                                <div class="flex flex-row justify-center p-3">
-                                    <div class="px-2 py-1 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="shuffleButton" styleClass="cursor-pointer" value=""><i
-                                                class="fa fa-random fa-lg"></i></h:outputLabel>
-                                        <h:commandButton id="shuffleButton"
-                                                         styleClass="cursor-pointer"
-                                                         value="all"
-                                                         action="#{postController.setPostCategory('all')}"/>
-                                    </div>
+            <p:card style="width: 100%; margin-bottom: 2em">
+                <f:facet name="title">
+                    New Post
+                </f:facet>
 
-                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="articleButton" styleClass="cursor-pointer" value=""><i
-                                                class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
-                                        <h:commandButton id="articleButton"
-                                                         styleClass="px-2 cursor-pointer"
-                                                         value="article"
-                                                         action="#{postController.setPostCategory('article')}"/>
-                                    </div>
-                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="reportButton" styleClass="cursor-pointer" value=""><i
-                                                class="fa fa-file-text-o fa-lg"></i></h:outputLabel>
-                                        <h:commandButton id="reportButton"
-                                                         styleClass="px-2 cursor-pointer"
-                                                         value="report"
-                                                         action="#{postController.setPostCategory('report')}"/>
-                                    </div>
-                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="eventButton" styleClass="cursor-pointer" value=""><i
-                                                class="fa fa-calendar fa-lg"></i></h:outputLabel>
-                                        <h:commandButton id="eventButton"
-                                                         styleClass="px-2 cursor-pointer"
-                                                         value="event"
-                                                         action="#{postController.setPostCategory('event')}"/>
-                                    </div>
-                                    <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500">
-                                        <h:outputLabel for="otherButton" styleClass="cursor-pointer" value=""><i class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
-                                        <h:commandButton id="otherButton"
-                                                         styleClass="px-2 cursor-pointer"
-                                                         value="other"
-                                                         action="#{postController.setPostCategory('other')}"/>
-                                    </div>
-                                </div>
+                <p>Hi ! here you can add a new post, please fill in the form ...</p>
+
+
+            </p:card>
+
+            <div class="card">
+                <h:form enctype="multipart/form-data">
+                    <div class="my-5">
+                        <p:steps id="postSteps" readonly="false" activeIndex="#{wizardView.activeIndex}">
+                            <p:menuitem value="Category" update="@form" actionListener="#{wizardView.handleTabChange(0)}"/>
+                            <p:menuitem value="General Info" update="@form"
+                                        actionListener="#{wizardView.handleTabChange(1)}"/>
+                            <p:menuitem value="Media" update="@form" actionListener="#{wizardView.handleTabChange(2)}"/>
+                            <p:menuitem value="Tags" update="@form" actionListener="#{wizardView.handleTabChange(3)}"/>
+                        </p:steps>
+                    </div>
+
+                    <p:panel rendered="#{wizardView.activeIndex eq 0}">
+                        <p:outputLabel value="Please choose a category"/>
+
+                        <div class="w-full flex justify-center m-5">
+                            <h:form>
+                                <p:selectOneButton value="#{postBean.postCategory}">
+                                    <f:selectItem itemLabel="Report" itemValue="report"/>
+                                    <f:selectItem itemLabel="Event" itemValue="event"/>
+                                    <f:selectItem itemLabel="Article" itemValue="article"/>
+                                    <f:selectItem itemLabel="Other" itemValue="other"/>
+                                </p:selectOneButton>
                             </h:form>
                         </div>
-                    </h:panelGroup>
 
-                    <h:panelGroup rendered="#{postController.postCategory != ''}">
-                        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <h:panelGroup rendered="#{postController.postCategory != ''}">
-                                <div class="col-span-3 text-center m-3">
-                                    <h:form>
-                                        <h:commandButton
-                                                styleClass="p-2 text-violet-500 outline outline-1 outline-violet-500 rounded-md hover:text-white hover:bg-violet-500"
-                                                action="#{postController.setPostCategory('')}"
-                                                value="Choose another category"/>
-                                    </h:form>
-                                </div>
-                            </h:panelGroup>
-
-                            <h:panelGroup rendered="#{postController.postCategory != ''}">
-                                <div class="col-span-1 p-3">
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Title"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="title"
-                                                value="#{post.title}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="title"/>
-                                    </div>
-
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Description"/>
-                                        <h:inputTextarea
-                                                rows="5"
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="description"
-                                                value="#{post.description}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="description"/>
-                                    </div>
-
-
-                                    <h:panelGroup rendered="#{postController.postCategory == 'article'}">
-                                        <div class="flex flex-col w-full my-5">
-                                            <h:outputText
-                                                    styleClass="my-3"
-                                                    value="Article language"/>
-                                            <h:selectOneMenu value = "#{post.language}" class="border border-violet-500 rounded-lg focus:outline-none p-2">
-                                                <f:selectItem itemValue = "en" itemLabel = "English" />
-                                                <f:selectItem itemValue = "fr" itemLabel = "French" />
-                                                <f:selectItem itemValue = "ar" itemLabel = "Arabe" />
-                                                <f:selectItem itemValue = "es" itemLabel = "Spanish" />
-                                            </h:selectOneMenu>
-                                        </div>
-                                    </h:panelGroup>
-
-                                    <h:panelGroup rendered="#{postController.postCategory == 'report'}">
-                                        <div class="flex flex-col w-full my-5">
-                                            <h:outputText
-                                                    styleClass="my-3"
-                                                    value="Report language"/>
-                                            <h:selectOneMenu value = "#{post.language}" class="border border-violet-500 rounded-lg focus:outline-none p-2">
-                                                <f:selectItem itemValue = "en" itemLabel = "English" />
-                                                <f:selectItem itemValue = "fr" itemLabel = "French" />
-                                                <f:selectItem itemValue = "ar" itemLabel = "Arabe" />
-                                                <f:selectItem itemValue = "es" itemLabel = "Spanish" />
-                                            </h:selectOneMenu>
-                                        </div>
-                                    </h:panelGroup>
-
-
-                                </div>
-                            </h:panelGroup>
-
-                            <h:panelGroup rendered="#{postController.postCategory == 'event' || postController.postCategory == 'all'}">
-                                <div class="col-span-1 p-3">
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Event Name"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="eventName"
-                                                value="#{post.eventName}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="eventName"/>
-                                    </div>
-
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Event Date"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="eventDate"
-                                                value="#{post.eventDate}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="eventDate"/>
-                                    </div>
-
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Event Local"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="eventLocal"
-                                                value="#{post.eventLocal}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="eventLocal"/>
-                                    </div>
-                                </div>
-                            </h:panelGroup>
-
-
-                            <h:panelGroup rendered="#{postController.postCategory == 'article' || postController.postCategory == 'all'}">
-                                <div class="col-span-1 p-3">
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Article Title"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="articleTitle"
-                                                value="#{post.articleTitle}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="articleTitle"/>
-                                    </div>
-
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Article Content"/>
-                                        <h:inputTextarea
-                                                rows="5"
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="articleContent"
-                                                value="#{post.articleContent}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="articleContent"/>
-                                    </div>
-
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Article Reference"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="articleReference"
-                                                value="#{post.reference}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="articleReference"/>
-                                    </div>
-                                </div>
-                            </h:panelGroup>
-
-
-                            <h:panelGroup rendered="#{postController.postCategory == 'report' || postController.postCategory == 'all'}">
-                                <div class="col-span-1 p-3">
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Report Title"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="reportTitle"
-                                                value="#{post.reportTitle}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="reportTitle"/>
-                                    </div>
-
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Report Version"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="reportVersion"
-                                                value="#{post.version}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="reportVersion"/>
-                                    </div>
-                                </div>
-                            </h:panelGroup>
-
-
-
-                            <h:panelGroup rendered="#{postController.postCategory == 'other' || postController.postCategory == 'all'}">
-                                <div class="col-span-1 p-3">
-                                    <div class="flex flex-col w-full my-5">
-                                        <h:outputText
-                                                styleClass="my-3"
-                                                value="Website"/>
-                                        <h:inputText
-                                                class="border border-violet-500 rounded-lg focus:outline-none p-2"
-                                                id="website"
-                                                value="#{post.website}"/>
-                                        <h:message
-                                                styleClass="text-red-400 w-full text-[0.7rem]"
-                                                for="website"/>
-                                    </div>
-                                </div>
-                            </h:panelGroup>
-
+                        <div class="navigation-container flex justify-between">
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}"
+                                             update="@form" disabled="true" value="Previous"/>
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}"
+                                             update="@form" value="Next"/>
+                            <!--                     <p>#{postController.postCategory}</p>-->
                         </div>
-                    </h:panelGroup>
+                    </p:panel>
 
-                    <h:commandButton styleClass="bg-violet-500 w-full rounded-lg p-2 text-white cursor-pointer"
-                                     action="#{postController.addPost(post)}"
-                                     value="Add Post"/>
-                </div>
+                    <p:panel rendered="#{wizardView.activeIndex eq 1}">
+                        <p:outputLabel value="Please fill in the form"/>
+                        <div class="my-5">
+                            <h:panelGroup rendered="#{postBean.postCategory eq 'event'}">
+                                <div class="ui-fluid formgrid grid">
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="eventName" styleClass="block">Event name</p:outputLabel>
+                                        <p:inputText id="eventName" styleClass="block" value="#{postBean.postTitle}"/>
+                                        <small class="block">Enter the event name</small>
+                                    </div>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="eventDate" styleClass="block">Event date</p:outputLabel>
+                                        <p:datePicker id="eventDate" value="#{calendarView.date10}"
+                                                      showButtonBar="true"/>
+                                        <small class="block">Enter the event date</small>
+                                    </div>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="eventTime" styleClass="block">Event time</p:outputLabel>
+                                        <p:datePicker id="eventTime" value="#{calendarView.date14}" timeOnly="true"
+                                                      pattern="HH:mm"/>
+                                        <small class="block">Enter the event time</small>
+                                    </div>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="eventLocation" styleClass="block">Event location</p:outputLabel>
+                                        <p:inputText id="eventLocation" styleClass="block" value="#{postBean.postLocation}"/>
+                                        <small class="block">Enter the event location</small>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
 
-            </h:form>
 
-            <h:form>
-                <h:commandButton
-                        styleClass=" text-violet-500 m-9 outline outline-1 outline-violet-500 hover:text-white hover:bg-violet-500 cursor-pointer rounded-md p-2"
-                        action="#{routeController.goTo('home')}" value="Return"/>
-            </h:form>
+                            <h:panelGroup rendered="#{postBean.postCategory eq 'article'}">
+                                <div class="ui-fluid formgrid grid">
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="articleTitle" styleClass="block">Article title</p:outputLabel>
+                                        <p:inputText id="articleTitle" styleClass="block" value="#{postBean.postTitle}"/>
+                                        <small class="block">Enter the article title</small>
+                                    </div>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="articleContent" styleClass="block">Article content</p:outputLabel>
+                                        <p:inputTextarea id="articleContent" rows="7" cols="30" counter="display" maxlength="2500"
+                                                         counterTemplate="{0} characters remaining." autoResize="false"
+                                                         value="#{postBean.postContent}"/>
+                                        <h:outputText id="display" class="block" />
+                                    </div>
+                                </div>
+                            </h:panelGroup>
 
+                            <h:panelGroup rendered="#{postBean.postCategory eq 'report'}">
+                                <div class="ui-fluid formgrid grid">
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="reportTitle" styleClass="block">Report title</p:outputLabel>
+                                        <p:inputText id="reportTitle" styleClass="block" value="#{postBean.postTitle}"/>
+                                        <small class="block">Enter the report title</small>
+                                    </div>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="reportDescription" styleClass="block">Report description</p:outputLabel>
+                                        <p:inputTextarea id="reportDescription" rows="7" cols="30" counter="displayDesc" maxlength="255"
+                                                         counterTemplate="{0} characters remaining." autoResize="false"
+                                                         value="#{postBean.postDescription}"/>
+                                        <h:outputText id="displayDesc" class="block" />
+                                    </div>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="reportVersion" styleClass="block">Report version</p:outputLabel>
+                                        <p:inputMask id="reportVersion" mask="9.9.9"  value="#{postBean.postVersion}"/>
+                                        <small class="block">Enter the report version ( ex : 1.1.0 )</small>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                        <div class="navigation-container flex justify-between">
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}"
+                                             update="@form" value="Previous"/>
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}"
+                                             update="@form" value="Next"/>
+                        </div>
+                    </p:panel>
+
+                    <p:panel rendered="#{wizardView.activeIndex eq 2}">
+
+
+                        <p:outputLabel value="Here you add some tags to your post"/>
+                        <div class="my-5">
+                            <div class="my-3">
+                                <h:form>
+                                    <div class="field col-6 md:col-4 my-3">
+                                        <p:outputLabel for="tags" styleClass="block">Tags</p:outputLabel>
+                                        <p:chips id="tags" value="#{itemsBean.items}" styleClass="block"/>
+                                        <small class="block">Type a tag then press enter ...</small>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                        <div class="navigation-container flex justify-between">
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}"
+                                             update="@form" value="Previous">
+                                <f:ajax execute="@all" render="@form"/>
+                            </p:commandButton>
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}"
+                                             update="@form" value="Next">
+                                <f:ajax execute="@all" render="@form"/>
+                            </p:commandButton>
+                        </div>
+                    </p:panel>
+
+                    <p:panel rendered="#{wizardView.activeIndex eq 3}">
+
+                        <p:outputLabel value="Here you can upload your files"/>
+                        <div class="my-5">
+                            <div class="my-3">
+                                <div class="my-3">
+                                    <p:outputLabel for="imageMedia" styleClass="block">Image</p:outputLabel>
+                                    <h:inputFile id="imageMedia" value="#{imageBean.part}"/>
+                                    <small class="block">Add an image to your post</small>
+                                </div>
+
+                                <div class="my-3">
+                                    <p:outputLabel for="documentMedia" styleClass="block">Document</p:outputLabel>
+                                    <h:inputFile id="documentMedia" value="#{documentBean.part}"/>
+                                    <small class="block">Add a document to your post</small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="navigation-container flex justify-between">
+                            <p:commandButton styleClass="ui-button-help"
+                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}"
+                                             update="@form" value="Previous"/>
+                            <p:commandButton icon="pi pi-check" iconPos="right" value="Submit" actionListener="#{postController.addPost(postBean, calendarView, imageBean, documentBean, itemsBean)}"/>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </div>
+
+
+            <!--            <button value="test" onClick="displayAlert()">test</button>-->
         </div>
+        <script type="text/javascript">
+            function displayAlert() {
+
+                window.alert("hi");
+
+            }
+        </script>
     </ui:define>
 </ui:composition>
 </html>

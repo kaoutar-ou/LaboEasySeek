@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="base.xhtml">
+   <ui:define name="body">
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+      <link href="" rel="stylesheet"/>
+      <link href="resources/css/bootstrap.min.responsive.css" rel="stylesheet"/>
+      <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+      <style type="text/css">
+         body {
+            padding-top: 40px;
+         }
+      </style>
+   </ui:define>
+
+   <ui:define name="body">
+
+      <div style="overscroll-behavior: none;" >
+         <div
+                 class="fixed w-full bg-green-400 h-16 pt-2 text-white flex flex-col justify-between shadow-md"
+                 style="top:0px; overscroll-behavior: none;"
+         >
+            <!-- back button -->
+
+            <div>
+               <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 24 24"
+                       class="w-12 h-12 my-1 text-green-100 ml-2"
+               >
+                  <path
+                          class="text-green-100 fill-current"
+                          d="M9.41 11H17a1 1 0 0 1 0 2H9.41l2.3 2.3a1 1 0 1 1-1.42 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.42 1.4L9.4 11z"
+                  />
+               </svg>
+            </div>
+            <!--                <div class="my-3 text-green-100 font-bold text-lg tracking-wide">@username</div>-->
+
+         </div>
+
+         <div class="mt-20 mb-16">
+            <div class="">
+               <div
+                       class="bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg"
+               >this is a basic mobile chat layout, build with tailwind css
+               </div>
+            </div>
+
+            <div class="">
+               <div
+                       class="bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >It will be used for a full tutorial about building a chat app with vue, tailwind and firebase.
+               </div>
+            </div>
+
+            <div class="">
+               <div
+                       class="bg-green-300 float-right w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >check my twitter to see when it will be released.
+               </div>
+            </div>
+
+            <div class="">
+               <div
+                       class="bg-green-300 float-right w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >check my twitter to see when it will be released.
+               </div>
+            </div>
+
+            <div class="">
+               <div
+                       class="bg-green-300 float-right w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >check my twitter to see when it will be released.
+               </div>
+            </div>
+            <div class="">
+               <div
+                       class="bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >It will be used for a full tutorial about building a chat app with vue, tailwind and firebase.
+               </div>
+            </div>
+            <div class="">
+               <div
+                       class="bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >It will be used for a full tutorial about building a chat app with vue, tailwind and firebase.
+               </div>
+            </div>
+            <div class="">
+               <div
+                       class="bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg "
+               >It will be used for a full tutorial about building a chat app with vue, tailwind and firebase.
+               </div>
+            </div>
+
+         </div>
+      </div>
+
+      <div class="fixed w-full flex justify-between bg-green-100" style="bottom: 0px;">
+            <textarea
+                    class="flex-grow m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 resize-none"
+                    rows="1"
+                    style="outline: none;"
+                    cols="5"></textarea>
+         <button class="m-2" style="outline: none;">
+            <svg
+                    class="svg-inline--fa text-green-400 fa-paper-plane fa-w-16 w-12 h-12 py-2 mr-2"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="paper-plane"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+            >
+               <path
+                       fill="currentColor"
+                       d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
+               />
+            </svg>
+         </button>
+      </div>
+
+
+      <script src='resources/js/jquery-3.4.1.min.js' type="text/javascript"></script>
+      <script src="resources/js/mqttws31.js" type="text/javascript"></script>
+      <script type="text/javascript">
+         $(document).ready(function () {
+
+            $("#connect_clientId").val("example-" + (Math.floor(Math.random() * 100000)));
+            if (!window.WebSocket) {
+               $("#connect").html("&lt;h1>Get a new Web Browser!&lt;/h1>&lt;p>Your browser does not support WebSockets. This example will not work properly.&lt;br>Please use a Web Browser with WebSockets support (WebKit or Google Chrome).&lt;/p>");
+            } else {
+
+               var client, destination;
+
+               $('#connect_form').submit(function () {
+                  var host = $("#connect_host").val();
+                  var port = $("#connect_port").val();
+                  var clientId = $("#connect_clientId").val();
+                  var user = $("#connect_user").val();
+                  var password = $("#connect_password").val();
+
+                  destination = $("#destination").val();
+
+
+                  client = new Messaging.Client(host, Number(port), clientId);
+
+                  client.onConnect = onConnect;
+
+                  client.onMessageArrived = onMessageArrived;
+                  client.onConnectionLost = onConnectionLost;
+
+                  client.connect({
+                     userName: user,
+                     password: password,
+                     onSuccess: onConnect,
+                     onFailure: onFailure
+                  });
+                  return false;
+               });
+
+               // the client is notified when it is connected to the server.
+               var onConnect = function (frame) {
+                  debug("connected to MQTT");
+                  $('#connect').fadeOut({duration: 'fast'});
+                  $('#connected').fadeIn();
+                  client.subscribe(destination);
+               };
+
+               // this allows to display debug logs directly on the web page
+               var debug = function (str) {
+                  $("#debug").append(document.createTextNode(str + "\n"));
+               };
+
+               $('#disconnect').click(function () {
+                  client.disconnect();
+                  $('#connected').fadeOut({duration: 'fast'});
+                  $('#connect').fadeIn();
+                  $("#messages").html("")
+                  return false;
+               });
+
+               $('#send_form').submit(function () {
+                  var text = $('#send_form_input').val();
+                  if (text) {
+                     let message = new Messaging.Message(text);
+                     message.destinationName = destination;
+                     client.send(message);
+                     $('#send_form_input').val("");
+                  }
+                  return false;
+               });
+
+               function onFailure(failure) {
+                  debug("failure");
+                  debug(failure.errorMessage);
+               }
+
+               function onMessageArrived(message) {
+                  var p = document.createElement("p");
+                  var t = document.createTextNode(message.payloadString);
+                  p.appendChild(t);
+                  $("#messages").append(p);
+               }
+
+               function onConnectionLost(responseObject) {
+                  if (responseObject.errorCode !== 0) {
+                     debug(client.clientId + ": " + responseObject.errorCode + "\n");
+                  }
+               }
+            }
+         });
+      </script>
+   </ui:define>
+</ui:composition>
+
+
+</html>

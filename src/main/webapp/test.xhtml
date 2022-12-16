@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+<ui:composition template="base.xhtml">
+   <ui:define name="body">
+      <div class="bg-gray-100 min-h-screen p-9">
+         <div class="text center m-3">
+            <h1 class="text-3xl font-bold text-gray-900">#{msg['home.welcome']}</h1>
+
+            <!--                <p><h:outputText value="#{msg['funny.slogan']}"/></p>-->
+
+         </div>
+         <div class="grid grid-cols-5 gap-4">
+
+            <div class="relative text-gray-500 focus-within:text-violet-500 m-3 col-span-4">
+               <h:form id="searchForm">
+                          <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                              <h:commandButton id="searchButton"
+                                               action="#{postController.searchByString(postController.search)}"
+                                               style="display: none"/>
+                              <button type="submit" id="searchForm:searchButton" name="searchForm:searchButton"><i
+                                      class="fa fa-search fa-lg"></i></button>
+                          </span>
+                  <h:inputText
+                          styleClass="rounded-2xl py-2 pl-12 w-full text-sm bg-white text-gray-600 hover:outline hover:outline-1 hover:outline-violet-500 focus:outline focus:outline-1 focus:outline-violet-500 focus:text-black"
+                          id="search"
+                          value="#{postController.search}"/>
+               </h:form>
+            </div>
+
+            <div class="m-3 col-span-1 rounded-md outline outline-1 outline-violet-500 cursor-pointer text-center hover:bg-violet-500 text-violet-500 hover:text-white">
+               <h:form>
+                  <h:commandButton class="p-1 cursor-pointer focus:outline-none"
+                                   action="#{routeController.goTo('addPost')}" value="Add Post">
+                     <!--                        <i class="fa fa-search fa-lg"></i>-->
+                  </h:commandButton>
+               </h:form>
+            </div>
+         </div>
+
+
+         <div class="grid grid-cols-5 gap-4">
+            <div class="m-3 sm:col-span-5 lg:col-span-4">
+               <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <ui:repeat value="#{postController.posts}" var="publication">
+
+                     <div class=" bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-1 divide-y relative">
+
+
+                        <h:panelGroup styleClass="flex items-center w-full"
+                                      rendered="#{not empty publication.image and not empty publication.image.title}">
+                           <div class="bg-cover bg-center w-full h-64"
+                                style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.image.title}')">
+
+                           </div>
+                        </h:panelGroup>
+
+
+                        <h:panelGroup
+                                rendered="#{not empty publication.user or not empty publication.category}">
+                           <div class="p-5">
+
+                              <h:panelGroup rendered="#{not empty publication.user.username}">
+                                 <span class="mb-2 text-xl tracking-tight text-gray-900"> #{publication.user.username} </span>
+                              </h:panelGroup>
+
+                              <h:panelGroup rendered="#{not empty publication.category}">
+                                 <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
+                                    #{publication.category.name}
+                                 </button>
+                              </h:panelGroup>
+
+                           </div>
+                        </h:panelGroup>
+
+
+
+                        <h:panelGroup
+                                rendered="#{not empty publication.title or not empty publication.description}">
+                           <div class="p-5">
+
+                              <h:panelGroup rendered="#{not empty publication.title}">
+                                 <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> #{publication.title} </span>
+                              </h:panelGroup>
+
+                              <h:panelGroup rendered="#{not empty publication.description}">
+                                 <div>
+                                    <span class="mb-3 font-normal text-gray-700"> #{publication.description} </span>
+                                 </div>
+                              </h:panelGroup>
+                           </div>
+                        </h:panelGroup>
+
+                        <h:panelGroup
+                                rendered="#{not empty publication.date or not empty publication.time}">
+                           <div class="p-5">
+                              <h:panelGroup rendered="#{not empty publication.date}">
+                                 <div>
+                                    <span class="font-semibold"> Event Date : </span> #{publication.date}
+                                 </div>
+                              </h:panelGroup>
+
+                              <h:panelGroup rendered="#{not empty publication.time}">
+                                 <div>
+                                    <span class="font-semibold"> Event Time : </span> #{publication.time}
+                                 </div>
+                              </h:panelGroup>
+                           </div>
+                        </h:panelGroup>
+
+
+                        <h:panelGroup>
+                           <div class="py-5">
+                              <div class="absolute bottom-3 w-full">
+                                 <div class="grid grid-cols-4 gap-4 justify-items-stretch mx-3">
+                                    <div class="col-span-2">
+                                       <div class="flex flex-row items-center">
+                                          <div class="mx-2">
+                                             <i class="fa fa-eye fa-lg"></i>
+                                             <span class="mx-2">
+                                                               0
+                                                            </span>
+                                          </div>
+
+                                          <div class="mx-2">
+                                             <i class="fa fa-thumbs-o-up fa-lg"></i>
+                                             <span class="mx-2">
+                                                                0
+                                                            </span>
+                                          </div>
+
+                                          <div class="mx-2">
+                                             <i class="fa fa-thumbs-o-down fa-lg"></i>
+                                             <span class="mx-2">
+                                                                0
+                                                            </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-span-1">
+                                       <div class="flex flex-row items-center">
+                                          <i class="fa fa-comments-o fa-lg"></i>
+                                          <span class="mx-2">
+                                                            0
+                                                        </span>
+                                          <p:commandButton value="Show" type="button" icon="pi pi-external-link" onclick="PF('dlg4').show()" onmousedown="#{postController.handleSetostInfo(publication)}"/>
+                                       </div>
+                                    </div>
+                                    <div class="col-span-1 justify-self-end">
+                                       <div class="">
+                                          <h:form>
+                                             <h:commandLink styleClass="text-black hover:text-violet-500" action="#{routeController.goTo('postPage')}" >
+                                                view more
+                                             </h:commandLink>
+                                          </h:form>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </h:panelGroup>
+
+
+                     </div>
+                  </ui:repeat>
+               </div>
+            </div>
+
+            <div class="sm:order-first lg:order-last sm:col-span-5 lg:col-span-1 m-3 rounded-md outline outline-1 outline-violet-500 text-center text-violet-500">
+               <h:form styleClass="" id="searchCategoryForm">
+                  <div class="flex flex-wrap">
+
+                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{postController.searchCategory == '' ? 'text-gray-50 bg-violet-500' : ''}">
+                        <h:outputLabel for="searchAllCategoryButton" styleClass="cursor-pointer" value=""><i
+                                class="fa fa-globe fa-lg"></i></h:outputLabel>
+                        <h:commandButton id="searchAllCategoryButton"
+                                         styleClass="px-2 cursor-pointer"
+                                         action="#{postController.searchByCategory('')}"
+                                         value="All"/>
+                     </div>
+
+                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{postController.searchCategory == 'article' ? 'text-gray-50 bg-violet-500' : ''}">
+                        <h:outputLabel for="searchCategoryArticleButton" styleClass="cursor-pointer" value=""><i
+                                class="fa fa-pencil-square-o fa-lg"></i></h:outputLabel>
+                        <h:commandButton id="searchCategoryArticleButton"
+                                         styleClass="px-2 cursor-pointer"
+                                         action="#{postController.searchByCategory('article')}"
+                                         value="Article"/>
+                     </div>
+
+                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{postController.searchCategory == 'report' ? 'text-gray-50 bg-violet-500' : ''}">
+                        <h:outputLabel for="searchCategoryReportButton" styleClass="cursor-pointer" value=""><i
+                                class="fa fa-file-text-o fa-lg"></i></h:outputLabel>
+                        <h:commandButton id="searchCategoryReportButton"
+                                         styleClass="px-2 cursor-pointer"
+                                         action="#{postController.searchByCategory('report')}"
+                                         value="Report"/>
+                     </div>
+
+                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{postController.searchCategory == 'event' ? 'text-gray-50 bg-violet-500' : ''}">
+                        <h:outputLabel for="searchCategoryEventButton" styleClass="cursor-pointer" value=""><i
+                                class="fa fa-calendar fa-lg"></i></h:outputLabel>
+                        <h:commandButton id="searchCategoryEventButton"
+                                         styleClass="px-2 cursor-pointer"
+                                         action="#{postController.searchByCategory('event')}"
+                                         value="Event"/>
+                     </div>
+
+                     <div class="p-2 m-3 outline outline-1 outline-violet-500 rounded-md text-violet-500 #{postController.searchCategory == 'other' ? 'text-gray-50 bg-violet-500' : ''}">
+                        <h:outputLabel for="searchCategoryOtherButton" styleClass="cursor-pointer" value=""><i
+                                class="fa fa-ellipsis-h fa-lg"></i></h:outputLabel>
+                        <h:commandButton id="searchCategoryOtherButton"
+                                         styleClass="px-2 cursor-pointer"
+                                         action="#{postController.searchByCategory('other')}"
+                                         value="Other"/>
+                     </div>
+                  </div>
+               </h:form>
+
+
+               <p:dialog header="Header" widgetVar="dlg4" minHeight="40" width="350" showEffect="fade" minimizable="true" maximizable="true">
+
+
+
+
+
+
+
+
+
+
+                  <div class="grid grid-cols-3 gap-4">
+                     <div class="sm:col-span-3 md:col-span-2 lg:col-span-2">
+                        <h:panelGroup styleClass="flex items-center w-full"
+                                      rendered="#{not empty postController.post.image and not empty postController.post.image.title}">
+                           <div class="bg-cover bg-center w-full h-64"
+                                style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.image.title}')">
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                           <div class="my-3">
+                              <h:outputLabel value="Posted by "/>
+                              <h:outputText styleClass="font-bold"
+                                            value="#{postController.post.user.username}"/>
+                              <!--                                <h:outputText value="#{publicationController.publication.category}"/>-->
+                              <h:panelGroup rendered="#{not empty postController.post.category and postController.post.category.name != ''}">
+                                 <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
+                                    #{postController.post.category.name}
+                                 </button>
+                              </h:panelGroup>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                           <div class="my-3">
+                              <h:outputText styleClass="font-bold" value="#{postController.post.title}"/>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                           <div class="my-3">
+                              <h:outputText value="#{postController.post.description}"/>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="flex items-center w-full"
+                                      rendered="#{not empty postController.post.document and not empty postController.post.document.title}">
+                           <div class="p-3">
+                              <a class="text-violet-500"
+                                 href="#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.title}">view attachment</a>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{postController.post.category.name eq 'article'}">
+                           <div class="my-3">
+                              <div>
+                                 <h:outputText value="#{postController.post.title}"/>
+                              </div>
+                              <div>
+                                 <h:outputText value="#{postController.post.content}"/>
+                              </div>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{postController.post.category.name eq 'report'}">
+                           <div class="my-3">
+                              <div>
+                                 <h:outputText value="#{postController.post.title}"/>
+                              </div>
+                              <div>
+                                 <h:outputText value="#{postController.post.content}"/>
+                              </div>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{postController.post.category.name eq 'event'}">
+                           <div class="my-3">
+                              <div>
+                                 <h:outputText value="#{postController.post.title}"/>
+                              </div>
+                              <div>
+                                 <h:outputText value="#{postController.post.location}"/>
+                              </div>
+                              <div>
+                                 <h:outputText value="#{postController.post.date}"/>
+                              </div>
+                              <div>
+                                 <h:outputText value="#{postController.post.time}"/>
+                              </div>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{not empty postController.post.tags}">
+                           <div class="my-3">
+                              <ui:repeat value="#{postController.post.tags}"
+                                         rendered="#{not empty postController.post.tags}"
+                                         var="tag">
+                                 <h:panelGroup rendered="#{not empty tag.name}">
+                                    <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                       #{tag.name}
+                                    </button>
+                                 </h:panelGroup>
+                              </ui:repeat>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass=""
+                                      rendered="#{not empty postController.post.document and not empty postController.post.document.filePath}">
+                           <div class="flex items-center w-full my-3">
+                              <img src="#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.document.filePath}" alt="img"/>
+                           </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{not empty postController.post.document.keywords}">
+                           <div class="my-3">
+                              <ui:repeat value="#{postController.post.document.keywords}"
+                                         rendered="#{not empty postController.post.document.keywords}"
+                                         var="keyword">
+                                 <h:panelGroup rendered="#{not empty keyword.name}">
+                                    <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                       #{keyword.name}
+                                    </button>
+                                 </h:panelGroup>
+                              </ui:repeat>
+                           </div>
+                        </h:panelGroup>
+                     </div>
+                     <div class="sm:col-span-3 md:col-span-1 lg:col-span-1">
+
+                     </div>
+                  </div>
+
+
+
+
+
+
+
+               </p:dialog>
+
+               <div class="flex flex-wrap">
+                  <h:form styleClass="" id="searchTagForm">
+
+                     <h:commandButton id="searchAllTagButton"
+                                      value="All"
+                                      action="#{postController.searchByTag('')}"
+                                      styleClass="#{postController.searchTag == '' ? 'bg-violet-500' : 'bg-gray-500'} cursor-pointer ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none"
+                     />
+
+                  </h:form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ui:define>
+</ui:composition>
+
+
+
+</html>

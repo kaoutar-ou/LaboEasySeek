@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
 
 
@@ -15,7 +16,6 @@
             <div class="text center m-3">
                 <h1 class="text-3xl font-bold text-gray-900">#{msg['home.welcome']}</h1>
 
-                <!--                <p><h:outputText value="#{msg['funny.slogan']}"/></p>-->
 
             </div>
             <div class="grid grid-cols-5 gap-4">
@@ -40,7 +40,6 @@
                     <h:form>
                         <h:commandButton class="p-1 cursor-pointer focus:outline-none"
                                          action="#{routeController.goTo('addPost')}" value="Add Post">
-                            <!--                        <i class="fa fa-search fa-lg"></i>-->
                         </h:commandButton>
                     </h:form>
                 </div>
@@ -52,22 +51,29 @@
                     <div class="p-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <ui:repeat value="#{postController.posts}" var="publication">
 
-                            <div class=" bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-1 divide-y relative">
+                            <div class=" bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-1 relative">
 
 
+                                <h:panelGroup styleClass="flex items-center w-full"
+                                              rendered="#{not empty publication.image and not empty publication.image.title}">
+                                    <div class="bg-cover bg-center w-full h-64"
+                                         style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{publication.image.title}')">
+
+                                    </div>
+                                </h:panelGroup>
 
 
                                 <h:panelGroup
-                                        rendered="#{not empty publication.publisher or not empty publication.category}">
+                                        rendered="#{not empty publication.user or not empty publication.category}">
                                     <div class="p-5">
 
-                                        <h:panelGroup rendered="#{not empty publication.publisher}">
-                                            <span class="mb-2 text-xl tracking-tight text-gray-900"> #{publication.publisher} </span>
+                                        <h:panelGroup rendered="#{not empty publication.user.username}">
+                                            <span class="mb-2 text-xl tracking-tight text-gray-900"> #{publication.user.username} </span>
                                         </h:panelGroup>
 
                                         <h:panelGroup rendered="#{not empty publication.category}">
                                             <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
-                                                #{publication.category}
+                                                #{publication.category.name}
                                             </button>
                                         </h:panelGroup>
 
@@ -92,67 +98,79 @@
                                     </div>
                                 </h:panelGroup>
 
+
+
+
+
+
+
                                 <h:panelGroup
-                                        rendered="#{not empty publication.eventName or not empty publication.eventDate or not empty publication.eventLocal}">
+                                        rendered="#{not empty publication.date or not empty publication.time}">
                                     <div class="p-5">
-                                        <h:panelGroup rendered="#{not empty publication.eventName}">
+                                        <h:panelGroup rendered="#{not empty publication.date}">
                                             <div>
-                                                <span class="font-semibold"> Event Name : </span> #{publication.eventName}
+                                                <span class="font-semibold"> Event Date : </span> #{publication.date}
                                             </div>
                                         </h:panelGroup>
 
-                                        <h:panelGroup rendered="#{not empty publication.eventDate}">
+                                        <h:panelGroup rendered="#{not empty publication.time}">
                                             <div>
-                                                <span class="font-semibold"> Event Date : </span> #{publication.eventDate}
-                                            </div>
-                                        </h:panelGroup>
-
-                                        <h:panelGroup rendered="#{not empty publication.eventLocal}">
-                                            <div>
-                                                <span class="font-semibold"> Event Local : </span> #{publication.eventLocal}
+                                                <span class="font-semibold"> Event Time : </span> #{publication.time}
                                             </div>
                                         </h:panelGroup>
                                     </div>
                                 </h:panelGroup>
 
 
-
-
-                                <h:panelGroup
-                                        rendered="#{not empty publication.viewsNumber || not empty publication.comments}">
+                                <h:panelGroup>
                                     <div class="py-5">
                                         <div class="absolute bottom-3 w-full">
                                             <div class="grid grid-cols-4 gap-4 justify-items-stretch mx-3">
-                                                <div class="col-span-1">
+                                                <div class="col-span-2">
                                                     <div class="flex flex-row items-center">
-                                                        <img src="https://img.icons8.com/sf-regular-filled/24/1A1A1A/visible.png"
-                                                             alt="views"/>
-                                                        <span class="mx-2">
-                                                            #{not empty publication.viewsNumber ? publication.viewsNumber : 0}
-                                                        </span>
+                                                        <div class="mx-2">
+                                                            <i class="fa fa-eye fa-lg"></i>
+                                                            <span class="mx-2">
+                                                               0
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="mx-2">
+                                                            <i class="fa fa-thumbs-o-up fa-lg"></i>
+                                                            <span class="mx-2">
+                                                                0
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="mx-2">
+                                                            <i class="fa fa-thumbs-o-down fa-lg"></i>
+                                                            <span class="mx-2">
+                                                                0
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-span-1">
                                                     <div class="flex flex-row items-center">
                                                         <i class="fa fa-comments-o fa-lg"></i>
                                                         <span class="mx-2">
-                                                            #{not empty publication.comments ? publication.comments.size() : 0}
+                                                            0
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-span-2 justify-self-end">
-                                                    <div class="">
-                                                        <h:form>
-                                                            <h:commandLink styleClass="text-black hover:text-violet-500" action="#{routeController.goTo('postPage')}" >
-                                                                View more
-                                                            </h:commandLink>
-                                                        </h:form>
-                                                    </div>
+                                                <div class="col-span-1 justify-self-end">
+                                                    <h:form>
+                                                        <h:commandLink styleClass="text-black hover:text-violet-500" action="#{postController.handleSetPost(publication.id)}" >
+                                                            View more
+                                                        </h:commandLink>
+                                                    </h:form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </h:panelGroup>
+
+
                             </div>
                         </ui:repeat>
                     </div>
@@ -210,6 +228,8 @@
                     </h:form>
 
 
+
+
                     <div class="flex flex-wrap">
                         <h:form styleClass="" id="searchTagForm">
 
@@ -223,7 +243,6 @@
                     </div>
                 </div>
             </div>
-$
         </div>
     </ui:define>
 </ui:composition>

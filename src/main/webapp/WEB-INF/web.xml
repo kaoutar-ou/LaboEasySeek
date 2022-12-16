@@ -20,4 +20,5 @@
     <listener>
         <listener-class>org.irisi.laboeasyseek.configuration.PGConfig</listener-class>
     </listener>
+
 </web-app>

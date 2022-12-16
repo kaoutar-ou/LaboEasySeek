@@ -7,12 +7,15 @@ import org.irisi.laboeasyseek.models.User;
 import org.irisi.laboeasyseek.utils.SessionUtils;
 import org.irisi.laboeasyseek.utils.UserUtils;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 @Stateless
 public class UserServiceImpl implements IUserService {
 
 
 
-    public Boolean login (User user) {
+    public Boolean login (User user) throws NoSuchAlgorithmException, InvalidKeySpecException {
         UserRepository userDao = new UserService();
         UserUtils userUtils = new UserUtils();
 
@@ -25,12 +28,15 @@ public class UserServiceImpl implements IUserService {
         if (dbUser != null) {
             System.out.println("dbUser: " + dbUser);
             System.out.println("dbUser: " + dbUser.getPassword());
-            if (userUtils.validatePassword(user.getPassword(), dbUser.getPassword())) {
+            if (userUtils.validatePassword(userDao.getSecurePassword(user.getPassword()), dbUser.getPassword())) {
                 System.out.println("dbUser");
                 HttpSession session = SessionUtils.getSession();
-                session.setAttribute("email", user.getEmail());
-                session.setAttribute("username", user.getUsername());
-                session.setAttribute("userId", user.getId());
+                session.setAttribute("email", dbUser.getEmail());
+                session.setAttribute("username", dbUser.getUsername());
+                session.setAttribute("userId", dbUser.getId());
+                System.out.println("dbUser" + dbUser.getId());
+                System.out.println("dbUser" + dbUser.getEmail());
+                System.out.println("dbUser" + dbUser.getUsername());
                 return true;
             }
         }

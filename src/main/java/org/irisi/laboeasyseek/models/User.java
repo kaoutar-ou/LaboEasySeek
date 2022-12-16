@@ -7,6 +7,7 @@ import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -32,8 +33,7 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<Post> posts = new ArrayList<>( );
 
     public List<Post> getPosts() {
@@ -51,4 +51,17 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "user_id")
+//    private List<Comment> comments = new ArrayList<>( );
+
+
+    //many to many with conversation
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_conversation",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "conversation_id"))
+    private List<Conversation> conversations = new ArrayList<>( );
+
 }

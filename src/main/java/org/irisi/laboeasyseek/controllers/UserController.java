@@ -23,12 +23,22 @@ public class UserController implements Serializable {
 
     public String login(User user) {
         System.out.println("login");
-        if(userService.login(user)) {
-            System.out.println("login success");
-            return "home";
+        try {
+            if (userService.login(user)) {
+                return "home.xhtml?faces-redirect=true";
+            } else {
+                return "login.xhtml?faces-redirect=true";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "login.xhtml?faces-redirect=true";
         }
-        System.out.println("login failed");
-        return "login";
+//        if(userService.login(user)) {
+//            System.out.println("login success");
+//            return "home";
+//        }
+//        System.out.println("login failed");
+//        return "login";
     }
 
 

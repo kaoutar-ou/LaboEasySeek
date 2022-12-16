@@ -1,13 +1,23 @@
 package org.irisi.laboeasyseek.models;
 
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SessionScoped
+@Named("category")
 @Table(name = "category")
 @Entity
-public class Category {
+@Getter
+@Setter
+public class Category implements Serializable {
     @OneToMany(mappedBy = "category", orphanRemoval = true)
     private List<Post> posts = new ArrayList<>( );
 
@@ -16,9 +26,8 @@ public class Category {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
-
 
 
     public List<Post> getPosts() {

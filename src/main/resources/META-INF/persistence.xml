@@ -9,8 +9,14 @@
         <class>org.irisi.laboeasyseek.models.User</class>
         <class>org.irisi.laboeasyseek.models.Comment</class>
         <class>org.irisi.laboeasyseek.models.Category</class>
-
+        <class>org.irisi.laboeasyseek.models.Document</class>
+        <class>org.irisi.laboeasyseek.models.Image</class>
+        <class>org.irisi.laboeasyseek.models.Keyword</class>
+        <class>org.irisi.laboeasyseek.models.Tag</class>
+        <class>org.irisi.laboeasyseek.models.Message</class>
+        <class>org.irisi.laboeasyseek.models.Conversation</class>
         <properties>
+<!--            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>-->
             <property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/labo3" />
             <property name="hibernate.connection.username" value="postgres" />
             <property name="hibernate.connection.password" value="root" />

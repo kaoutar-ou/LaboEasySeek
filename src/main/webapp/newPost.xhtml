@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="base.xhtml">
+    <ui:define name="body">
+        <style type="text/css">
+            p {
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            .ui-steps.custom {
+                margin-bottom: 30px;
+            }
+            .ui-steps.custom .ui-steps-item .ui-menuitem-link {
+                height: 10px;
+                padding: 0 1em;
+            }
+            .ui-steps.custom .ui-steps-item .ui-steps-number {
+                background-color: #0081c2;
+                color: #FFFFFF;
+                display: inline-block;
+                width: 30px;
+                border-radius: 10px;
+                margin-top: -10px;
+                margin-bottom: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </ui:define>
+    <ui:define name="body">
+        <div class="bg-gray-100 min-h-screen p-9">
+
+
+
+
+            <p:card style="width: 100%; margin-bottom: 2em">
+                <f:facet name="title">
+                    Simple Card
+                </f:facet>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                    quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+
+
+            </p:card>
+
+
+            <h2>PrimeFaces Chips example</h2>
+            <h:form>
+                <p:outputLabel for="items" value="Items: " /><br/>
+                <p:chips id="items" value="#{itemsBean.items}"/><br/>
+                <p:commandButton value="Save" icon="ui-icon-check" update=":itemList"/>
+                <br/>
+            </h:form>
+            <br/>
+
+            <p:outputPanel id="itemList">
+                <ui:repeat value="#{itemsBean.items}" var="item">
+                    <h:outputText value="#{item}"/>
+                    <br/>
+                </ui:repeat>
+            </p:outputPanel>
+            <button value="test" onClick="displayAlert()">test</button>
+
+            <div class="card">
+                <p:steps>
+                    <p:menuitem value="Personal"/>
+                    <p:menuitem value="Seat Selection"/>
+                    <p:menuitem value="Payment"/>
+                    <p:menuitem value="Confirmation"/>
+                </p:steps>
+
+
+                <h:form onsubmit="displayAlert(e)">
+                    <p:steps id="testSteps" readonly="false" activeIndex="#{wizardView.activeIndex}">
+                        <p:menuitem value="Personal" disabled="true" update="@form" actionListener="#{wizardView.handleTabChange(0)}"/>
+                        <p:menuitem value="Seat Selection" disabled="false" update="@form" actionListener="#{wizardView.handleTabChange(1)}"/>
+                        <p:menuitem value="Selection" disabled="false" update="@form" actionListener="#{wizardView.handleTabChange(1)}"/>
+                    </p:steps>
+
+                    <p:panel rendered="#{wizardView.activeIndex eq 0}">
+                        <p:outputLabel value="FORM 1"/>
+                        <p>bjkgjkhkjhk</p>
+                        <p:commandButton actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}"  update="@form" value="Next"/>
+                    </p:panel>
+
+                    <p:panel rendered="#{wizardView.activeIndex eq 1}">
+                        <p:outputLabel value="FORM 2" />
+                        <p>bjkgjkhkjhk2222</p>
+                        <p:commandButton actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}" update="@form" value="Previous"/>
+                        <p:commandButton actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}" update="@form" value="Next"/>
+                    </p:panel>
+
+                    <p:panel rendered="#{wizardView.activeIndex eq 2}">
+                        <p:outputLabel value="FORM 3" />
+                        <p>33333333333333</p>
+                        <p:commandButton actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}" update="@form" value="Previous"/>
+                    </p:panel>
+                </h:form>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="my-5">
+                <div class="my-3">
+                    <h:form>
+                        <p:growl id="messages" showDetail="true"/>
+                        <div class="my-3">
+                            <p:outputLabel for="imageMedia" styleClass="block">Image</p:outputLabel>
+                            <p:fileUpload id="imageMedia" listener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                                          update="messages" sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                            <small class="block">Add an image to your post</small>
+                        </div>
+                        <div class="my-3">
+                            <p:outputLabel for="documentMedia" styleClass="block">Documents</p:outputLabel>
+                            <p:fileUpload id="documentMedia" listener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                          multiple="true" update="messages" sizeLimit="10000000" fileLimit="3"
+                                          allowTypes="/(\.|\/)(pdf|ppt|pptx|doc|docx)$/"
+                                          maxChunkSize="1000000"/>
+                            <small class="block">Add an image to your post</small>
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function displayAlert(e) {
+                e.preventDefault();
+                window.alert("hi");
+            }
+
+            document.onload(function() {
+                let index1 = 0;
+
+            })
+
+            let index = 0;
+            function isRendered(i) {
+                return i == index;
+            };
+
+            function next() {
+                index++;
+            }
+
+            function previous() {
+                index--;
+            }
+
+            function getIndex() {
+                return index;
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

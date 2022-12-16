@@ -19,12 +19,14 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -78,17 +80,28 @@ public class UserService implements UserRepository {
 //                            .setParameter("email", email)
 //                            .getSingleResult();
 
-            CriteriaBuilder builder = em.getCriteriaBuilder();
-            CriteriaQuery<User> criteria = builder.createQuery(User.class);
-            Root<User> root = criteria.from(User.class);
-            criteria.select(root);
-            criteria.where(builder.equal(root.get("email"), email));
-            TypedQuery<User> typed = em.createQuery(criteria);
-            try {
-                user = typed.getSingleResult();
-            } catch (final NoResultException nre) {
-                return null;
+            CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+            CriteriaQuery<User> userCriteriaQuery = criteriaBuilder.createQuery(User.class);
+            Root<User> userRoot = userCriteriaQuery.from(User.class);
+            Predicate predicateTag
+                    = criteriaBuilder.equal(userRoot.get("email"), email);
+            userCriteriaQuery.where(predicateTag);
+            List<User> users = em.createQuery(userCriteriaQuery).getResultList();
+            if (users.size() > 0) {
+                user = users.get(0);
             }
+
+//            CriteriaBuilder builder = em.getCriteriaBuilder();
+//            CriteriaQuery<User> criteria = builder.createQuery(User.class);
+//            Root<User> root = criteria.from(User.class);
+//            criteria.select(root);
+//            criteria.where(builder.equal(root.get("email"), email));
+//            TypedQuery<User> typed = em.createQuery(criteria);
+//            try {
+//                user = typed.getSingleResult();
+//            } catch (final NoResultException nre) {
+//                return null;
+//            }
 
             et.commit();
         } catch (Exception e) {
@@ -99,7 +112,8 @@ public class UserService implements UserRepository {
     }
 
 
-    private String getSecurePassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    @Override
+    public String getSecurePassword(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
 //        random.nextBytes(salt);
