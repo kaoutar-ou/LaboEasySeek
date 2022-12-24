@@ -1,0 +1,152 @@
+
+
+Universit Cadi Ayyad
+Facult des Sciences technique
+Gu liz Marrakech
+partement d'Informatique
+FILIERE IRISI
+
+TP Cryptage PGP
+
+introduction
+pr sentation de PGP
+Le programme de cryptographie cl publique le connu est pgp pour pretty good
+privacy en anglais Assez Bonne Confidentialit
+PGP cr en par Philip Zimmermann informaticien ricain Ayant diffus son
+logiciel sur internet il poursuivi par le gouvernement ricain pour trafic d'arme car
+la cryptographie est consid bas comme une arme interdite d'exportation
+Le format openpgp est le standard ouvert de cryptographie issu de PGP Il est consid par
+les cryptographes comme l'un des proc de cryptage OpenPGP est adopt par deux
+logiciel GPG gratuit pgp payant sous Linux la distribution la pandue de GPG
+est gnupg sous Windows il s'agit de winpt Windows privacy tool
+signer une clef publique
+signer une clef publique c' certifier cette clef est bien celle de la personne indiqu par
+l'identifiant c'est pour cela qu'il faut faire la rification d'empreinte avant de signer une clef
+Apr avoir sign une clef publique vous pouvez la renvoyer sur serveur Ceci apporte
+tous votre garantie sur l'authenticit de cette clef
+comme pour tout cryptage asym trique OpenPGP fonctionne avec une cl publique une cl
+priv secr te mail dan ce cas plug doit tre install dan votre logiciel de
+messagerie ou fichier est crypt avec la cl publique crypt par le destinataire avec la
+cl priv correspondante La signature est galement avec openpgp
+installation
+Installez GnuPG install par faut sur la plupart des distribution
+sudo apt?get install gnupg
+
+rifiez le logiciel est bien install
+gpg version
+
+Utilisez l'aide en ligne de GPG
+gpg
+man gpg
+
+quel sont les principaux algorithmes de chiffrement de hachage utilis
+chiffrement sym trique
+pour crypter le fichy nom_fichy vous pouvez utiliser la commande suivante
+gpg symmetric nom_fichier
+
+
+
+pour chiffrer utilise option decrypt option cipher algo pour sp cifier
+algorithme de chiffrement utiliser
+cr ez fichier texte test.txt qui contient texte de votre choix
+Chiffrez le avec AES
+chiffrez le fichier test.txt.gpg
+ration des cl publique priv
+Les cl sont stock dan pertoire cach de votre pertoire personnel gnupg Vous
+tes la seule personne avoir acc ce fichier De vo cl sont prot par mot
+de passe pour renforcer la curit
+pour cr er votre propre cl publique cl priv il faut utiliser la commande
+gpg gen?key
+peut laisser la plupart des choix par faut cl rsa rsa taille san expiration
+cr ez votre propre cl rifiez son existence
+Certificat de vocation
+Apr la cr ation d'une paire de cl il est ralement conseill de rer certificat de
+vocation
+quel est son le
+gpg output certif revoc.asc gen revoke user id
+
+se trouvent physiquement vos cl
+
+gpg list?keys
+Si vous devez utiliser votre certificat de vocation tapez
+gpg import revoke.asc
+Votre cl serum voqu e.
+rez certificat de vocation de votre cl
+le sauvegardez vous
+Partage des cl publique
+pour envoyer votre cl publique quelqu'un vous pouvez commencer par l'exporter avec la
+commande
+gpg output cle.asc export armour uid
+uid est l'identit l'adresse email par exemple de la cl concern cle.asc le nom
+du fichier qui contiendra la cl en ascii
+Si vous voulez exporter la cl en binaire il faut utiliser
+gpg output cle.gpg export uid
+
+
+l'inverse pour importer une cl en binaire ou en ascii contenue dans le fichy
+cle.asc il suffit d'utiliser la commande
+gpg import cle.asc
+changez vo cl avec votre voisin en exportant la tre important la sienne
+rifiez qu'une nouvelle cl appara dan votre liste des cl
+Chiffrement asym trique
+pour chiffrer utilise la commande suivante
+gpg nom cible message.txt
+Cela produit chiffr en ajoutant gpg la fin du nom du fichy original
+pour chiffrer utilise la commande
+gpg output message.out message.txt.gpg
+Envoi ception de message crypt
+vous pouvez configurez votre logiciel de messagerie thunderbird gmail l'aide d'un plug
+pour pourvoir crypter les message envoy correspondant
+vous pouvez simplement crypter vos message en tant fichiers pour les envoyer en
+tant pi ce jointe
+Cr ez fichier avec diteur sauvegardez le
+Chiffrez votre fichy texte Quelle cl devez vous utiliser Quelle commande
+gpg devez vous utiliser
+comment pouvez vous vous assurer la cl provient bien utilisateur
+donn pourquoi l'empreinte est elle donn dans ce message
+sous quelle forme votre fichier crypt appara il Quelle est sa taille par
+rapport l'original Justifier
+Envoyer le fichier en tant pi ce jointe votre correspondant
+Demandez ce correspondant de crypter votre fichier Quelle cl doit il
+utiliser pour crypter le fichier Quelle commande doit il utiliser Pourquoi la phrase
+de passe est elle cessaire maintenant
+signature lectronique
+a. signature
+vous pouvez signer des message pour cela il faut utiliser
+gpg clearsign fichier
+Cette commande cr era nouveau fichier fichier.asc qui contiendra le fichy original
+fichier avec une signature vous authentifiant
+pour cr er uniquement une signature binaire utilise la commande suivante
+gpg detach?sign fichy
+Quelle est la cl utilis pour signer message Justifiez
+
+
+Editez le fichier sign pourquoi le nom d'un algorithme de hachage est il pr cis
+b. rification
+pour rify une signature il suffit d'utiliser la commande
+gpg verify fichy fichy est le fichy sign asc
+
+rifiez la signature d'un message votre voisin vous enverra
+Quelle est la cl utilis pour rifier la signature d'un message Justifiez
+se passe il si vous modifiez le message apr l'avoir sign
+seau de confiance
+L' laboration d'un seau de confiance cessite des algorithmes sp cifiques pour valider les
+cl relation de confiance une cl est consid comme valide si vous l'aviez sign
+personnellement L'algorithme le flexible retenu est le suivant une cl est consid
+comme valide si elle remplit deux condition
+elle est sign par suffisamment de cl valide c'est dire si
+vous l'avez sign personnellement
+elle sign par une cl laquelle vous accordez toute votre confiance
+elle sign par trois cl auxquelles vous accordez une confiance
+marginale
+le chemin des cl sign conduisant de jusqu votre propre cl mesure moins de
+cinq tape
+Il est tr important de bien rify l'identit des personnes vous signez les cl s. Si
+l'identit de la personne n' pas rifi correctement vous signez la cl cela signifie
+vous avez confiance en cette personne par con quent toute personne qui confiance
+en vous alors confiance en cette personne
+pour signer la clef vous avez besoin d' diter la clef par la commande gpg edit key
+La signature se fait en deux party
+trust pour indiquer votre niveau de confiance en la personne
+sign pour indiquer comment la rification de l'identit faite
+Il faut maintenant taper la commande trust apr le prompt de GPG puis la commande sign

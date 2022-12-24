@@ -40,4 +40,8 @@ public class Document implements Serializable {
             joinColumns = @JoinColumn(name = "document_id"),
             inverseJoinColumns = @JoinColumn(name = "keyword_id"))
     private List<Keyword> keywords = new ArrayList<>();
+
+    @OneToMany(mappedBy = "document", orphanRemoval = true)
+    List<Topic> topics = new ArrayList<>();
+
 }

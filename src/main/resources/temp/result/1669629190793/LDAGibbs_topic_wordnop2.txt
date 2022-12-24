@@ -1,0 +1,2 @@
+science	allow	
+red	hat	

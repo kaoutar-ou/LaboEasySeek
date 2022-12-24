@@ -25,7 +25,7 @@ public class UploadHelper {
 
     private final int limit_max_size = 10240000;
     private final String limit_type_file = "gif|jpg|png|jpeg|pdf|pptx|docx|xls|xlsx|txt|csv|doc|ppt|rar|zip|json";
-    private static  final String path_to =  File.separator+"resources" + File.separator + "media";
+    private static final String path_to =  File.separator+"resources" + File.separator + "media";
 
     public String processUpload(Part fileUpload,String name) {
         System.out.println("file to upload : "+fileUpload);
@@ -116,7 +116,8 @@ public class UploadHelper {
                 "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "can", "will", "just", "don", "should", "now","ceci", "cela", "avec", "que",
                 "dans", "après", "avant", "au-dessus", "en dessous", "à", "depuis", "en haut", "en bas ", "in", "out", "on", "off", "over", "under", "encore", "plus loin", "alors",
                 "une fois", "ici", "là", "quand", "où", "pourquoi", "comment", "tous", "tout", "les deux", "chacun", "quelques", "plus", "la plupart", "autres", "certains ", "tel",
-                "non", "ni", "pas", "seulement", "propre", "même", "alors", "que", "trop", "très", "peut", "va", "juste", "don", "devrait", "maintenant");
+                "non", "ni", "pas", "seulement", "propre", "même", "alors", "que", "trop", "très", "peut", "va", "juste", "don", "devrait", "maintenant",
+                "pour", "vous", "votre", "c'est", "deux");
 
         List<String> listWords =   wordFrequencies.stream( ).map(WordFrequency::getWord).filter(word -> !list.contains(word)).limit(10).collect(Collectors.toList());
 

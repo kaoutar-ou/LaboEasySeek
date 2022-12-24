@@ -1,0 +1,3 @@
+organization	quickly	artificial	intelligence	
+red	hat	openshift	data	
+allow	build	deploy	ml	

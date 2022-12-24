@@ -1,0 +1,3 @@
+red	hat	openshift	data	
+allow	build	ml	model	
+deploy	portable	platform	team	

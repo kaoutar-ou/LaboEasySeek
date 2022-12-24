@@ -80,7 +80,12 @@ class CoreNLP {
 
             for (Comment comment : comments) {
                 if (comment.getSentiment() == 2) {
-                    comment.setSentiment(NLPUtils.estimatingSentiment(comment.getContent()));
+                    if (!comment.getContent().trim().endsWith(".")) {
+                        comment.setContent(comment.getContent() + " .");
+                    }
+                    int sent = NLPUtils.estimatingSentiment(comment.getContent());
+                    System.out.println("comment : " + comment.getContent() + ", sentiment : " + sent);
+                    comment.setSentiment(sent);
                     em.merge(comment);
                 }
             }
@@ -93,8 +98,9 @@ class CoreNLP {
 
     public static void main(String[] args) {
 
-        String text = "It's awful . I hate it . I love it . Good . Bad . I like this post . "
-                + "I don't like this post . Great . I don't like it . ";
+//        String text = "It's awful . I hate it . I love it . Good . Bad . I like this post . "
+//                + "I don't like this post . Great . I don't like it . ";
+//        String text = "Awful .";
 //        String text = "It's awful";
 ////        NLPUtils.init();
 //        NLPUtils.estimatingSentiment(text);

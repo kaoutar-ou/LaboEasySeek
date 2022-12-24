@@ -1,0 +1,574 @@
+
+
+create table client_marr select nom prenom Adresse client ville Marrakech
+
+copy xp_user xp_user@fst1 xp_user xp_user@fst2 create client_casa nom prenom Adresse select nom prenom Adresse client ville Casablanca
+
+
+copy sir sir@fst1 sir sir@fst2 create client_casa nom prenom Adresse select nom prenom Adresse client ville Casablanca
+
+
+
+
+
+
+
+
+copy xp_user xp_user@fst1 xp_user xp_user@fst2 create type_compte_2 select type_compte
+
+
+
+
+
+
+
+copy xp_user xp_user@fst1 xp_user xp_user@fst2 create type_operation_2 select type_operation
+
+
+
+
+
+
+
+
+
+create table compte_1 select compte.no type_compte_no dateouverture decouvert_autorise
+solde client_no agence_no compte client_marr compte.client_no client_marr
+
+copy xp_user xp_user@fst1 xp_user xp_user@fst2 create compte_2 type_compte_no dateouverture decouvert_autorise solde client_no agence_no select compte.no type_compte_no dateouverture decouvert_autorise solde client_no agence_no compte compte.client_no select client ville Casablanca
+
+
+
+
+
+
+
+
+
+
+create table operation_1 select operation.no type_operation_no compte_no operation compte_1 compte_1
+
+
+copy xp_user xp_user@fst1 xp_user xp_user@fst2 create operation_2 type_operation_no compte_no select operation.no type_operation_no compte_no operation select compte_1
+
+
+drop table client
+drop table operation
+drop table compte
+drop table type_compte
+drop table type_operation
+
+
+
+
+alter table client_marr add constraint pk_client_marr primary key
+
+alter table client_casa add constraint pk_client_casa primary key
+
+
+alter table compte_1 add constraint pk_compte_1 primary key
+alter table compte_2 add constraint pk_compte_2 primary key
+
+
+
+alter table operation_1 add constraint pk_operation_1 primary key
+alter table operation_2 add constraint pk_operation_2 primary key
+
+
+
+alter table type_operation_2 add constraint pk_type_operation_2 primary key
+
+alter table type_compte_2 add constraint pk_type_compte_2 primary key
+
+
+
+
+
+alter table compte_1 add foreign key client_no references client_marr
+alter table compte_1 add foreign key agence_no reference agence
+
+alter table operation_1 add foreign key compte_no reference compte_1
+
+
+
+
+alter table compte_2 add foreign key client_no reference client_casa
+alter table compte_2 add foreign key type_compte_no reference type_compte_2
+
+alter table operation_2 add foreign key compte_no reference compte_2
+alter table operation_2 add foreign key type_operation_no reference type_operation_2
+
+create database link fst2 connect xp_user identify xp_user fst2
+create database link fst1 connect xp_user identify xp_user fst1
+
+
+
+
+
+
+
+
+create synonym seq_client seq_client@fst1
+
+
+create synonym seq_agence seq_agence@fst1
+
+create synonym seq_compte seq_compte@fst1
+
+create synonym seq_type_compte seq_type_compte@fst1
+
+create synonym seq_operation seq_operation@fst1
+
+create synonym seq_type_operation seq_type_operation@fst1
+
+
+seq_agence
+seq_compte
+seq_type_compte
+seq_operation
+seq_type_operation
+
+
+
+
+
+
+create synonym client_marr client_marr@fst1
+create synonym compte_1 compte_1@fst1
+create synonym operation_1 operation_1@fst1
+create synonym agence agence@fst1
+
+
+
+
+create synonym client_casa client_casa@fst2
+create synonym compte_2 compte_2@fst2
+create synonym operation_2 operation_2@fst2
+create synonym type_operation_2 type_operation_2@fst2
+create synonym type_compte_2 type_compte_2@fst2
+
+
+
+
+
+
+
+
+
+
+
+create view client nom prenom Adresse ville select nom prenom Adresse MARRAKECH Ville client_marr UNION select nom prenom Adresse casablanca ville client_casa
+
+
+
+create view compte type_compte_no dateouverture decouvert_autorise solde client_no agence_no select compte_1 UNION select compte_2
+
+
+
+
+create view operation type_operation_no compte_no select operation_1 UNION select operation_2
+
+
+
+
+
+
+create view type_compte select type_compte_2
+
+
+create view type_operation select type_operation_2
+
+
+
+
+
+type_operation_no compte_no
+
+
+
+
+
+
+create replace trigger trig_agence
+
+update delete agence
+begin
+exists
+select agence_no
+compte_2@fst2
+agence_no old.agence_no
+begin
+
+dbms_output put_line delete
+end
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create replace trigger trig_type
+
+update delete agence
+begin
+exists
+select agence_no
+compte_2@fst2
+agence_no old.agence_no
+begin
+
+dbms_output put_line delete
+end
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create replace trigger trig_agence
+update delete AGENCE
+begin
+exists
+select agence_no
+compte_2@fst2
+agence_no old.agence_no
+
+
+begin
+dbms_output put_line delete
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+create replace trigger trigger_type_operation
+insert update delete type_operation_2
+row
+declare
+number
+begin
+select count operation_1@fst1 type_operation_no old.no
+dbms_output put_line
+
+raise_application_error delete foreign key constraint
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+create replace trigger trigger_client
+insert update delete client_marr
+row
+declare
+number
+begin
+select count compte_1@fst1 old.no
+dbms_output put_line
+
+raise_application_error delete foreign key constraint
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+create replace trigger trigger_type_compte
+insert update delete type_compte_2
+row
+declare
+number
+begin
+select count compte_1@fst1 type_compte_no old.no
+dbms_output put_line
+
+raise_application_error delete foreign key constraint
+end
+end
+
+
+
+
+
+
+
+
+
+create replace trigger trigger_fille_agence_compte
+insert update compte_2
+row
+declare
+number
+begin
+select count agence@fst1 new.agence_no
+dbms_output put_line
+
+raise_application_error number exist
+end
+end
+
+
+
+
+
+
+
+create replace trigger trigger_fille_type_oper_oper_1
+insert update operation_1
+row
+declare
+number
+begin
+select count type_operation_2@fst2 new.type_operation_no
+dbms_output put_line
+
+raise_application_error number exist
+end
+end
+
+
+
+
+
+
+create replace trigger trigger_fille_typte_compte_1
+insert update compte_1
+row
+declare
+number
+begin
+select count type_compte_2@fst2 new.type_compte_no
+dbms_output put_line
+
+raise_application_error number exist
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+select c.nom cp.solde client join compte cp c.no cp.client_no
+
+select nom prenom client
+select nom adresse ville agence
+select dateouverture decouvert_autorise solde compte
+select libelle_compte description type_compte
+select type_operation_no compte_no operation
+select description type_operation
+
+
+
+select c.nom cp.solde tc.libelle_compte client join compte cp c.no cp.client_no join type_compte tc cp.type_compte_no tc.no
+
+
+
+
+insert client
+seq_client nextval Naciri Ahmed résidence Nassim N12 Casablanca
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create replace trigger insert_client_check_ville
+insert client
+row
+begin
+INSERTING
+low new.ville marrakech
+insert client_marr seq_client nextval new.nom new.prenom new.adresse
+dbms_output put_line client insert successfully marrakech
+elsif low new.ville casablanca
+insert client_casa seq_client nextval new.nom new.prenom new.adresse
+dbms_output put_line client insert successfully casablanca
+
+raise_application_error Ville find
+end
+end
+end
+
+
+
+
+alter session set global_names true
+
+
+insert client seq_client nextval Oubenaddi abdelhadi233 Kech casablanca
+
+
+drop trigger insert_client_check_ville_test
+
+
+
+
+
+create replace trigger update_client_check_ville
+update client
+row
+declare
+cursor curseur_comptes
+select compte client_no old.no
+begin
+update
+
+new.ville old.ville
+low new.ville marrakech
+insert client_marr old.no old.nom old.prenom old.adresse
+c_compte select compte client_no old.no
+loop
+insert compte_1 c_compte c_compte type_compte_no c_compte dateouverture c_compte decouvert_autorise c_compte solde c_compte client_no c_compte agence_no
+c_operation select operation compte_no c_compte
+loop
+insert operation_1 c_operation c_operation type_operation_no c_operation compte_no
+delete operation_2 c_operation
+end loop
+delete compte_2 c_compte
+end loop
+delete client_casa old.no
+
+elsif low new.ville casablanca
+insert client_casa old.no old.nom old.prenom old.adresse
+c_compte select compte client_no old.no
+loop
+insert compte_2 c_compte c_compte type_compte_no c_compte dateouverture c_compte decouvert_autorise c_compte solde c_compte client_no c_compte agence_no
+c_operation select operation compte_no c_compte
+loop
+insert operation_2 c_operation c_operation type_operation_no c_operation compte_no
+delete operation_1 c_operation
+end loop
+delete compte_1 c_compte
+end loop
+delete client_marr old.no
+end
+
+raise_application_error Ville find
+end
+
+end
+end
+
+
+
+
+update client set ville casablanca
+
+select compte client_no
+
+select c.nom cp.solde tc.libelle_compte client join compte cp c.no join type_compte tc cp.type_compte_no tc.no
+
+
+select compte_2 client_no
+
+select operation_1 compte_no
+
+
+
+
+
+
+update client_marr set new.nom new.prenom new.adresse old.no
+
+
+
+
+
+
+create replace trigger update_client_check_ville
+update client
+row
+declare
+cursor curseur_comptes
+select compte client_no old.no
+begin
+update
+new.ville old.ville
+
+
+raise_application_error Ville find
+end
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

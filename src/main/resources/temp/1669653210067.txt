@@ -1,0 +1,111 @@
+import React react
+import Select selectclass @mui joy select
+import option @mui joy option
+import KeyboardArrowDown @mui icon material keyboardarrowdown
+
+import TextField @mui joy textfield
+import Button @mui joy button
+
+const field description category version
+
+const renameprop oldprop newprop oldProp old
+newprop old
+
+
+
+export default function selectindicator
+const fieldname setFieldName react.usestate null
+
+const fieldrow setFieldRows react.usestate title
+
+react.useeffect
+console.log fieldname
+console.log fieldrow
+fieldname fieldRows
+
+return
+
+object.entries fieldrow map index
+return
+
+select
+placeholder select pet
+indicator <keyboardarrowdown />
+
+onchange newvalue
+object.keys fieldrow map rec
+console.log rec
+return
+newValue rec
+
+
+
+onchange newvalue renameprop newvalue fieldrow
+onchange newvalue
+setfieldrow previous
+console.log
+console.log newvalue
+object.entries previous index newvalue
+return previous
+
+
+onchange newvalue setfieldrow previous object.entries previous index
+onchange newvalue setfieldrow previous object.entries previous map val val
+onchange newvalue setfieldrow previous previous newvalue
+sx
+width
+selectclasses.indicator
+transition
+selectclasses.expanded
+transform rotate 180deg
+
+
+
+
+fields.map field
+option key field field
+field
+</option>
+
+</select>
+TextField
+placeholder type
+variant outline
+
+onchange
+setfieldrow previous
+previous
+e.target.value
+
+
+
+<button variant="soft"> </button>
+
+
+
+select
+placeholder select pet
+indicator <keyboardarrowdown />
+fieldname
+onchange newvalue setfieldname newvalue
+sx
+width
+selectclasses.indicator
+transition
+selectclasses.expanded
+transform rotate 180deg
+
+
+
+
+fields.map field
+option key field field
+field
+</option>
+
+</select>
+<textfield placeholder="type in here…" variant="outlined" />
+<button variant="soft"> </button>
+
+
+

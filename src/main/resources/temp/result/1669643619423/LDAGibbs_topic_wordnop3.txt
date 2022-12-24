@@ -1,0 +1,3 @@
+service	enable	company	solve	
+allow	build	deploy	ml	
+red	hat	openshift	data	

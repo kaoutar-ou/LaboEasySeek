@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -35,220 +35,268 @@
 
 
             <p:card style="width: 100%; margin-bottom: 2em">
+                <h:panelGroup styleClass="flex items-center w-full"
+                              rendered="#{not empty postController.post.image and not empty postController.post.image.title}">
+                    <div class="bg-cover bg-center w-full h-72"
+                         style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.image.title}')">
+
+                    </div>
+                </h:panelGroup>
+
                 <f:facet name="title">
-                    New Post
+                    Post details
+
+                    <h:form id="msgForm" styleClass="mx-3">
+                        <h:commandButton id="msgButton" action="#{messageController.handleSetReceiver(postController.post.user.id.toString())}" value="Message Publisher"/>
+                    </h:form>
                 </f:facet>
 
-                <p>Hi ! here you can add a new post, please fill in the form ...</p>
+                <div class="grid grid-cols-6 mt-3">
+<!--                    iterate over topics-->
+                    <div class="col-span-2">
+                        <div class="w-fit ml-2 my-3 py-2 px-4  font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">First topic</div>
+                        <ui:repeat value="#{postController.firstTopic}" var="topic1">
+                            <div>
+                                <strong>${topic1.name}</strong>   ${topic1.weight}
+                            </div>
+                        </ui:repeat>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="w-fit ml-2 my-3 py-2 px-4  font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">Second topic</div>
+                        <ui:repeat value="#{postController.secondTopic}" var="topic2">
+                            <div>
+                                <strong>${topic2.name}</strong>   ${topic2.weight}
+                            </div>
+                        </ui:repeat>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="w-fit ml-2 my-3 py-2 px-4  font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">Third topic</div>
+                        <ui:repeat value="#{postController.thirdTopic}" var="topic3">
+                            <div>
+                                <strong>${topic3.name}</strong>   ${topic3.weight}
+                            </div>
+                        </ui:repeat>
+                    </div>
+
+                </div>
 
             </p:card>
 
             <div class="card">
 
 
-
-
-
-
-
-
                 <div class=" bg-white rounded-lg border border-gray-200 shadow-md grid grid-cols-3 relative">
 
                     <div class="sm:col-span-3 md:col-span-2 lg:col-span-2">
 
-                    <h:panelGroup styleClass="flex items-center w-full"
-                                  rendered="#{not empty postController.post.image and not empty postController.post.image.title}">
-                        <div class="bg-cover bg-center w-full h-64"
-                             style="background-image: url('#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.image.title}')">
-
-                        </div>
-                    </h:panelGroup>
-
-
-                    <h:panelGroup
-                            rendered="#{not empty postController.post.user or not empty postController.post.category}">
-                        <div class="p-5">
-
-                            <h:panelGroup rendered="#{not empty postController.post.user.username}">
-                                <span class="mb-2 text-xl tracking-tight text-gray-900"> #{postController.post.user.username} </span>
-                            </h:panelGroup>
-
-                            <h:panelGroup rendered="#{not empty postController.post.category}">
-                                <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
-                                    #{postController.post.category.name}
-                                </button>
-                            </h:panelGroup>
-
-                        </div>
-                    </h:panelGroup>
 
 
 
-                    <h:panelGroup
-                            rendered="#{not empty postController.post.title or not empty postController.post.description}">
-                        <div class="p-5">
+                        <h:panelGroup
+                                rendered="#{not empty postController.post.user or not empty postController.post.category}">
+                            <div class="p-5">
 
-                            <h:panelGroup rendered="#{not empty postController.post.title}">
-                                <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> #{postController.post.title} </span>
-                            </h:panelGroup>
+                                <h:panelGroup rendered="#{not empty postController.post.user.username}">
+                                    <span class="mb-2 text-xl tracking-tight text-gray-900"> #{postController.post.user.username} </span>
+                                </h:panelGroup>
 
-                            <h:panelGroup rendered="#{not empty postController.post.description}">
-                                <div>
-                                    <span class="mb-3 font-normal text-gray-700"> #{postController.post.description} </span>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                    </h:panelGroup>
-
-
-
-
-
-
-                    <h:panelGroup rendered="#{not empty postController.keywords}">
-                        <div class="my-3">
-                            <ui:repeat value="#{postController.keywords}"
-                                       rendered="#{not empty postController.keywords}"
-                                       var="keyword">
-                                <h:panelGroup rendered="#{not empty keyword.name}">
-                                    <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
-                                        #{keyword.name}
+                                <h:panelGroup rendered="#{not empty postController.post.category}">
+                                    <button class="ml-2 my-1 py-2 px-4  rounded-full font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-violet-500 shadow-md active:shadow-none">
+                                        #{postController.post.category.name}
                                     </button>
                                 </h:panelGroup>
-                            </ui:repeat>
-                        </div>
-                    </h:panelGroup>
 
 
 
+                            </div>
+                        </h:panelGroup>
 
 
+                        <h:panelGroup
+                                rendered="#{not empty postController.post.title or not empty postController.post.description}">
+                            <div class="p-5">
+
+                                <h:panelGroup rendered="#{not empty postController.post.title}">
+                                    <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> #{postController.post.title} </span>
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{not empty postController.post.description}">
+                                    <div>
+                                        <span class="mb-3 font-normal text-gray-700"> #{postController.post.description} </span>
+                                    </div>
+                                </h:panelGroup>
+                            </div>
+                        </h:panelGroup>
 
 
+                        <h:panelGroup rendered="#{not empty postController.keywords}">
+                            <div class="my-3">
+                                <ui:repeat value="#{postController.keywords}"
+                                           rendered="#{not empty postController.keywords}"
+                                           var="keyword">
+                                    <h:panelGroup rendered="#{not empty keyword.name}">
+                                        <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                            #{keyword.name}
+                                        </button>
+                                    </h:panelGroup>
+                                </ui:repeat>
+                            </div>
+                        </h:panelGroup>
 
 
-                    <h:panelGroup
-                            rendered="#{not empty postController.post.date or not empty postController.post.time}">
-                        <div class="p-5">
-                            <h:panelGroup rendered="#{not empty postController.post.date}">
-                                <div>
-                                    <span class="font-semibold"> Event Date : </span> #{postController.post.date}
-                                </div>
-                            </h:panelGroup>
+                        <h:panelGroup
+                                rendered="#{not empty postController.post.date or not empty postController.post.time}">
+                            <div class="p-5">
+                                <h:panelGroup rendered="#{not empty postController.post.date}">
+                                    <div>
+                                        <span class="font-semibold"> Event Date : </span> #{postController.post.date}
+                                    </div>
+                                </h:panelGroup>
 
-                            <h:panelGroup rendered="#{not empty postController.post.time}">
-                                <div>
-                                    <span class="font-semibold"> Event Time : </span> #{postController.post.time}
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                    </h:panelGroup>
-
-
-
+                                <h:panelGroup rendered="#{not empty postController.post.time}">
+                                    <div>
+                                        <span class="font-semibold"> Event Time : </span> #{postController.post.time}
+                                    </div>
+                                </h:panelGroup>
+                            </div>
+                        </h:panelGroup>
 
 
                         <div class="my-3">
                             <ui:repeat value="#{postController.words}"
                                        var="word">
-                                    <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
-                                        #{word}
-                                    </button>
+                                <button class="ml-2 my-1 py-2 px-4 shadow-md no-underline rounded-full bg-gray-500 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-light focus:outline-none active:shadow-none">
+                                    #{word}
+                                </button>
                             </ui:repeat>
                         </div>
 
+                        <div class="grid grid-cols-12">
+                            <div class="col-span-4">
+                                <div class="card">
+                                    <img src='#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.document.filePath}' alt="Word cloud"/>
+                                </div>
+                            </div>
+                            <div class="col-span-2"></div>
+                            <div class="col-span-4">
+                                <div class="card">
+                                    <p:pieChart model="#{postController.pieChartModel}" style="width: 100%; height: 500px;"/>
+                                </div>
+                            </div>
+                        </div>
+<!--                            <div class="my-3">-->
+<!--                                <img src='#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.document.filePath}' alt="Word cloud"/>-->
+<!--                            </div>-->
 
 
+<!--                        <div class="my-3">-->
+<!--                            <div class="grid">-->
+<!--                                <div class="col-6 lg:col-4 xl:col-2">-->
+
+<!--                                    <p:pieChart model="#{chartJsView.pieModel}" style="width: 25%; height: 50px;"/>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
 
-
-                    <h:panelGroup>
-                        <div class="py-5">
-                            <div class="absolute bottom-3 w-full">
-                                <div class="grid grid-cols-4 gap-4 justify-items-stretch mx-3">
-                                    <div class="col-span-2">
-                                        <div class="flex flex-row items-center">
-                                            <div class="mx-2">
-                                                <i class="fa fa-eye fa-lg"></i>
-                                                <span class="mx-2">
+                        <h:panelGroup>
+                            <div class="py-5">
+                                <div class="absolute bottom-3 w-full">
+                                    <div class="grid grid-cols-4 gap-4 justify-items-stretch mx-3">
+                                        <div class="col-span-2">
+                                            <div class="flex flex-row items-center">
+                                                <div class="mx-2">
+                                                    <i class="fa fa-eye fa-lg"></i>
+                                                    <span class="mx-2">
                                                                0
                                                             </span>
-                                            </div>
+                                                </div>
 
-                                            <div class="mx-2">
-                                                <i class="fa fa-thumbs-o-up fa-lg"></i>
-                                                <span class="mx-2">
+                                                <div class="mx-2">
+                                                    <i class="fa fa-thumbs-o-up fa-lg"></i>
+                                                    <span class="mx-2">
                                                                 0
                                                             </span>
-                                            </div>
+                                                </div>
 
-                                            <div class="mx-2">
-                                                <i class="fa fa-thumbs-o-down fa-lg"></i>
-                                                <span class="mx-2">
+                                                <div class="mx-2">
+                                                    <i class="fa fa-thumbs-o-down fa-lg"></i>
+                                                    <span class="mx-2">
                                                                 0
                                                             </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-span-1">
-                                        <div class="flex flex-row items-center">
-                                            <i class="fa fa-comments-o fa-lg"></i>
-                                            <span class="mx-2">
+                                        <div class="col-span-1">
+                                            <div class="flex flex-row items-center">
+                                                <i class="fa fa-comments-o fa-lg"></i>
+                                                <span class="mx-2">
                                                             0
                                                         </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </h:panelGroup>
-
-                        </div>
+                        </h:panelGroup>
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
 
 
                     <div class="sm:col-span-3 md:col-span-1 lg:col-span-1">
                         <div class="m-3">
-                        <h:form>
-                            <h:panelGroup>
-                                <div class="">
-                                    <!--                                        <h:outputLabel value="Comment"/>-->
-                                    <h:inputText id="comment"
-                                                 value="#{commentBean.content}"
-                                                 class="w-full border border-violet-500 rounded-lg focus:outline-none p-2"
-                                    />
-                                </div>
-                            </h:panelGroup>
-                            <h:panelGroup>
-                                <div class="my-3">
-                                    <h:commandButton value="Comment"
-                                                     action="#{postController.addComment(commentBean)}"
-                                                     styleClass="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"/>
-                                </div>
-                            </h:panelGroup>
-                        </h:form>
-                        <ui:repeat value="#{postBean.getComments(postController.post.id)}" var="comm">
-                            <div class="my-3">
+                            <h:form>
                                 <h:panelGroup>
-                                    <div class="font-bold">
-                                        <h:outputText value="#{comm.user.username}"/>
-                                    </div>
                                     <div class="">
-                                        <h:outputText value="#{comm.content}"/>
+                                        <!--                                        <h:outputLabel value="Comment"/>-->
+                                        <h:inputText id="comment"
+                                                     value="#{commentBean.content}"
+                                                     class="w-full border border-violet-500 rounded-lg focus:outline-none p-2"
+                                        />
                                     </div>
                                 </h:panelGroup>
-                            </div>
-                        </ui:repeat>
+                                <h:panelGroup>
+                                    <div class="my-3">
+                                        <h:commandButton value="Comment"
+                                                         action="#{postController.addComment(commentBean)}"
+                                                         styleClass="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"/>
+                                    </div>
+                                </h:panelGroup>
+                            </h:form>
+                            <ui:repeat value="#{postBean.getComments(postController.post.id)}" var="comm">
+                                <div class="my-3">
+                                    <h:panelGroup>
+                                        <div class="font-bold">
+                                            <h:outputText value="#{comm.user.username}"/>
+                                        </div>
+                                        <div class="">
+                                            <h:outputText value="#{comm.content}"/>
+                                        </div>
+                                    </h:panelGroup>
+                                </div>
+                            </ui:repeat>
                         </div>
                     </div>
 
                 </div>
-
-
 
 
             </div>

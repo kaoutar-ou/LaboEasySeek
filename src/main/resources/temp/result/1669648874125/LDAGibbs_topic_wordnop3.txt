@@ -1,0 +1,3 @@
+select	c_compte	create	xp_user	
+end	key	table	alter	
+create	synonym	update	trigger	

@@ -34,7 +34,7 @@
                             <div class="flex flex-col h-full">
                                 <div class="grid grid-cols-12 gap-y-2" id="messages">
                                     <ui:repeat value="#{messageController.messages}" var="msg">
-                                        <h:panelGroup rendered="#{msg.sender.id.toString() eq messageController.messageBean.sender}">
+                                        <h:panelGroup rendered="#{msg.sender.id.toString() != messageController.messageBean.sender}">
                                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                                 <div class="flex flex-row items-center">
                                                     <div
@@ -51,7 +51,7 @@
                                             </div>
                                         </h:panelGroup>
 
-                                        <h:panelGroup rendered="#{msg.sender.id.toString() != messageController.messageBean.sender}">
+                                        <h:panelGroup rendered="#{msg.sender.id.toString() eq messageController.messageBean.sender}">
                                             <div class="col-start-6 col-end-13 p-3 rounded-lg">
                                                 <div class="flex items-center justify-start flex-row-reverse">
                                                     <div
@@ -346,21 +346,18 @@
                         >
                             <div class="flex-grow ml-4">
                                 <div class="relative w-full">
-                                    <h:inputText class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
-                                                  value="#{messageController.messageBean.message}">
-                                        <f:ajax listener="#{messageController.messageBean.messageChanged}" render="result" />
-                                    </h:inputText>
-                                    <input type="hidden" value="#{messageController.messageBean.message}" id='send_form_input'/>
+                                    <input class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" id='send_form_input'/>
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <h:commandButton id = "submitButton1"
-                                                 type="submit"
-                                                 class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
-                                                 value = "Submit" action = "#{messageController.sendMessage}" onclick="testSend();">
-                                    <f:ajax listener="#{messageController.messageBean.messageChanged}" render="result" />
-                                </h:commandButton>
+                                <button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0" id = "submitButton1" type="submit">Submit</button>
                             </div>
+
+
+
+
+
+
                         </div>
                         </h:form>
                     </div>
@@ -372,16 +369,21 @@
             <div class="control-group">
                 <input name="host" id='connect_host' value='localhost' type="hidden"/>
                 <input name="url" id='connect_port' value='61614' type="hidden"/>
-                <input id='connect_clientId' value="#{messageBean.clientId}" type="hidden"/>
-                <input id='connect_user' value="#{messageBean.user}" type="hidden"/>
-                <input id='connect_password' value="#{messageBean.password}" type="hidden"/>
-                <input id='destination' value="#{messageBean.destination}" type="hidden"/>
+                <input id='connect_receiver' value="#{messageController.messageBean.receiver}" type="hidden"/>
+                <input id='connect_clientId' value="#{messageController.messageBean.clientId}" type="hidden"/>
+                <input id='connect_user' value="#{messageController.messageBean.user}" type="hidden"/>
+                <input id='connect_password' value="#{messageController.messageBean.password}" type="hidden"/>
+                <input id='destination' value="#{messageController.messageBean.destination}" type="hidden"/>
             </div>
         </fieldset>
 
 
         <script src='resources/js/jquery-3.4.1.min.js' type="text/javascript"></script>
         <script src="resources/js/mqttws31.js" type="text/javascript"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function () {
 
@@ -406,6 +408,7 @@
                         var clientId = $("#connect_clientId").val();
                         var user = $("#connect_user").val();
                         var password = $("#connect_password").val();
+                        var receiver = $("#connect_receiver").val();
 
                         destination = $("#destination").val();
 
@@ -436,6 +439,7 @@
                     console.log("host: " + host);
                     console.log("port: " + port);
                     console.log("client: " + client);
+                    console.log("receiver: " + receiver);
 
 
                     // this allows to display debug logs directly on the web page
@@ -467,10 +471,27 @@
                         var text = $('#send_form_input').val();
                         console.log("text: " + text);
                         if (text) {
-                            let message = new Messaging.Message(text);
+                            let message = new Messaging.Message(text + "$$:" + user);
                             message.destinationName = destination;
                             client.send(message);
-                            $('#send_form_input').val("");
+
+                            $.ajax({
+                                type: "GET",
+                                url: "http://localhost:8080/labo-easy-seek-1.0-SNAPSHOT/rest/jms/test",
+                                data: {
+                                    message: text,
+                                    sender: user,
+                                    receiver: receiver,
+                                    conversation: destination
+                                },
+                                dataType: "json",
+                                success: function(result){
+                                    console.log("result: ");
+                                    $('#send_form_input').val("");
+                                }
+                            })
+
+                            // $('#send_form_input').val("");
                         }
                         return false;
                     });
@@ -481,10 +502,57 @@
                     }
 
                     function onMessageArrived(message) {
-                        var p = document.createElement("p");
-                        var t = document.createTextNode(message.payloadString);
-                        p.appendChild(t);
-                        $("#messages").append(p);
+                        var p = document.createElement("div");
+                        var text = message.payloadString;
+                        if (text) {
+                            var textArray = text.split("$$:");
+                            if (textArray[1] === user) {
+                                p.className = "col-start-6 col-end-13 p-3 rounded-lg";
+                                p.innerHTML = `
+                                    <div class="flex items-center justify-start flex-row-reverse">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                        >
+                                            A
+                                        </div>
+                                        <div
+                                            class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                                        >
+                                            <div>
+                                            `
+                                    + textArray[0] +
+                                    `
+                                       </div>
+                                        </div>
+                                    </div>
+                                    `;
+                            } else {
+                                p.className = "col-start-1 col-end-8 p-3 rounded-lg";
+                                p.innerHTML = `
+                                    <div class="flex flex-row items-center">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                        >
+                                            A
+                                        </div>
+                                        <div
+                                            class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                                        >
+                                            <div>
+                                            `
+                                        + textArray[0] +
+                                        `
+                                        </div>
+                                        </div>
+                                    </div>
+                                    `;
+                            }
+                            // p.innerHTML = textArray[0];
+                            $("#messages").append(p);
+                        }
+                        // var t = document.createTextNode(message.payloadString);
+                        // p.appendChild(t);
+                        // $("#messages").append(p);
                     }
 
                     function onConnectionLost(responseObject) {

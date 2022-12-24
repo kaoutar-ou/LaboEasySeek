@@ -5,9 +5,7 @@ import org.irisi.laboeasyseek.beans.CalendarView;
 import org.irisi.laboeasyseek.beans.CommentBean;
 import org.irisi.laboeasyseek.beans.ItemsBean;
 import org.irisi.laboeasyseek.beans.PostBean;
-import org.irisi.laboeasyseek.models.Comment;
-import org.irisi.laboeasyseek.models.Keyword;
-import org.irisi.laboeasyseek.models.Post;
+import org.irisi.laboeasyseek.models.*;
 //import org.irisi.laboeasyseek.models.Tag;
 
 import java.util.List;
@@ -27,6 +25,11 @@ public interface IPostService {
     List<Comment> getPostComments(Long id);
 //    List<Tag> getPostTags(Long id);
     List<Keyword> getPostKeywords(Long id);
+
+    List<Document> getNoTopicDocuments();
+
+    List<Topic> getTopicsByDocumentId(Long documentId);
+
 //    String getPostCategory();
 //    void setPostCategory(String postCategory);
 }

@@ -11,17 +11,17 @@ import org.irisi.laboeasyseek.models.Comment;
 import org.irisi.laboeasyseek.models.Keyword;
 import org.irisi.laboeasyseek.models.Post;
 //import org.irisi.laboeasyseek.models.Tag;
+import org.irisi.laboeasyseek.models.Topic;
 import org.irisi.laboeasyseek.services.IPostService;
 
 import jakarta.ejb.EJB;
 import org.irisi.laboeasyseek.utils.SessionUtils;
 import org.irisi.laboeasyseek.utils.UploadHelper;
+import org.primefaces.model.charts.pie.PieChartModel;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @SessionScoped
@@ -261,6 +261,7 @@ public class PostController implements Serializable {
 //            System.out.println("comments 2: " + comments);
 //            setComments(comments);
 //        }
+
         return this.post;
     }
     public void setPost(Post post) {
@@ -309,6 +310,44 @@ public class PostController implements Serializable {
         this.comments = comments;
     }
 
+    List<Topic> firstTopic = new ArrayList<>();
+    List<Topic> secondTopic = new ArrayList<>();
+    List<Topic> thirdTopic = new ArrayList<>();
+
+    public List<Topic> getFirstTopic() {
+        return firstTopic;
+    }
+
+    public void setFirstTopic(List<Topic> firstTopic) {
+        this.firstTopic = firstTopic;
+    }
+
+    public List<Topic> getSecondTopic() {
+        return secondTopic;
+    }
+
+    public void setSecondTopic(List<Topic> secondTopic) {
+        this.secondTopic = secondTopic;
+    }
+
+    public List<Topic> getThirdTopic() {
+        return thirdTopic;
+    }
+
+    public void setThirdTopic(List<Topic> thirdTopic) {
+        this.thirdTopic = thirdTopic;
+    }
+
+    PieChartModel pieChartModel;
+
+    public PieChartModel getPieChartModel() {
+        return pieChartModel;
+    }
+
+    public void setPieChartModel(PieChartModel pieChartModel) {
+        this.pieChartModel = pieChartModel;
+    }
+
     Long postId;
     public String handleSetPost(Long id) {
 
@@ -326,10 +365,40 @@ public class PostController implements Serializable {
             System.out.println("comments size 1 : " + comments.size());
             System.out.println("comments 2: " + comments);
             setComments(comments);
+
+            System.out.println("documentId: " + post.getDocument().getId());
+            List<Topic> topics = postService.getTopicsByDocumentId(post.getDocument().getId());
+
+            List<Topic> topic1 = new ArrayList<>();
+            List<Topic> topic2 = new ArrayList<>();
+            List<Topic> topic3 = new ArrayList<>();
+
+            for (Topic topic : topics) {
+                topic.setWeight((double) Math.round(topic.getWeight() * 100) / 100);
+                if (topic.getNumber() == 1) {
+                    topic1.add(topic);
+                } else if (topic.getNumber() == 2) {
+                    topic2.add(topic);
+                } else if (topic.getNumber() == 3) {
+                    topic3.add(topic);
+                }
+            }
+
+            setFirstTopic(topic1);
+            setSecondTopic(topic2);
+            setThirdTopic(topic3);
+
+            ChartJsView chartJsView = new ChartJsView();
+
+            PieChartModel pieChartModel1 = new PieChartModel();
+
+            pieChartModel1 = chartJsView.getCustomPieModel(comments);
+
+            setPieChartModel(pieChartModel1);
+
 //        }
+
         return "post.xhtml";
-
-
 
 //        if (id != postId) {
 //            this.postId = id;

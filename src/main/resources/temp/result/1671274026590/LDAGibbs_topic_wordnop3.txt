@@ -1,0 +1,3 @@
+islamic	prayer	religion	faith	
+islam	muslim	divine	faithful	
+god	muhammad	month	arabic	

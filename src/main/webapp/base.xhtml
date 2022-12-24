@@ -36,7 +36,7 @@
                             </h:panelGroup>
                             <h:panelGroup rendered="#{not empty email}">
                                 <h:form id="logoutForm" styleClass="mx-3">
-<!--                                    <h:commandButton id="logoutButton" action="" style="display: none" />-->
+                                    <h:commandButton id="logoutButton" action="#{userController.logout()}" style="display: none" />
                                     <button type="submit" id="logoutForm:logoutButton" name="logoutForm:logoutButton"><i class="fa fa-sign-out fa-lg"></i></button>
                                 </h:form>
                             </h:panelGroup>

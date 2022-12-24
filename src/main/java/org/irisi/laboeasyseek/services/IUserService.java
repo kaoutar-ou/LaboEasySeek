@@ -14,8 +14,7 @@ public interface IUserService {
     public String addUser();
     public String deleteUser();
     public String updateUser();
-    public String getUser();
+    public User getUser(Long id);
     public String getAllUsers();
-
 
 }

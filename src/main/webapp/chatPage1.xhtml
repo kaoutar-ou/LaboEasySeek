@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="base.xhtml">
+    <ui:define name="body">
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <link href="" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.min.responsive.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+        <style type="text/css">
+            body {
+                padding-top: 40px;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="body">
+
+
+        <div class="flex h-screen antialiased text-gray-800">
+            <div class="flex flex-row h-full w-full overflow-x-hidden">
+                <div class="flex flex-col flex-auto h-full p-6">
+                    <div
+                            class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
+                    >
+                        <div class="flex flex-col h-full overflow-x-auto mb-4">
+                            <div class="flex flex-col h-full">
+                                <div class="grid grid-cols-12 gap-y-2" id="messages">
+                                    <ui:repeat value="#{messageController.messages}" var="msg">
+                                        <h:panelGroup rendered="#{msg.sender.id.toString() eq messageController.messageBean.sender}">
+                                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                                                <div class="flex flex-row items-center">
+                                                    <div
+                                                            class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                                    >
+                                                        A
+                                                    </div>
+                                                    <div
+                                                            class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                                                    >
+                                                        <div>#{msg.content}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup rendered="#{msg.sender.id.toString() != messageController.messageBean.sender}">
+                                            <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                                                <div class="flex items-center justify-start flex-row-reverse">
+                                                    <div
+                                                            class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                                                    >
+                                                        A
+                                                    </div>
+                                                    <div
+                                                            class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                                                    >
+                                                        <div>#{msg.content}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+                                    </ui:repeat>
+<!--                                    <div class="col-start-1 col-end-8 p-3 rounded-lg">-->
+<!--                                        <div class="flex flex-row items-center">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit amet, consectetur adipisicing-->
+<!--                                                    elit. Vel ipsa commodi illum saepe numquam maxime-->
+<!--                                                    asperiores voluptate sit, minima perspiciatis.-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>I'm ok what about you?</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-start-1 col-end-8 p-3 rounded-lg">-->
+<!--                                        <div class="flex flex-row items-center">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>Lorem ipsum dolor sit amet !</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-start-1 col-end-8 p-3 rounded-lg">-->
+<!--                                        <div class="flex flex-row items-center">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>Lorem ipsum dolor sit amet !</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="col-start-1 col-end-8 p-3 rounded-lg">-->
+<!--                                        <div class="flex flex-row items-center">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>Lorem ipsum dolor sit amet !</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+
+<!--                                    <div class="col-start-1 col-end-8 p-3 rounded-lg">-->
+<!--                                        <div class="flex flex-row items-center">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>Lorem ipsum dolor sit amet !</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="col-start-6 col-end-13 p-3 rounded-lg">-->
+<!--                                        <div class="flex items-center justify-start flex-row-reverse">-->
+<!--                                            <div-->
+<!--                                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"-->
+<!--                                            >-->
+<!--                                                A-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"-->
+<!--                                            >-->
+<!--                                                <div>-->
+<!--                                                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?-->
+<!--                                                </div>-->
+<!--                                                <div-->
+<!--                                                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"-->
+<!--                                                >-->
+<!--                                                    Seen-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+                                </div>
+                            </div>
+                        </div>
+                        <h:outputText id="result" value="#{messageController.messageBean.message}" />
+                        <h:form class="well form-search" id='send_form'>
+                        <div
+                                class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
+                        >
+                            <div class="flex-grow ml-4">
+                                <div class="relative w-full">
+                                    <h:inputText class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                                                  value="#{messageController.messageBean.message}">
+                                        <f:ajax listener="#{messageController.messageBean.messageChanged}" render="result" />
+                                    </h:inputText>
+                                    <input type="hidden" value="#{messageController.messageBean.message}" id='send_form_input'/>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h:commandButton id = "submitButton1"
+                                                 type="submit"
+                                                 class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                                                 value = "Submit"
+                                                 onclick="testSend();">
+                                    <f:ajax listener="#{messageController.messageBean.messageChanged}" render="result" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <fieldset>
+            <div class="control-group">
+                <input name="host" id='connect_host' value='localhost' type="hidden"/>
+                <input name="url" id='connect_port' value='61614' type="hidden"/>
+                <input id='connect_clientId' value="#{messageController.messageBean.clientId}" type="hidden"/>
+                <input id='connect_user' value="#{messageController.messageBean.user}" type="hidden"/>
+                <input id='connect_password' value="#{messageController.messageBean.password}" type="hidden"/>
+                <input id='destination' value="#{messageController.messageBean.destination}" type="hidden"/>
+            </div>
+        </fieldset>
+
+
+        <script src='resources/js/jquery-3.4.1.min.js' type="text/javascript"></script>
+        <script src="resources/js/mqttws31.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#connect_clientId").val("example-" + (Math.floor(Math.random() * 100000)));
+                if (!window.WebSocket) {
+                    $("#connect").html("&lt;h1>Get a new Web Browser!&lt;/h1>&lt;p>Your browser does not support WebSockets. This example will not work properly.&lt;br>Please use a Web Browser with WebSockets support (WebKit or Google Chrome).&lt;/p>");
+                } else {
+
+                    var client, destination;
+
+                    // the client is notified when it is connected to the server.
+                    var onConnect = function (frame) {
+                        debug("connected to MQTT");
+                        $('#connect').fadeOut({duration: 'fast'});
+                        $('#connected').fadeIn();
+                        client.subscribe(destination);
+                    };
+
+                    // $('#connect_form').submit(function () {
+                        var host = $("#connect_host").val();
+                        var port = $("#connect_port").val();
+                        var clientId = $("#connect_clientId").val();
+                        var user = $("#connect_user").val();
+                        var password = $("#connect_password").val();
+
+                        destination = $("#destination").val();
+
+
+                        client = new Messaging.Client(host, Number(port), clientId);
+
+                        client.onConnect = onConnect;
+
+                        client.onMessageArrived = onMessageArrived;
+                        client.onConnectionLost = onConnectionLost;
+
+
+
+
+                        client.connect({
+                            userName: user,
+                            password: password,
+                            onSuccess: onConnect,
+                            onFailure: onFailure
+                        });
+                    //     return false;
+                    // });
+
+                    console.log("clientId: " + clientId);
+                    console.log("user: " + user);
+                    console.log("password: " + password);
+                    console.log("destination: " + destination);
+                    console.log("host: " + host);
+                    console.log("port: " + port);
+                    console.log("client: " + client);
+
+
+                    // this allows to display debug logs directly on the web page
+                    var debug = function (str) {
+                        $("#debug").append(document.createTextNode(str + "\n"));
+                    };
+
+                    $('#disconnect').click(function () {
+                        client.disconnect();
+                        $('#connected').fadeOut({duration: 'fast'});
+                        $('#connect').fadeIn();
+                        $("#messages").html("")
+                        return false;
+                    });
+
+                    function testSend() {
+                        console.log("text 1: ");
+                        var text = $('#send_form_input').val();
+                        console.log("text 1: " + text);
+                        if (text) {
+                            let message = new Messaging.Message(text);
+                            message.destinationName = destination;
+                            client.send(message);
+                            $('#send_form_input').val("");
+                        }
+                        return false;
+                    };
+                    $('#send_form').submit(function () {
+                        var text = $('#send_form_input').val();
+                        console.log("text: " + text);
+                        if (text) {
+                            let message = new Messaging.Message(text);
+                            message.destinationName = destination;
+                            client.send(message);
+                            $('#send_form_input').val("");
+                        }
+                        return false;
+                    });
+
+                    function onFailure(failure) {
+                        debug("failure");
+                        debug(failure.errorMessage);
+                    }
+
+                    function onMessageArrived(message) {
+                        var p = document.createElement("p");
+                        var t = document.createTextNode(message.payloadString);
+                        p.appendChild(t);
+                        $("#messages").append(p);
+                    }
+
+                    function onConnectionLost(responseObject) {
+                        if (responseObject.errorCode !== 0) {
+                            debug(client.clientId + ": " + responseObject.errorCode + "\n");
+                        }
+                    }
+                }
+            });
+        </script>
+    </ui:define>
+</ui:composition>
+
+
+</html>

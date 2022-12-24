@@ -1,0 +1,3 @@
+ko	kaoutar	clear	kaoutar	
+kaoutar	ko	clear	kaoutar	
+clear	kaoutar	ko	kaoutar	

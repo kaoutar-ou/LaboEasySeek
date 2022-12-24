@@ -1,0 +1,3 @@
+hat	service	data	enable	
+hat	data	allow	build	
+red	openshift	science	cloud	

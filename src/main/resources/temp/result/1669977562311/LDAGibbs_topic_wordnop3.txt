@@ -1,0 +1,3 @@
+cell	grow	body	spread	
+tumor	grow	cancerous	benign	
+cell	cancer	normal	immune	
