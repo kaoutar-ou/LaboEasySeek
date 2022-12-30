@@ -1,0 +1,3 @@
+ij	optimal	max	transport	
+outlier	algorithm	ot	method	
+projection	dom	bregman	follow	

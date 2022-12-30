@@ -221,7 +221,16 @@ public class PostServiceImpl implements IPostService, Serializable {
                         .filter(post -> post.getTitle().contains(search) || (post.getDescription() != null && post.getDescription().contains(search))
                                 || (post.getContent() != null && post.getContent().contains(search)) || (post.getLocation() != null && post.getLocation().contains(search))
                                 || (post.getDate() != null && post.getDate().toString().contains(search)) || (post.getTime() != null && post.getTime().toString().contains(search))
-                                || (post.getDocument() != null && post.getDocument().getKeywords().stream().anyMatch(keyword -> keyword.getName().contains(search))))
+                                || (post.getDocument() != null && post.getDocument().getKeywords().stream().anyMatch(keyword -> keyword.getName().contains(search)))
+                                || (post.getCategory() != null && post.getCategory().getName().contains(search))
+                                || (post.getComments() != null && post.getComments().stream().anyMatch(comment -> comment.getContent().contains(search)))
+                                || (post.getUser() != null && post.getUser().getUsername().contains(search))
+                                || (post.getDocument().getTopics().stream().anyMatch(topic -> topic.getName().contains(search))))
+                        .collect(Collectors.toList());
+            }
+            if (searchCategory != null && !searchCategory.isEmpty()) {
+                posts = posts.stream()
+                        .filter(post -> post.getCategory().getName().contains(searchCategory))
                         .collect(Collectors.toList());
             }
 

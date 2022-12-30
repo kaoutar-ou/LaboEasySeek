@@ -1,0 +1,3 @@
+model	machine	learn	datum	
+algorithm	result	run	bias	
+step	training	solve	problem	

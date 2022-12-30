@@ -1,0 +1,1283 @@
+Proceedings Machine Learning Research ACML
+robust computation optimal transport potential
+regularization
+Shintaro Nakamura nakamurashintaro@g.ecc.u-tokyo.ac.jp
+University Tokyo Kashiwanoha Kashiwa City Chiba
+Han Bao bao@i.kyoto-u.ac.jp
+Kyoto University Yoshida honmachi Sakyo ku Kyoto
+Masashi Sugiyama sugi@k.u-tokyo.ac.jp
+riken aip center Nihonbashi chome Mitsui Building 15th floor Nihonbashi Chuo ku
+Tokyo
+University Tokyo Kashiwanoha Kashiwa City Chiba
+editor Emtiyaz Khan Mehmet Gonen
+Abstract
+optimal transport OT widely tool machine learning field
+measure discrepancy probability distribution instance OT pop
+ular loss function quantify discrepancy empirical distribution
+parametric model recently entropic penalty term celebrated Sinkhorn al
+gorithm commonly approximate original OT computationally
+efficient way Sinkhorn algorithm run projection associate
+kullback leibler divergence vulnerable outlier overcome problem
+propose regularize OT potential term associate call
+divergence develop robust statistics theoretical analysis reveal
+potential prevent mass transport outlier experimen
+tally demonstrate transport matrix compute algorithm estimate
+probability distribution robustly presence outlier addition propose
+method successfully detect outlier contaminated dataset
+keyword optimal transport robustness
+introduction
+machine learning problem density estimation generative modeling
+formulate discrepancy probability distribution Kanamori al.
+Goodfellow al. common choice Kullback Leibler KL divergence Kull
+back Leibler widely minimize kl divergence em
+pirical distribution parametric model correspond maximum likelihood estimation
+kl divergence suffer problem instance kl divergence
+well define support completely include support
+q. kl divergence satisfy axiom metric probability
+space hand optimal transport OT Villani suffer
+problem OT require condition support probability distribution
+expect stable kl divergence divergence
+S. Nakamura H. Bao M. Sugiyama
+ar
+
+iv
+
+
+
+
+
+1v
+
+
+
+
+
+
+
+
+
+ec
+
+
+
+Nakamura Bao Sugiyama
+set sample outlier set sample outlier
+figure sample red draw sample blue
+dimensional identity matrix sample dimensional uniform
+distribution add red sample
+table ouput Sinkhorn algorithm algorithm exact ot
+set sample figure 1a
+figure 1a figure 1b
+Sinkhorn algorithm
+algorithm
+estimator prone diverge infinity addition OT distribution
+metric probability space define proper distance histogram
+probability measure Peyre Cuturi owe nice property OT
+celebrate application image processing Rabin al.
+color modification Solomon al.
+ordinary OT suffer heavy computation cope problem
+common approach regularize ordinary OT problem entropic
+penalty term Boltzmann Shannon entropy Dessein al. Sinkhorn
+algorithm Knopp Sinkhorn approximate OT Cuturi entropic
+penalty make objective strictly convex ensure existence unique global
+optimal solution Sinkhorn algorithm project global optimal solution
+set coupling term kl divergence divergence associate Boltzmann
+Shannon entropy Dessein al. unfortunately KL projection statistical
+estimation robust presence outlier Basu al. pilot
+study experimentally confirm Sinkhorn algorithm easily affect outlier
+figure table output Sinkhorn algorithm drastically
+increase small number outlier include dataset
+high sensitivity Sinkhorn algorithm lead undesired solution proba
+bilistic modeling deal noisy adversarial dataset Kos al.
+exist work tackle challenge Staerman al. propose median
+mean estimator Wasserstein dual suppress outlier sensitivity
+obtain solution hard interpret approximation OT cor
+respond primal problem unclear hand work robustly
+approximate OT send small probability mass outlier allow vio
+lation coupling constraint Balaji al. unbalanced OT Chizat
+robust computation optimal transport potential regularization
+figure heatmap transport matrix compute algorithm horizontal
+histogram set sample dimensional standard normal distribution vertical
+histogram set sample dimensional standard normal distribution add
+outlier heatmap mass transport outlier
+include source histogram
+divergence divergence penalty marginal violation compute OT
+robustly formulation require access outlier proportion
+section show method rely optimization
+package cvxpy Diamond Boyd scale large sample Mukherjee
+al. focus outlier detection truncate distance matrix OT
+downside set threshold method
+hardly advance lack robust OT formulation independent
+sensitive hyperparameter easily accessible primal transport matrix
+work propose mitigate outlier sensitivity Sinkhorn algorithm
+regularize OT potential term Boltzmann Shannon entropy
+formulation regard projection base divergence Basu al.
+Futami al. computational trick algorithm guarantee
+move probability mass outlier figure suggest algorithm
+compute approximate OT inlier approximate OT compute
+method setting figure 1a 1b table
+mean method prone affect outlier numerical
+experiment demonstrate proposed method measure distance
+dataset robustly Sinkhorn algorithm practical application show
+proposed method apply outlier detection task
+Nakamura Bao Sugiyama
+background
+section show formulation ordinary discrete OT subsequently
+review Bregman divergence finally introduce convex regularize discrete OT
+crot formulation alternate Bregman projection obtain solution
+CROT
+optimal transport OT
+introduce OT discrete setting case OT regard cheap
+plan deliver item supplier consumer supplier consumer
+supply
+demand
+work focus measure
+transportation cost probability distribution suppose set
+independent sample xi mi yj nj draw distribution px py
+write correspond empirical measure p?x
+
+
+xi?xi
+P?y
+
+
+yi?yi delta function position x. Rm
+distance matrix ij denote distance xi yj transport matrix
+confine
+Rm
+1n
+1m
+
+1m
+1n
+
+
+
+
+1m
+
+
+1n
+
+
+
+Rm set non-negative real call mm 1nn coupling constraint
+order notation concise Frobenius product matrix
+Rm denote
+
+
+
+ij?ij
+OT empirical distribution p?x p?y define follow Peyre
+Cuturi
+OT P?x?P?y min
+1m
+
+1n
+
+
+
+Bregman divergence
+Euclidean space product induce norm
+strictly convex function differentiable int dom Bregman
+divergence generate define follow
+x?y
+dom dom paper sake simplicity consider
+call separable Bregman divergence Dessein al. set transport
+matrix
+
+1m
+1nn
+
+decompose element-wise summation
+
+
+
+
+
+ij ij
+
+
+
+
+
+ij
+robust computation optimal transport potential regularization
+regularization term dom dom
+potential
+
+Boltzman Shannon entropy
+table domain regularizer Fenchel conjugate
+denote generator function element
+slight abuse notation suppose Legendre type Bauschke
+Borwein closed convex set int dom
+point int dom follow problem
+tc argmin
+x?C
+x?y
+unique solution tc call Bregman projection Dessein al.
+
+formulation CROT
+give formulation CROT show obtain optimal solution
+CROT correspond minimize Bregman divergence matrix
+crot formulate regularize version follow
+min
+1m
+
+1n
+
+
+
+regularization parameter subsequently work dual variable
+dual variable satisfy condition
+
+
+Fenchel conjugate Dessein al. optimal solution
+understand Bregman projection consider unconstrained version
+
+min
+Rm
+
+linear strictly convex respect unique optimal
+solution
+
+obtain solve order optimality condition dual
+relationship
+
+mapping base gradient subgradient legitimate Legendre type
+Nakamura Bao Sugiyama
+
+argmin
+1m
+
+1n
+
+
+
+argmin
+1m
+
+1n
+
+
+
+equality due follow equation
+
+solution interpret Bregman projection
+constrained solution mm 1nn Sinkhorn algorithm obtain
+solution OT regularize negative Boltzmann Shannon entropy
+log table run projection associate kl divergence
+log
+
+alternate Bregman projection
+demonstrate Bregman projection mm 1nn execute base
+Dessein al.
+c0 c1 c2 follow convex set
+c0 rm
+c1
+
+Rm
+1n 1m
+
+
+
+c2
+
+Rm
+1m 1n
+
+
+
+mm 1nn write follow
+mm 1nn c0 c1 c2
+Bregman projection mm 1nn alternately perform projection
+c0 c1 c2
+consider projection give matrix int dom c0 c1
+c2 correspond projection set denote
+
+
+subsequently show obtain Dessein al. section
+supplementary file detail
+projection c0
+consider separable Bregman divergence projection c0
+form closed form expression term primal parameter
+ij max ij
+ij element matrix increase equivalently
+express term dual parameter
+
+
+ij max ij
+dual coordinate input matrix denote
+robust computation optimal transport potential regularization
+algorithm non-negative alternate scaling algorithm divergence
+
+max 0m
+
+
+1n 1m
+
+1n
+max
+mm
+1n
+
+max
+
+1m 1nn
+1m
+max
+1nn
+1m
+max 0m
+end
+
+projection c1 c2
+consider Bregman projection c1 projection c2 exe
+cute way omit Lagrangian associate Bregman
+projection give matrix int dom c1 give follow
+l1 1n 1m
+
+rm Lagrange multiplier gradient give int dom
+l1 1n
+
+note l1 0m Dessein al.
+1n
+
+multiply 1n side follow equation system obtain
+1n
+1n 1m
+
+due separability projection c1 divide subproblem
+coordinate dual variable follow
+
+
+ij
+
+
+
+solve equation respect Newton Raphson method Akram
+ul Ann
+Nakamura Bao Sugiyama
+outlier robust crot
+section formalize model outlier make crot robust against
+outlier model propose crot potential introduce
+compute crot potential finally show theoretical property
+definition outlier
+paper outlier formally define follow suppose dataset xi mi
+yj nj assume xi mi sample clean distribution yj nj
+sample contaminate outlier distance matrix
+definition index outlier define follow
+ij z.
+mean point yj nj equal
+point xi mi consider outlier
+potential regularization
+potential
+
+
+
+
+associate divergence
+
+
+
+
+robustify CROT domain primal Fenchel conjugate
+show table
+propose algorithm show Algorithm dual coordinate uncon
+strained crot solution denote execute projection cyclic
+order C0 c1 c0 c2 c0 c1 c0 c2
+line Algorithm enforce dual constraint ij
+correspond
+dom
+table line correspond projection c1 implement
+dual coordinate dual variable satisfy ij
+due dom
+
+update dual variable Newton Raphson method line
+ij
+long guarantee update similarily projection
+c2 show line
+procedure line base section Dessein al. accelerate
+convergence Algorithm truncate optimization variable describe
+subsequently recall follow condition
+ij
+
+implicitly coupling constraint naively update Newton Raphson method
+overshoot truncate satisfied update show
+robust computation optimal transport potential regularization
+condition satisfied mathematically
+
+dimensional vector ith
+element large ith row define follow
+max ij j?n
+convex
+ij
+
+ij ij
+
+hold low bind Newton Raphson decrement ith
+row
+max
+
+
+
+
+
+
+ij ij
+
+
+
+
+
+
+
+mean element ith row compute line Algorithm
+large
+line satisfy condition similarly force ij
+satisfy condition
+ij
+
+line condition satisfied
+theoretical analysis
+presence outlier expect approximate OT prevent mass transport
+outlier property formalize
+definition suppose Rm set index satisfy follow
+condition
+ij O.
+transport mass O.
+although expect transport mass outlier optimal solution
+crot satisfy coupling constraint condition never satisfied
+ensure consider solve crot finite number update subse
+quently intermediate solution satisfy although coupling constraint
+satisfied stark contrast previous work Chizat Balaji al.
+avoid transport mass outlier
+follow proposition provide sufficient condition number iteration
+ensure condition refer section supplementary file proof
+Nakamura Bao Sugiyama
+proposition give
+subset index
+satisfy condition show definition suppose obtain transport matrix output
+run alogrithm time satisfy follow condition
+
+
+
+
+
+
+
+output transport mass J.
+
+upper bound positive number intuitively
+mean transport matrix obtain Algorithm disregard point distant
+inlier equal z. note condition sufficiently small
+number iteration lead approximate crot solution transport
+mass outlier
+discuss selection hyperparameter section
+experiment
+show application method demonstrate practical effectiveness
+experiment section set hyperparameter
+proposed method discuss selection hyperparameter
+section
+measure distance dataset
+experiment numerically confirm method compute distance
+robustly Sinkhorn algorithm follow benchmark dataset
+MNIST Deng fashionmnist Xiao al. kmnist Clanuwat al.
+EMNIST Letters Cohen al. benchmark dataset randomly
+sample datum point split subset datum
+regard datum point inlier portion subset replace datum
+benchmark dataset regard outlier compute CROT
+outlier robust crot subset investigate change
+outlier ratio simply raw
+datum compute distance matrix ij xi yj i.e. Euclidean distance
+raw datum median threshold way expect
+outlier distinguish inlier result show figure although
+distance compute Sinkhorn algorithm drastically change outlier ratio
+large degree change output algorithm mild
+dataset algorithm compute distance dataset
+stably Sinkhorn algorithm
+application outlier detection
+algorithm enable detect outlier clean dataset dataset
+pollute outlier regard jth data point outlier Algorithm
+output transport matrix jth column
+robust computation optimal transport potential regularization
+
+outlier ratio
+
+
+
+
+
+
+Ou
+pu
+
+al
+ue
+clean dataset MNIST
+
+outlier ratio
+
+
+
+
+
+Ou
+pu
+
+al
+ue
+clean dataset fashionmnist
+
+outlier ratio
+
+
+
+
+
+
+Ou
+pu
+
+al
+ue
+clean dataset kmnist
+
+outlier ratio
+
+
+
+
+
+
+
+Ou
+pu
+
+al
+ue
+clean dataset EMNIST
+figure mean standard deviation output Sinkhorn algorithm red
+algorithm blue run represent outlier dataset MNIST
+FashionMNIST KMNIST EMNIST dotted line output
+dataset clean
+Nakamura Bao Sugiyama
+outlier inlier
+class SVM
+local outlier factor
+isolation forest
+elliptical envelope
+baseline technique 95th
+baseline technique
+baseline technique 99th
+robot 95th
+robot
+robot 99th
+method 95th
+method
+method 99th
+table percentage true outlier inlier detect outlier inlier run number
+show mean standard deviation Xth mean Xth percentile subsampling
+phase
+experiment fashion mnist Xiao al. clean dataset
+MNIST Deng outlier consist image fashion mnist
+image MNIST consist image fashion mnist compute
+transport matrix dataset identify outlying mnist image
+simply raw data compute distance matrix ij xi yj i.e.
+Euclidean distance raw datum
+compare proposed method robust optimal transport robot
+method Mukherjee al. method propose Balaji al.
+exist method compute OT robustly compare method variety
+popular outlier detection algorithm scikit learn Pedregosa al.
+class support vector machine svm Scho?lkopf al. local outlier factor
+Breunig al. isolation forest Liu al. elliptical envelope Rousseeuw
+van Driessen robot method set cost truncation hyperparameter
+95th 99th percentile distance matrix subsample phase
+Mukherjee al.
+method distance tolerance parameter definition
+detect outlier leverage proposition choose run algorithm
+
+
+
+
+
+
+
+
+time satisfy condition point
+point equal distance regard outlier determine
+subsampling phase clean dataset similar Mukherjee al.
+propose follow heuristic clean subsample
+dataset compute distance matrix choose minimum
+row large procedure essentially
+estimate maximum distance sample clean dataset order
+robust computation optimal transport potential regularization
+outlier inlier
+Balaji al.
+Method
+table comparison Balaji al. datum point number show mean
+standard deviation percetage true outlier inlier detect outlier inlier
+run
+avoid subsample noise 95th 99th percentile
+maximum additionaly compare method natural baseline identify data
+point outlier minimum distance clean dataset large distance
+compute subsample phase call method baseline technique
+result show table method high performance
+detect outlier inlier
+code Balaji al. base cvxpy Diamond Boyd
+scalable computational time negligible
+datum point similar previous experiment clean dataset consist
+fashion mnist datum point polluted dataset consist fashion mnist
+datum inlier mnist datum point outlier table show mean accuracy
+standard deviation run run time method
+method method outperform method
+Balaji al. term outlier detection performance computation
+time
+selection hyperparamter
+dicuss selection hyperparameter figure 4a show sensitivity
+hyperparameter outlier task
+good choice hyperparameter
+run algorithm
+
+
+
+
+
+
+
+
+
+time choose excessively large excessively small harmfully increase
+computation time hand choose excessively small excessively
+large
+
+
+
+
+
+
+
+
+
+equal mean
+start run algorithm discussion fix scale
+raw datum constant multiplication change scale
+adjust number time run algorithm large
+time large MNIST detection task scale raw datum
+number time run algorithm fit
+scaling
+raw data constant multiplication problem detect outlier figure 4a
+scale adjust number time run algorithm
+limited
+Nakamura Bao Sugiyama
+
+
+
+
+
+
+
+
+
+
+Ac
+cu
+ra
+cy
+
+
+
+
+
+
+
+
+
+hyperparameter sensitivity
+fashion mnist detection task Blue
+ly detection accuracy Red outlier detec
+tion arruracy error bar represent mean
+standard deviation
+
+
+
+
+
+
+
+
+
+
+Ac
+cu
+ra
+cy
+
+
+
+
+
+hyperparameter sensitivity credit
+card fraud detection task Blue inlier de
+tection accuracy Red outlier detection ar
+ruracy error bar represent mean stan
+dard deviation
+figure hyperparameter sensitivity fashion mnist dataset credit
+card fraud detection dataset
+confirm proposed method sufficiently stable range
+hyperparameter credit card fraud detection dataset2 experimentally
+observe sensitivity proposed method choice hyperparameter
+credit card fraud detection dataset verify proposed method
+sufficiently stable range hyperparameter
+credit card fraud detection dataset transaction make credit card
+European cardholder due confidentiality issue provide
+original feature background information datum
+dimensional numerical feature vector result principal component
+analysis transformation feature vector compute cost matrix
+l2 distance task detect fraud transaction
+conduct ten experiment pair
+show result figure 4b detection accuracy sufficiently
+stable
+conclusion
+work propose robustly approximate OT regularize ordinary OT
+potential term leverage domain Fenchel conjugate potential
+algorithm move probability mass outlier demonstrate
+proposed method estimate probability distribution robustly
+presence outlier successfully detect outlier contaminated dataset
+
+robust computation optimal transport potential regularization
+acknowledgment
+SN support JST SPRING Grant Number JPMJSP2108 ms support
+JST CREST Grant Number JPMJCR18A2
+reference
+Sabahat Akram Qurrat ul Ann Newton Raphson method
+Yogesh Balaji Rama Chellappa Soheil Feizi robust optimal transport applica
+tion generative modeling domain adaptation NeurIPS page
+
+Ayanendranath Basu Ian R. Harris Nils L. Hjort M. C. Jones robust efficient
+estimation minimise density power divergence Biometrika
+h. H. Bauschke A. S. Lewis dual coordinate ascent method non-strictly convex
+minimization Mathematical Programming
+h. H. Bauschke A. S. Lewis Dykstra algorithm Bregman projection con
+vergence proof optimization
+H.H. Bauschke J.M. Borwein Legendre function method random Bregman
+projection Journal Convex Analysis
+James P. Boyle Richard L. Dykstra method find projection
+tersection convex set Hilbert space advance Order Restricted Statistical
+inference page York NY Springer York
+Markus M. Breunig Hans Peter Kriegel Raymond T. Ng Jo?rg Sander LOF identi
+fy density base local outlier SIGMOD Record
+Lenaic Chizat unbalanced optimal transport model Numerical method application
+thesis Universite Paris science lettres
+Tarin Clanuwat Mikel Bober Irizar Asanobu Kitamoto Alex Lamb Kazuaki Yamamoto
+David ha deep learning classical Japanese literature CoRR abs
+url
+Gregory Cohen Saeed Afshar Jonathan Tapson Andre van Schaik EMNIST
+extension mnist handwritten letter url https://arxiv.org/abs/1702
+
+Marco Cuturi sinkhorn distance Lightspeed computation optimal transport
+NeurIPS NIPS page
+Li Deng mnist database handwritten digit image machine learning research
+IEEE Signal Processing Magazine
+Arnaud Dessein Nicolas Papadakis Jean luc Rouas regularize optimal transport
+rot mover distance JMLR
+Nakamura Bao Sugiyama
+I.S. Dhillon J.A. Tropp matrix nearness problem Bregman divergence SIAM
+Journal Matrix Analysis Applications
+Steven Diamond Stephen Boyd CVXPY python embed modeling language
+convex optimization J. Mach learn res. jan ISSN
+Futoshi Futami Issei Sato Masashi Sugiyama variational inference base robust
+divergence AISTATS volume page PMLR
+Ian J. Goodfellow Jean Pouget Abadie Mehdi Mirza Bing Xu David Warde Farley Sherjil
+ozair Aaron Courville Yoshua Bengio generative adversarial net NeurIPS
+page Cambridge MA USA
+Takafumi Kanamori Shohei Hido Masashi Sugiyama square approach
+direct importance estimation JMLR
+William Karush Minima function variable inequality side condition
+Master thesis Department Mathematics University Chicago Chicago IL USA
+
+Paul Knopp Richard Sinkhorn concern nonnegative matrix doubly stochastic
+matrix Pacific Journal Mathematics
+Jernej Kos Ian Fischer Dawn Xiaodong Song adversarial generative
+model IEEE security privacy Workshops SPW page
+H. W. Kuhn A. W. Tucker nonlinear programming Proceedings
+Berkeley Symposium Mathematical Statistics Probability page
+Berkeley Los Angeles University California Press
+S. Kullback R. A. Leibler information sufficiency Annals Mathematical
+statistics
+Fei Tony Liu Kai Ming Ting Zhi Hua Zhou isolation forest Eighth IEEE
+International Conference Data Mining page
+Debarghya Mukherjee Aritra Guha Justin Solomon Yuekai Sun Mikhail
+Yurochkin outlier robust optimal transport icml page
+Fabian Pedregosa Gae?l Varoquaux Alexandre Gramfort Vincent Michel Bertrand
+Thirion Olivier Grisel Mathieu Blondel Peter Prettenhofer Ron Weiss Vincent
+Dubourg Jake Vanderplas Alexandre Passos David Cournapeau Matthieu Brucher
+Matthieu Perrot E?douard Duchesnay scikit learn machine learning Python
+JMLR
+Gabriel Peyre Marco Cuturi computational optimal transport foundation
+Trends Machine Learning
+Julien Rabin Gabriel Peyre Julie Delon Marc Bernot Wasserstein barycenter
+application texture mixing Scale Space Variational method computer
+Vision page
+robust computation optimal transport potential regularization
+Peter J. Rousseeuw Katrien van Driessen fast algorithm minimum covariance
+determinant estimator technometric
+Bernhard Scho?lkopf Robert Williamson Alex Smola John Shawe Taylor John Platt
+support vector method novelty detection NeurIPS
+Justin Solomon Fernando de Gabriel Peyre Marco Cuturi Adrian Butscher Andy
+Nguyen Tao Du Leonidas Guibas Convolutional Wasserstein distance efficient
+optimal transportation geometric domain ACM transaction Graphics
+
+Guillaume Staerman Pierre Laforgue Pavlo Mozharovskyi Florence Alche buc
+OT meet mom robust estimation wasserstein distance AISTATS volume
+page
+ce?dric Villani optimal transport Old volume Springer Berlin Heidelberg
+
+Han Xiao Kashif Rasul Roland Vollgraf fashion mnist image dataset
+benchmark machine learning algorithm CoRR
+Nakamura Bao Sugiyama
+appendix A. Details Bregman projection
+demonstrate detail algorithm inspire non-negative alternate
+scale algorithm NASA introduce Dessein al. algorithm
+obtain solution CROT although outlier robust crot satisfy
+assumption require CORT show algorithm construct similarly
+NASA algorithm
+introduce basics convex analysis preliminary explain
+alternate scaling algorithm basis NASA algorithm require
+assumption finally show NASA algorithm separable Bregman diver
+gence borrow idea construct algorithm
+a.1 Convex analysis
+Euclidean space product induce norm boundary
+interior relative interior subset denote bd int ri
+recall convex set
+ri
+convex analysis scalar function define space
+effective domain simply domain function define
+set
+dom
+definition close function function rn close
+sublevel set dom closed set
+dom close close
+definition proper function suppose convex function satisfy
+dom exist point x0 domain
+x0 call proper function
+proper convex function close low semi-continuous closed
+function continuous relative simplex polytope polyhedral subset dom
+convex function continuous relative interior ri dom
+definition essential smoothness Bauschke Borwein suppose closed
+convex proper function int dom essentially smooth
+differentiable int dom
+xn int dom
+xn bd dom
+
+xn
+definition essential strict convexity Bauschke Borwein
+subgradient suppose close convex proper E. essentially strictly
+convex strictly convex convex subset dom
+topological space funtion call low semi-continuous point
+x0 x0 exist neighborhood x0
+robust computation optimal transport potential regularization
+define set function call Legendre type Fenchel conjugate function
+definition Legendre type Bauschke Borwein suppose closed convex
+proper function E. Legendre type essentially smooth
+essentially strictly convex
+definition Fenchel conjugate Dessein al. Fenchel conjugate
+function define follow
+
+x?int dom
+
+Fenchel conjugate closed convex function closed convex
+function Legendre type Legendre
+type Legendre type gradient mapping homeomorphism4
+int domf int domf inverse mapping guarantee
+existence dual coordinate system int dom
+int dom
+finally function cofinite satisfy
+lim
+
+
+nonzero intuitively mean grow super-linearly direction
+closed convex proper function cofinite dom
+a.2 alternate scaling algorithm
+show detail obtain Bregman projection convex set
+function Legendre type Fenchel conjugate general compute
+Bregman projection arbitrary closed convex set int dom
+nontrivial Dessein al. decompose
+intersection finitely close convex set
+
+
+
+cl
+individual Bregman projection respective set c1 easy
+compute obtain Bregman projection alternate
+projection c1 Cs accord Dykstra algorithm Boyle Dykstra
+detail control mapping determine sequence
+subset project give point x0 int dom Bregman projection
+tc x0 x0 approximate Dykstra algorithm iterate follow
+update
+xk tc xk
+function topological space homeomorphism follow
+property bijection continuous inverse function continuous
+Nakamura Bao Sugiyama
+correction term y1 respective subset initialize null
+element update projection follow
+xk xk
+technical assumption sequence update xk k?n converge term
+norm pc x0 linear rate set condition study
+Dhillon Tropp Bauschke Lewis follow
+condition propose Dhillon Tropp CROT framework
+function cofinite
+constraint qualification ri c1 ri Cs int dom hold
+control mapping essentially cyclic exist number
+output consecutive input
+condition impose convergence Dykstra algorithm guarantee
+a.3 technical assumption crot hold
+mild technical assumption require convex regularizer Fenchel
+conjugate CROT framework hold assumption follow
+Legendre type
+dom
+dom
+assumption relate require condition definition Bregman projection
+convergence algorithm specific crot problem
+assumption require definition Bregman projection ad
+dition guarantee existence dual coordinate system int dom int dom
+homeomorphism
+assumption ensure constraint qualification mm 1nn int dom
+Bregman projection transport polytope
+assumption equivalently require cofinite convergence
+a.4 NASA algorithm
+subsection show NASA algorithm base Dykstra algorithm construct
+projection c0 c1 c2
+a.4.1 Projcetion C0
+consider projection give matrix c0 denote projection pc0
+Karush Kuhn Tucker condition Kuhn Tucker Karush
+robust computation optimal transport potential regularization
+Algorithm NASA algorithm
+
+max 0m
+repeat
+0m
+repeat
+
+1n 1m
+
+1n
+convergence
+
+max 0m
+
+repeat
+
+1m
+1n
+
+
+1m
+convergence
+1m
+max 0m
+convergence
+
+follow
+
+
+
+primal feasibility dual feasibility complementary
+slackness
+separable Bregman divergence projection c0
+perform closed form expression primal parameter
+ij max ij
+ij element matrix increase equivalent
+dual parameter
+
+
+ij max ij
+dual coordinate input matrix denote
+a.4.2 projection c1 c1
+consider Bregman projection give matrix int dom c1
+c2 projection c1 c2 employ method Lagrange multiplier
+Lagrangians Lagrange multiplier Rm rn Bregman projection
+Nakamura Bao Sugiyama
+give matrix int dom c1 c2 write follow
+l1
+
+
+l2
+
+
+gradient give int dom
+l1
+l2
+vanish
+
+int dom
+
+
+duality Bregman projection c1 c2 equivalent find unique
+vector row sum
+column sum
+
+
+
+
+
+
+
+
+
+
+restict separable Bregman divergence
+pute projection step efficiently due separability projection c1
+c2 divide parallel subproblem search space dimension
+follow
+
+
+ij
+
+
+
+
+
+ij
+
+
+
+denote dual coordinate
+order obtain Lagrange multiplier Newton Raphson
+method specifically eploit follow function
+
+
+
+ij
+
+
+
+ij
+function define open interval limit limit
+limit dom limit max ij j?n
+robust computation optimal transport potential regularization
+max ij i?m obtain unique solution
+
+
+start Newton Raphson update
+
+
+
+ij
+m?n
+
+ij
+
+
+
+
+ij
+n?m
+
+ij
+
+converge optimal solution quadraitic rate avoid store intermediate
+Lagrange multiplier update directly write term dual parameter
+ij ij
+
+
+ij
+m?n
+
+ij
+
+ij ij
+
+
+ij
+n?m
+
+ij
+
+initilalization ij ij
+
+ij ij ij ij ith row
+jth column dual coordinate
+
+Nakamura Bao Sugiyama
+table domain Euclidean norm potential
+regularization term dom dom
+potential
+
+Euclidean norm
+start write successive vector
+iteration
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+max
+
+
+
+efficent algorithm exploit difference
+scale row column algorithm
+a.5 point algorithm NASA
+apply NASA algorithm regulariler Euclidean norm
+
+show table easily confirm Euclidean norm
+satisfy assumption introduce a.3 outlier robust crot
+potential regularizer violate assumption dom
+robust computation optimal transport potential regularization
+table naively apply NASA algorithm outlier robust
+CROT instance line algorithm mathematically correct
+projection c0 similarly line mathematically correct
+projection c1 c2
+spite mathematical issue line algorithm
+projection c0 addition update Newton Raphson
+projection c1 c2 dom dom long
+guarantee overcome issue update
+appendix proof proposition
+proposition give
+subset index
+satisfy condition show definition suppose obtain transport matrix output
+run alogrithm time satisfy follow condition
+
+
+
+
+
+
+
+output transport mass J.
+proof algorithm start
+
+
+
+
+
+
+hold element great equal
+follow
+inequality hold algorithm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+similarly follow inequality hold
+
+
+
+
+
+
+
+
+algorithm finish run time follow inequality hold
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Nakamura Bao Sugiyama
+
+ij
+
+
+
+
+hold
+output
+ij J.

@@ -1,0 +1,70 @@
+Proxy
+Projet de fin de module
+Administration curit des seux
+Pr send par
+BENSOUISSI Hiba
+Encadr par
+M. AITHEMAD MILOUD
+plan
+Qu'est ce qu'un proxy
+Diff rence avec les routeur
+Fonctionnalit
+type de proxy
+monstration
+
+
+
+
+
+Qu'est ce qu'un
+proxy
+Diff rence avec les
+routeur
+Routeur
+routeur ne se contente
+de transf rer le paquet
+Ne touche qu trois
+information
+ne passe pas forc ment
+par le routeur
+ne travaille qu'au niveau applicatif
+Proxy
+Reproduit le paquet
+La ponse ira forc ment au proxy qui
+nous retourne alor cette dernus
+Fonctionnalit
+acc rer la navigation
+Enregistrement des flux
+Filtrage des demande
+Anonymisation des
+demande
+type de proxy
+Le serveur proxy
+http
+Le serveur proxy
+cache
+Le serveur proxy
+transparent
+type de proxy
+Le serveur
+reverse proxy
+
+Le serveur proxy
+FTP
+Autres
+monstration
+Squid
+Proxy de mise en cache pour le web prenant en charge http HTTPS
+ftp
+Il est capable de rer les protocoles ftp http
+HTTPS
+Il est ralement utilis dans certaines entreprise
+universit pour des fonctions de filtrage d'url ou en
+tant tampon
+Squid est serveur mandataire enti rement libre tr
+performant
+Les page internet sont stock localement ce qui vite
+d'all les recharger plusieurs fois permet d' conomiser
+la bande passante internet
+merci pour votre
+attention

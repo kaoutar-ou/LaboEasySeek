@@ -1,0 +1,3 @@
+cell	body	cancerous	spread	
+tumor	grow	benign	abnormal	
+cell	cancer	grow	normal	

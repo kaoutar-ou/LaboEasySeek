@@ -1,0 +1,18 @@
+machine learn work
+development machine learn model base main step typically data scientist manage oversee process
+
+step select prepare training datum set data feed machine learn model learn solve problem design
+
+datum label order model characteristic identify unlabeled model spot extract recur feature
+
+case datum carefully prepare organize clean training machine learning model bias result future prediction directly impact
+
+step select algorithm run training dataset type algorithm depend type volume training datum type problem solve
+
+step train algorithm iterative process variable run algorithm result compare produce weight bias adjust increase accuracy result
+
+variable run algorithm produce correct result time algorithm train machine learn model
+
+fourth final step improve model model datum origin depend problem solve machine learn model design detect spam email
+
+part machine learn model robot vacuum cleaner ingest datum result interaction real world move furniture add object room efficiency accuracy increase time

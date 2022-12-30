@@ -1,0 +1,210 @@
+Universit Cadi Ayyad Marrakech Ann
+Facult des Sciences techniques irsi
+partement d'Informatique
+Enseignant A. Darouichi
+td en BI DW
+rie
+exercice
+signi le terme BI
+base Internationale
+Build Intelligence
+Business Intelligence
+base informatique
+La Business Intelligence est
+ensemble des logiciels de suivi des stock
+ensemble des outils informatiques permettant de suivre les ten
+dance sur le web
+ensemble des thode informatiques permettant de suivre les
+signt sur le web le mobile
+ensemble d'outil de technique destin livrer les informa
+tion pertinente chaque manager de l'entreprise pour une prise
+de cision cace
+Data Warehouse est
+une base de donn es
+mod le de donn
+ensemble de chier
+syst de gestion de base de donn es
+quel sont les synonymes d'un Data Warehouse
+Data Mining
+base de donn es cisionnelle
+datum
+entrep de donn es
+Data Mart est
+une collection de donn es du syst oltp
+processus d'int gration de donn
+sous ensemble d'un Data warehouse
+quel sont les synonymes d'un Data Mart
+
+Data Mining
+Magasin de donn
+datum stage
+Comptoire de donn
+Trouver la bonne signation d'etl
+exchange transmit load
+extract transmit load
+extract transform load
+extract transfer load
+Trouver la bonne signation d'elt
+exchange load transmit
+extract load transmit
+extract load transform
+extract load transfer
+signi le terme OLAP
+line Analytical Processing
+line Analytical Processus
+line Analytical Programming
+Le cube OLAP est
+ensemble de donn es trait es dans une seule dimension
+une base de donn utilis pour collecter ordonner stocker des
+information
+une repr sentation multidimensionnelle de donn es importantes
+form partir de plusieurs dimension de donn es
+signi le terme oltp
+line transactional Processing
+line transactional Processus
+line transactional programming
+quel sont les autres termes utilis pour signer le cube de donn es
+datum mining
+hypercube
+entrep olap
+cube olap
+cube mining
+Il s'agit d'un emplacement temporaire entre le syst OLTP le
+datum warehouse les donn es des syst mes source sont copi es
+stock area
+stand area
+stage area
+
+caching area
+Chaque table de dimension contient
+fait
+attribut
+valeur
+Membres
+une table qui contient les axis d'analyse
+une table qui contient les donn es analyser
+axe d'analyse selon lequel sont visualis es les mesures d'activit
+d'un sujet d'analyse
+une table contenant les axis d'analyse selon lequels sont visualis es
+les mesures d'activit d'un sujet d'analyse
+se au niveau de tail dan l'entrep de donn es
+Association
+agr gation
+ralisation
+Granularit
+Le syst op rationnel oltp est
+di la gestion de l'entreprise pour l'aider au pilotage de l'acti
+vit pour une vision transversale de l'entreprise
+di aux tier de l'entreprise pour les assister dans leurs che
+de gestion quotidienne
+di la gestion de l'entreprise pour l'aider au pilotage de l'acti
+vit pour une vision horizontale de l'entreprise
+Le syst cisionnel olap est
+di aux tier de l'entreprise pour les assister dans leurs che
+de gestion quotidienne
+di la gestion de l'entreprise pour l'aider au pilotage de l'acti
+vit pour une vision transversale de l'entreprise
+di la gestion de l'entreprise pour l'aider au pilotage de l'acti
+vit pour une vision horizontale de l'entreprise
+Citer les quatre tape de la chaine cisionnelle
+Citer op ration OLAP
+Citer sch ma de mod lisation du datum warehouse
+Citer les deux mod les dominant sur le march du datawarehou
+sing
+exercice
+
+ce cision sont prise par le haut niveau rarchique
+engagent toute l'entreprise long terme
+cision tactique
+cision op rationnelle
+cision strat gique
+ce cision sont prise par les cutant comme chef de ser
+vice chef d'ately elles sont fr quentes tr pr visible
+cision tactique
+cision op rationnelle
+cision strat gique
+La Business Intelligence est ensemble
+Des outil informatiques permettant de suivre les tendances sur le
+web
+Des logiciels de suivi des stock
+Des outils pour exploiter des donn es d'une entreprise de fa
+ciliter la prise de cision dans de bonnes condition
+Des thode informatiques permettant de suivre les tendance
+sur le web
+L'int gration de donn es est une composante de
+l'informatique quantique
+l'informatique cisionnelle
+l'informatique virtuelle
+La carte
+Les donn es du Data Warehouse entrep de donn es doivent
+tre sous la forme normalis
+Vrai
+faux
+Combien de dimension cube de donn es
+
+Le le nombre de faits ou mesure
+beaucoup limit seulement par des ressources informatiques
+
+cube avec de trois dimension est appel
+hyper cube
+hybrid cube
+hierarchical cube
+aucune de ces ponse
+Il consiste ectuer une rotation de l'hypercube de pr sen
+ter une face di rente
+
+roll
+pivot
+drill
+slice
+dice
+c' une op ration qui produit sous cube en permettant
+l'analyste de choisir des valeurs sp cifiques de plusieurs dimension
+roll
+rotate
+drill
+slice
+dice
+Qu'est ce qu'un outil etl
+entrep de donn es
+logiciel pour extraire transformer lira les donn
+logiciel pour extraire transformer charger les donn
+logiciel pour extraire transf rer charger les donn
+quel sont les synonymes du Syst OLTP
+syst d'information cisionnel
+informatique cisionnelle
+syst op rationnel
+base de donn es cisionnelle
+syst de gestion
+Il s'agit d'un emplacement entre le syst OLTP le datum warehouse
+les donn es issue de source rog ne sont centralis es de
+faciliter les op ration d'analyse de reporting
+ods
+stand area
+stage area
+caching area
+se au niveau de tail dan l'entrep de donn es
+Association
+agr gation
+ralisation
+Granularit
+Data Mining est
+langage de report
+ensemble d'outil thode technology d'analyse mise en
+uvre pour nir des tendances ou tablir des corr lations entre
+les donn
+
+outil d'int gration de donn
+L'Analyse ad hoc est
+processus de report du BI
+processus du BI con pour pondre une question tier
+unique pr cise
+processus d'int gration de donn es du BI
+Qu'est ce qu'un Data Lake
+quel sont les avantages du Data Lake
+quel sont les inconv nient du Data Lake
+quel sont les enjeux du Data Lake
+Citer quelques di rences entre Data Lake Data Warehouse
+Qu'est ce qu'un Data Lakehouse
+quel sont les avantages du Data Lakehouse
+

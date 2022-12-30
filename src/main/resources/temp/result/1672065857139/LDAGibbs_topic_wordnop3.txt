@@ -1,0 +1,3 @@
+cell	cancer	grow	normal	
+body	spread	process	form	
+tumor	cancer	cancerous	benign	

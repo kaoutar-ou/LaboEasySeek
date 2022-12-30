@@ -26,6 +26,7 @@ public class PostBean implements Serializable {
     }
 
     public void setPostCategory(String postCategory) {
+        System.out.println("POST CATEGORY : " + postCategory);
         this.postCategory = postCategory;
     }
 

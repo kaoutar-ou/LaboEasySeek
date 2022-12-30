@@ -1,0 +1,1523 @@
+break Architecture Barrier method
+efficient knowledge transfer network
+Maciej A. czyzewski1 Daniel Nowak1 Kamil Piechowiak1
+Poznan University Technology equal contrib
+Abstract
+transfer learning popular technique improve performance neu
+ral network exist method limit transfer parameter
+network architecture present method transfer
+parameter neural network architecture method
+call DPIAT dynamic programming match block layer
+architecture transfer parameter efficiently compare exist parameter
+prediction random initialization method significantly improve training effi
+ciency validation accuracy experiment ImageNet method improve
+validation accuracy average time epoch training DPIAT
+allow researcher neural architecture search system modify train
+network reuse knowledge avoid retrain scratch
+introduce network architecture similarity measure enable user choose
+good source network training
+introduction
+train multiple neural network common real world deep learning workflow
+research minor revision architecture make iterative basis improve
+model performance level automation research workflow
+consecutive model similar reach similar local optima give
+slightly transform parameter previous model intuitively local optima
+well expressivity network increase bad
+opposite case algorithm focus solely transfer parameter
+source target network arbitrary architecture restriction
+propose DPIAT fast training free dynamic programming method transfer knowledge
+source target convolutional neural network cnn architecture schematic
+overview figure technique require additional training transfer
+provide fast convergence make superior alternative random initialization
+pretrain similar network dpiat model retain previous knowledge
+continue converge DPIAT fully automatic setup neural
+architecture search primary focus paper generic situation
+source target architecture make DPIAT potential solution reduce
+computational expense multiple network training accelerate research workflow
+limited resource essentially DPIAT enable fast train make knowledge reusable
+network architecture difference architecture increase
+knowledge lose show target network transfer knowledge source network
+converge fast network initialize Xavier kaiming method additionally
+show source target similarity convergence rate positively correlate
+Preprint review
+ar
+
+iv
+
+
+
+
+
+0v
+
+
+
+
+
+
+
+
+
+ec
+
+
+
+contribution paper present method transfer parameter pre-trained
+network network architecture focus network structure
+architecture main contribution
+introduce problem shot network adaptation iat provide detailed
+discussion challenge section
+propose DPIAT algorithm dynamic programming approach fast iat section
+discuss limitation appendix
+introduce measure network architecture similarity section
+demonstrate approach outperform alternative technique experiment
+multiple common benchmark dataset cifar food101 ImageNet
+practically relevant scenario section
+Problem definition
+define IAT transfer parameter network architecture
+limitation branching scaling network architecture instantiate
+parameter represent function architecture
+parameter architecture define operation perform input parameter
+order produce output
+definition inter-architecture knowledge transfer iat shot transformation parame
+ter train source architecture source problem domain aim
+minimize loss function define target domain dt target architecture
+iat
+arg min
+
+
+xi yi Dt
+yi xi
+architecture
+weight
+e.g. pretrain ImageNet
+
+source network
+standardization
+matching
+transfer
+DPIAT
+
+
+weight
+architecture
+
+target network
+
+
+figure overview dpiat section iat produce weight target network transfer
+operation include transformation reassignment parameter
+usage
+initialization problem common scenario IAT network n2
+apply problem describe d2 IAT option train network
+scratch computationally intensive iat transfer knowledge
+pre-trained network n1 problem domain d1 network n2
+target domain d2 effectively replace random initialization show follow
+n1 d1 n2 d2 allow leverage knowledge learn n1 d1 improve
+performance n2 d2.to approach follow step prepare
+pool pre-trained model ImageNet similarity score find network n1
+pool similar target network n2 DPIAT transfer weight n1
+n2 train n2 transfer weight fast training scratch
+show table DPIAT process allow advantage knowledge learn
+pre-trained network improve performance network problem
+extensive training problem
+
+iterative experimentation scenario find good model solve problem
+describe d2 apply Kaggle competition network
+test assume n2 train epoch test network n3
+operate high resolution layer modify parameter tensor shape option
+follow initialize network randomly Match layer manually parameter
+remap time consume process repeat time automate
+process iat DPIAT transfer weight n2 pre-train d2 n3
+d2 train n3 transfer weight fast training scratch
+show table DPIAT fine tune allow quickly adapt pre-trained network
+network architecture extensive training
+network
+related work
+Random weight initialization scheme propose normalize input output
+layer variance Xavier initialization scheme show proper initialization
+significantly improve training deep network arbitrary initialization slow
+optimization process recent work focus eliminate
+normalization training initialization scheme note
+case iat method fact compete random initialization parameter
+prediction alternative
+generality layer feature important factor knowledge transfer parameter
+layer universal adapt quickly information flow analysis
+generality feature present neural network depths show layer order matter
+preserve order layer DPIAT
+parameter remapping iat explicitly apply part NAS good
+knowledge never pose separate problem commonly assume
+limitation include arbitrary network scaling branching instance
+transfer operator apply study note refer
+IAT limit call parameter remapping nevertheless transfer
+nomenclature originally transfer learning arguably
+kind knowledge transfer network
+net2net approach introduce propose function preserve transforma
+tion transfer weight network deep net2deepernet wide net2widernet
+network identity function e.g. case bottleneck layer
+method allow construction deep layer-wise wide network ignore net
+work branching skip connection net2net allow branching network
+predefined path transformation apply NAS work
+path level network transformation introduce allow replacement
+single layer multi-branch pattern vice versa approach allow construction
+equivalent branch motif convolutional layer branch mimic
+output original layer method allow way replacement
+allow transfer parameter multi-branch type
+fna NAS study investigate parameter sharing
+parameter remapping suggest wide range architecture effectively reuse
+set parameter fna fna extend parameter remapping
+technique net2net incorporate kernel-wise depth scaling approach
+suffer fundamental limitation net2net describe Appendix C.2 specifically
+rely scaling network arbitrary manner
+parameter prediction prior study show parameter prediction feasible
+recent work base graph neural network show promising result
+recent work graph hypernetwork ghn author create network design learn
+generate parameter architecture give dataset although generate
+parameter target network fine tune domain GHN
+resource intensive train reach day 4xv10032gb epoch ImageNet
+ghn parameter prediction training inferior random
+initialization conclude author paper limitation section bottom
+
+appendix ghn incapable provide good initialization point fine tuning
+limit case method disadvantage prompt present lightweight
+dpiat superior convergence
+knowledge distillation technique enable transfer knowledge
+large network small transfer require target network train
+make knowledge distillation unsuitable application
+Network Alignment main challenge relate IAT develop algorithm solve
+matching problem i.e. select source target layer transfer method problem
+view network alignment problem involve identify correspond node
+network work present fast dp algorithm address problem
+approach network allignment propose regal
+mean algorithm identify similar representation network HashAlign
+hash base framework leverage structural edge node property introduce LSH
+technique graph feature specifically tailor network alignment HashAlign express
+alignment term center graph avoid pairwise comparison problem
+Method
+Conv BatchNorm activation mbconv1 mbconv6 pool Linear Identity
+
+
+figure process match standardized rexnet top standardized efficientnet
+b2 bottom rectangle represent individual layer block mbconv layer
+matched compound block match low level matching occur parameter tensor
+block
+goal IAT transfer parameter pre-trained network source network
+target order good starting point learning general framework IAT
+describe series sequential step standardization match transfer
+standardization step provide consistent representation network scoring function assess
+similarity source target layer pair match algorithm pair source target
+layer finally transfer method move weight layer present variant
+step form good inter-architecture transfer method result ablation study
+evaluate combination find Appendix B.8 order DPIAT
+n2m ps pt number layer target number layer
+source ps number parameter source pt number parameter target
+detailed analysis time complexity find appendix a.3
+standardization
+process diverse architecture consistent representation create allow
+architecture compare layer match consequently step standardize
+network building block represent complex abstract notion commonly encounter
+block define group layer follow path join
+splits merge ResNet architecture single building block define author
+compose convolutional layer batch normalization layer non-linear activation
+function shortcut connection
+DPIAT divide network block network represent graph block
+block represent list layer level approach provide structural representation
+information flow figure show simplified standardization block matching
+single convolutional batch norm layer beginning end network
+extract middle correctly classified invert residual bottleneck separate entity
+
+standardization rely structure network define author implementation
+network consist module submodule structure network
+implementation tree Leaves tree single layer DPIAT traverse tree DFS
+node make decision child merge single block
+retain separate block detailed overview pseudo-code appendix a.1
+Scoring
+matching algorithm similarity score function pair layer similarity measure
+base shape underlying weight tensor shape base tensor similarity
+metric receive non-zero score pair tensor belong layer type e.g.
+weight 2d convolutional layer ensure number dimension
+respective size source target tensor compare size
+s1 s2 sn size t1 t2 tn define score
+score
+
+
+min
+ti
+si
+
+si
+ti
+
+dimension score function compute
+part source dimension transfer target dimension
+si ti
+part target dimension fill unique parameter source
+dimension si ti
+final score product dimension ratio dimension target tensor small
+source tensor dimension score equal percentage transfer parameter
+source tensor target dimension great source tensor dimension score
+equal percentage newly fill part tensor general case composition
+
+match
+matching method receive standardized network input objective generate pair
+source target layer way performance transfer high
+shape base score match layer lead loss layer order layer
+depths network responsibility permutable conclude
+DPIAT preserve ordering layer represent network direct path graph
+layer matching edge path edge intersect
+matching algorithm base dynamic programming inspire dynamic program
+ming algorithm find long common subsequence case counterpart
+sequence length sum similarity matched element algorithm maximize sum
+separate phase phase similarity pair block compute
+phase similarity block similarity network determine
+block match phase network represent sequence pair
+source target sequence score phase sequence consist layer
+present single block score compute shape score function equation
+phase sequence consist block score pair previous
+phase
+phase match perform dynamic programming phase cell
+represent matching block target network block source
+network matching create way
+target block assign source block matching
+source block assign target block matching
+source block match suitable target block range
+prefix target length source length match
+
+exact equation eq figure phase block replace layer
+network replace block
+layer assign layer score sum penalize long match
+sum divide square root length match encourage algorithm
+create diverse matching long match penalize instance consider
+situation part source consist block s1 s2 part target consist
+block t1 t2 t3 score ti sj division
+matching s1 t1 s1 t2 s1 t3 s2 t1 s2 t2 s2 t3 s1 t1 s1 t2 s2 t3
+receive score equal 3a weight source layer
+prevent situation matching single source layer
+sum multiply function number match layer
+single source layer decrease function add layer give
+low score layer increase function add layer
+increase total score family function d?x
+choose arbitrarily
+yield
+
+
+step computation choose action record cell dp score
+obtain matching network number block target
+source network match block restore follow action
+backward start cell block pair match layer
+block information phase algorithm
+source block
+ta
+rg
+
+bl
+oc
+
+
+
+
+dp max
+
+dp dp
+max
+k?i
+
+
+
+
+score tl sj dp
+
+score target source dp
+figure dynamic programming matching block layer network cell represent
+matching block target network block source network vertical axis
+represent target network horizontal axis represent source tl denote block
+target network sj denote block source network
+transfer
+DPIAT conclude parameter transfer parameter transfer source target
+tensor tensor match transfer method determine parameter
+transfer size source dimension large size target dimension
+choose part target tensor fill size source dimension
+small size target dimension layer weight bias mapping
+parameter compute weight index bias
+DPIAT copy center crop center crop dimension choose small
+size crop large size cut beginning end tensor size
+equal exact formula find appendix a.2
+transfer method ability preserve flow information original network
+consider matching consecutive layer source t1 t2 consecutive layer
+target s1 s2 weight correspond neuron s2 t2 process
+output give neuron previous layer case permute
+neuron layer preserve order input copy t2 s2
+preserve order output copy t1 s1
+property observe follow situation imagine source target
+convolutional network number layer differ number channel
+layer target channel counterpart source
+
+transfer weight source target weight source
+network realization function
+similarity architecture
+byproduct match function create measure similarity architecture
+choose good match score matching possibility result numerical
+represent quality match target layer match source layer
+score single match maximal score match equal
+number layer target network word maximal match equal
+target match knowledge define similarity architecture
+score score
+Eq function belong symmetric make symmetric
+direction average result geometric mean lower
+substantially case network significantly
+big finally define similarity network source target
+sim source target
+
+source target target source
+experiment
+DPIAT algorithm test dataset CIFAR cifar Food
+ImageNet dataset train source network perform transfer
+pair network train target network
+weight obtain iat process
+model ImageNet weight paper provide timm library
+training perform Adam optimizer initial learning rate
+cosine anneal schedule final learning rate batch size set
+detailed running time convergence speedup comparison include Appendix B.1
+table effectiveness knowledge transfer dpiat cifar100 epoch training table
+show source top row target column standard deviation effectiveness
+median average effectiveness random initialization
+source
+target eff b0 eff b1 eff b2 Mix Mix ReX ReX Mnas SeMnas
+Eff B0
+eff b1
+eff b2
+mix
+mix
+ReX
+ReX
+Mnas
+SeMnas
+Random initialization
+experiment train model initialize randomly initialization scheme
+original paper introduce model network EfficientNet B0 b1
+b2 MixNet rexnet MnasNet SeMnasNet MnasNet
+squeeze excitation model train epoch
+target model initialize randomly initialization scheme source
+model perform knowledge transfer report test accuracy obtain epoch
+training compare accuracy obtain epoch training start
+random initialization define effectiveness ratio
+effectiveness training cifar present table ratio dataset
+find appendix b.5 b.6
+
+table effectiveness initialization ghn2
+describe epoch training
+cifar100 perform
+bad random initialization baseline
+INITIALIZATION
+target ghn2 cifar10 ghn2 imagenet random init
+Eff B0
+eff b1
+eff b2
+case test accuracy obtain
+ing DPIAT training epoch good
+test accuracy random initialization
+epoch training double im
+provement observe transfer
+similar network
+result compare table
+show effectiveness ghn2
+ghn2 give result bad compara
+ble random initialization
+transfer cifar100
+dpiat transfer parameter EfficientNet B0 EfficientNet b2 MixNet
+ReXNet EfficientNet b2 EfficientNet B0 MixNet rexnet figure
+consider variant source network ImageNet pretrained parameter ImageNet
+suffix ImageNet pretrain parameter epoch fine tuning cifar100 ImageNet
+cifar100 suffix randomly initialize parameter epoch training cifar100
+cifar100 suffix figure variant train target network iat
+epoch cifar100 show table compare method random initialization
+target model parameter pretrain target model ImageNet ghn2
+parameter predict target model detailed plot total training cifar100 loss
+train acc DPIAT random initialization GHN find Appendix B.2
+
+epoch
+
+
+
+
+
+te
+st
+ac
+cu
+ra
+cy
+EfficientNet b0 training
+iat
+b2 imagenet cifar100
+b2 imagenet
+
+epoch
+
+
+
+
+
+EfficientNet b2 training
+iat
+b0 imagenet cifar100
+b0 imagenet
+random init
+pretrained
+ghn2
+iat
+MixNet ImageNet CIFAR100
+MixNet ImageNet
+rexnet imagenet cifar100
+rexnet imagenet
+figure test accuracy cifar100 training black solid line show accuracy randomly
+initialize network black dashed line show accuracy network initialize ImageNet
+parameter yellow line show accuracy network initialize ghn2 line show
+accuracy DPIAT ImageNet suffix mean source parameter ImageNet pretrain
+ImageNet CIFAR100 suffix mean source initialize ImageNet fine tune
+cifar100 epoch
+term test accuracy good result obtain ImageNet pretrained parameter
+network parameter case beneficial transfer
+parameter similar source network transfer EfficientNet B0 EfficientNet
+b2 source network train target domain ImageNet pretrain
+parameter parameter transfer parameter EfficientNet b2
+b0 result accuracy epoch transfer similar network yield
+bad result MixNet rexnet good random initialization
+scenario architecture test single domain network ImageNet
+pretrained weight fine tune target domain parameter transfer
+network preserve feature learn initial fine tuning result
+good performance target domain efficientnet b2 MixNet rexnet
+target EfficientNet B0
+
+table maximal test accuracy epoch training cifar100 initialization
+source network DPIAT
+source
+INITIALIZATION ImageNet CIFAR100 ImageNet
+target random init pretrain GHN2 Mix ReX Eff B0 eff b2 Mix ReX Eff B0 eff b2
+Eff B0
+eff b2
+transfer ImageNet
+train randomly initialize EfficientNet B0 ImageNet compare initialization
+DPIAT model efficientnet b2 MixNet ReXNet figure
+pretrain ImageNet train epoch detail appendix b.3
+source architecture result significantly good case random initialization
+good result obtain transfer EfficientNet b2 similarity score
+target epoch test accuracy compare epoch
+random initialization
+Eff
+b0
+Eff
+b1
+Eff
+b2
+mix
+
+mix
+
+ReX
+ReX
+Mna
+
+Se
+Mna
+
+Eff B0
+eff b1
+eff b2
+mix
+mix
+ReX
+ReX
+Mnas
+SeMnas
+
+
+
+
+
+
+
+
+
+architecture similarity
+figure architecture similarity close
+architecture significantly
+close identical
+method calculate similarity describe
+section Eq
+
+epoch
+
+
+
+
+
+
+
+
+te
+st
+ac
+cu
+ra
+cy
+EfficientNet B0 ImageNet
+random init
+iat
+MixNet
+ReXNet
+b2
+figure test accuracy epoch dur
+ing ImageNet training black solid line
+show accuracy randomly initial
+ize network line show accu
+racy DPIAT transfer parameter
+source network
+similarity architecture
+demonstrate section discuss detail Appendix B.7 scoring function
+DPIAT show correlate quality IAT show figure IAT
+similar architecture effective low similarity Eff B0 Mix due
+branching strategy Mix EfficientNets belong scalable family make
+transfer effective similarity measure high
+conclusion
+paper present direction future research define inter-architecture knowledge
+transfer iat experimentally demonstrate effectiveness speed training good
+knowledge study transfer parameter network
+arbitrary architecture constraint training requirement
+propose DPIAT algorithm IAT show promising result DPIAT transfer
+parameter fraction make knowledge reusable domain
+architecture network initialize way train fast show property superior
+random hypernetwork base initialization DPIAT suffer explode gradient
+test case room improvement way align network
+
+performance method DPIAT significantly reduce computational burden
+automate neural architecture search manual experimentation
+reference
+Yanping Huang Youlong Cheng Ankur Bapna Orhan Firat Mia Xu Chen Dehao Chen HyoukJoong
+Lee Jiquan Ngiam Quoc V. Le Yonghui Wu Zhifeng Chen Gpipe efficient training giant neural
+network pipeline parallelism url https://arxiv.org/abs/1811.06965
+Christian Szegedy Wei Liu Yangqing Jia Pierre Sermanet Scott Reed Dragomir Anguelov Dumitru
+Erhan Vincent Vanhoucke Andrew Rabinovich deep convolution url
+https://arxiv.org/abs/1409.4842
+Alec Radford Jeffrey Wu Rewon Child David Luan Dario Amodei Ilya Sutskever al. Language
+model unsupervised multitask learner openai blog
+Jonathan Frankle Michael Carbin lottery ticket hypothesis find sparse trainable neural
+network arxiv preprint arxiv doi arxiv.1803.03635 url http
+arxiv.org/abs/1803.03635
+Xavier Glorot Y. Bengio understand difficulty training deep feedforward neural network
+Journal Machine Learning Research Proceedings Track
+Kaiming Xiangyu Zhang Shaoqing Ren Jian Sun delve deep rectifier surpass
+human level performance imagenet classification
+Yann LeCun Bottou Genevieve Orr Klaus Robert ller efficient backprop neural
+network trick trade page Springer
+Dmytro Mishkin Jiri Matas good init url https://arxiv.org/abs/
+
+Hongyi Zhang Yann N. Dauphin Tengyu Ma fixup initialization residual learning
+normalization url https://arxiv.org/abs/1901.09321
+Yann Dauphin Samuel Schoenholz Metainit initialize learning learn initialize H. Wal
+lach H. Larochelle A. Beygelzimer F. d'Alch Buc E. Fox R. Garnett editor advance neural
+information Processing Systems volume Curran Associates Inc. url https://proceedings
+neurips.cc/paper/2019/file/876e8108f87eb61877c6263228b67256-paper.pdf
+Jason Yosinski Jeff Clune Yoshua Bengio Hod Lipson transferable feature
+deep neural network Z. Ghahramani M. Welling C. Cortes N. Lawrence K. Q.
+Weinberger editor advance neural information Processing Systems volume page
+Curran Associates Inc. url https://proceedings.neurips.cc/paper/2014/file/
+375c71349b295fbe2dcdca9206f20a06-paper.pdf
+Tianqi Chen Ian Goodfellow Jonathon Shlens net2net accelerate learning knowledge transfer
+
+Han Cai Tianyao Chen Weinan Zhang Yong Yu Jun Wang efficient architecture search network
+transformation
+Han Cai Jiacheng Yang Weinan Zhang Song Han Yong Yu path level network transformation
+efficient architecture search
+Hieu Pham Melody Y. Guan Barret Zoph Quoc V. Le Jeff Dean efficient neural Architecture
+search parameter share arXiv e-prints art arXiv February
+Jiemin Fang Yukang Chen Xinbang Zhang Qian Zhang Chang Huang Gaofeng Meng Wenyu Liu
+Xinggang Wang eat na Elastic architecture transfer accelerate large scale neural architecture
+search url https://arxiv.org/abs/1901.05884
+Jiemin Fang Yuzhu Sun Kangjian Peng Qian Zhang Yuan Li Wenyu Liu Xinggang Wang fast
+neural network adaptation parameter remapping architecture search
+Jiemin Fang Yuzhu Sun Qian Zhang Kangjian Peng Yuan Li Wenyu Liu Xinggang Wang fna
+fast network adaptation parameter remapping architecture search IEEE transaction Pattern
+analysis Machine Intelligence
+
+Thomas Elsken Jan Hendrik Metzen Frank Hutter efficient multi-objective neural architecture search
+lamarckian evolution url https://arxiv.org/abs/1804.09081
+Misha Denil Babak Shakibi Laurent Dinh Marc Aurelio Ranzato Nando de Freitas Predicting
+parameter deep learning CoRR abs url
+David ha Andrew Dai Quoc V. Le Hypernetworks url https://arxiv.org/abs/1609
+
+Chris Zhang Mengye Ren Raquel Urtasun graph hypernetwork neural architecture search
+url https://arxiv.org/abs/1810.05749
+Boris Knyazev Michal Drozdzal Graham W. Taylor Adriana Romero Soriano parameter prediction
+unseen deep architecture url https://arxiv.org/abs/2110.13100
+Jeff Dean Geoffrey Hinton Oriol Vinyals distil knowledge neural network arxiv preprint
+arXiv
+Jianping Gou Baosheng Yu Stephen John Maybank Dacheng Tao knowledge distillation survey
+
+Mark Heimann Haoming Shen Tara Safavi Danai Koutra Regal Proceedings 27th acm
+International Conference Information Knowledge Management Oct doi
+url
+Mark Heimann Wei Lee Shengjie Pan Kuan Yu Chen Danai Koutra Hashalign hash base
+alignment multiple graph Pacific Asia Conference Knowledge Discovery Data Mining
+page Springer
+Mark Sandler Andrew G. Howard Menglong Zhu Andrey Zhmoginov Liang Chieh Chen invert
+residual linear bottleneck Mobile network classification detection segmentation CoRR
+abs url
+Kaiming Xiangyu Zhang Shaoqing Ren Jian Sun deep residual learning image recognition
+arXiv e-prints art arXiv December
+Robert A. Wagner Michael J. Fischer string string correction problem J. ACM
+jan ISSN doi url https://doi.org/10.1145/321796
+
+Alex Krizhevsky learn multiple layer feature tiny image University Toronto
+Lukas Bossard Matthieu Guillaumin luc Van Gool food mining discriminative component
+random forest European conference computer vision
+Olga Russakovsky Jia Deng Hao Su Jonathan Krause Sanjeev Satheesh Sean Ma Zhiheng Huang
+Andrej Karpathy Aditya Khosla Michael Bernstein Alexander C. Berg Li Fei Fei ImageNet large
+scale visual recognition challenge International Journal Computer Vision IJCV
+doi s11263 -015-0816-y
+Ross Wightman Pytorch image model
+
+Diederik P. Kingma Jimmy Ba Adam method stochastic optimization url http
+arxiv.org/abs/1412.6980
+Mingxing Tan Quoc Le Efficientnet rethink model scale convolutional neural network
+arxiv preprint arxiv
+Mingxing Tan Quoc V. Le Mixconv mixed depthwise convolutional kernel
+Dongyoon Han Sangdoo Yun Byeongho Heo Young Joon Yoo Rexnet diminish representational
+bottleneck convolutional neural network CoRR abs url https://arxiv.org/
+abs
+Mingxing Tan Bo Chen Ruoming Pang Vijay Vasudevan Mark Sandler Andrew Howard Quoc V.
+Le Mnasnet platform aware neural architecture search mobile
+Zvi Galil efficient algorithm find maximum matching graph ACM Comput Surv.
+March ISSN doi url https://doi.org/10.1145/6462.6502
+
+Emma Strubell Ananya Ganesh Andrew McCallum Energy policy consideration deep
+learn nlp url https://arxiv.org/abs/1906.02243
+Peter Henderson Jieru Hu Joshua Romoff Emma Brunskill Dan Jurafsky Joelle Pineau
+systematic reporting energy carbon footprint machine learning CoRR abs
+url https://arxiv.org/abs/2002.05651
+
+appendix
+table contents
+DPIAT Details
+a.1 standardization
+a.2 transfer
+a.3 complexity analysis DPIAT
+additional experiment detail
+b.1 convergence speed
+b.2 training cifar100 additional metric
+b.3 training ImageNet additional metric
+b.4 variant cifar100
+b.5 effectiveness epoch dataset
+B.6 ImageNet pretraining
+b.7 correlation effectiveness similarity
+b.8 ablation study
+frequently question
+c.1 result experiment interpret case scenario
+c.2 comparison net2net fna parameter remapping
+Limitations
+societal impact
+DPIAT Details
+a.1 standardization
+separate block straightforward case small sub-block inside
+block incorporate parent block situation
+implementation EfficientNet B0 timm library figure
+invert residual block squeeze excitation block basic building block network
+invert residual block squeeze excitation block layer include
+representation inverted residual block figure implementation invert
+residual block group increase nesting level algorithm deal
+difficulty correctly determine basic building block
+
+conv_pw conv2d
+bn1 batchnorm2d
+SiLU
+conv_dw conv2d
+bn2 batchnorm2d
+SiLU
+
+conv reduce conv2d
+SiLU
+conv_expand conv2d
+conv_pwl conv2d
+bn3 batchnorm2d
+
+original
+conv2d
+batchnorm2d
+SiLU
+conv2d
+batchnorm2d
+SiLU
+conv2d
+SiLU
+conv2d
+conv2d
+batchnorm2d
+block
+figure invert residual block transform list layer
+
+conv_stem conv2d
+bn1 batchnorm2d
+SiLU
+
+
+Depthwise
+sepa rab leconv
+
+
+
+
+
+
+
+
+
+
+
+
+
+conv_head conv2d
+bn2 batchnorm2d
+SiLU
+
+
+original
+
+conv2d
+batchnorm2d
+silu
+ay
+Dep thwiseSepa rab eConv
+ay
+
+ay
+
+
+ay
+
+ay
+
+ay
+
+
+conv2d
+batchnorm2d
+silu
+adapt iveavgpool2d
+
+
+block
+figure EfficientNet transform list list layer
+describe standardization algorithm structure model make
+consider tree logical component define author child component
+low level layer component node tree algorithm DFS
+parse graph
+component DFS return content represent list layer
+list layer
+node consist single layer element list layer return
+prepare result compound component child node process
+depth child result great return list list
+number convolutional linear layer content
+child list append current list
+child list append single element
+number block number single layer list compute single
+layer list single layer block define list
+layer
+compute number single layer great number block
+root model element list unpacked contents append
+separately result list list return unchanged
+a.2 transfer
+present exact description transfer method denote target source
+tensor size follow size t1 t2 tn size s1 s2 sn
+describe mapping function
+
+
+
+
+x?y
+
+
+
+
+parameter map way
+tg j1 t1 s1 j2 t2 s2 jn tn sn sg j1 s1 t1 j2 s2 t2 jn sn tn
+min s1 t1 min s2 t2 min sn tn
+
+datum module integer current depth DFS tree initially set
+result list layer list layer
+block standardization
+empty list
+single layer
+l.append
+return
+end
+foreach child M.children
+childblock block standardization child
+depth childblock number convolutional number linear layer childblock
+
+foreach block childblock
+l.append block
+end
+end
+
+l.append childblock
+end
+end
+nblock
+nlayer
+foreach block
+number layer block
+nblock nblock
+
+nlayer nlayer
+end
+end
+nblock nlayer
+Ltmp
+l.clear
+foreach block Ltmp
+append element block
+end
+end
+return
+algorithm standardization DFS Module denote entire model component depth
+function depth return maximal nesting level list
+a.3 complexity analysis DPIAT
+order DPIAT n2m ps pt number layer target
+number layer source ps number parameter source pt number
+parameter target order phase follow
+standardization nh number layer network standardize
+depth tree structure represent network implementation
+grow model size
+score compute product ratio dimension high number
+dimension consider layer raise consider 3d convolution
+match n2m number layer target number
+layer source matching part consist subphase layer
+inside block match pair block denote ni number
+layer block target mj number layer block
+source ni mj cell dynamic programming array
+choose target layer current source layer match perform
+iteration start current target layer early layer
+cell process ni time complexity match inside single pair
+block n2imj score pair block dynamic programming
+
+pair block perform complexity n2m
+
+
+
+
+imj
+
+
+
+
+
+jmj
+
+
+
+im
+
+
+
+
+
+ni
+mn2
+hold true phase block match pairwise score
+phase number block target source
+m. matching perform way phase complexity
+dependent number block dependent number layer
+phase complexity phase n2m give total complexity
+matching n2m
+transfer ps pt ps number parameter source pt number
+parameter target phase layer match copying
+parameter perform
+practice total number layer hundred network consider equal
+EfficientNet b0 EfficientNet b2 MixNet rexnet
+large model EfficientNet B8 equal source target similar size
+complexity DPIAT n3 ps pt number layer small
+matching compute transfer parameter
+perform parallel GPU cpu average time dpiat pair model
+pair present table maximum time s. compare single
+epoch training EfficientNet B0 cifar100 Tesla P100 GPU s.
+additional experiment detail
+b.1 convergence speed
+table running time require achieve test accuracy initialization method
+experiment cifar100 measure Nvidia Tesla P100 GPU accuracy threshold choose
+rounded final accuracy achieve network train random initialization ghn2 provide
+accuracy time transfer learning pretrained parameter ImageNet provide
+theoretical upper limit DPIAT fine tune mean source architecture previously
+fine tune cifar100 dataset
+INITIALIZATION DPIAT DPIAT fine tuned
+target random init pretrain ghn2 sim sim sim sim
+Eff B0 test acc min min min min min min
+eff b2 test acc min min min min min min
+avg. speedup 1x
+table running time require achieve test accuracy EfficientNet B0
+initialization method experiment ImageNet measure TPU v2 accuracy threshold choose
+rounded final accuracy achieve network train random initialization
+method run time speedup
+random init min 1x
+DPIAT sim min
+DPIAT sim min
+
+b.2 training cifar100 additional metric
+
+epoch
+
+
+
+
+
+
+
+
+
+tr
+
+
+
+
+lo
+ss
+EfficientNet b0 training
+iat
+b2 imagenet cifar100
+b2 imagenet
+
+epoch
+
+
+
+
+
+
+
+
+
+EfficientNet b2 training
+iat
+b0 imagenet cifar100
+b0 imagenet
+random init
+pretrained
+ghn2
+iat
+MixNet ImageNet CIFAR100
+MixNet ImageNet
+rexnet imagenet cifar100
+rexnet imagenet
+figure training loss cifar100
+
+epoch
+
+
+
+
+
+
+
+
+
+te
+st
+lo
+ss
+EfficientNet b0 training
+iat
+b2 imagenet cifar100
+b2 imagenet
+
+epoch
+
+
+
+
+
+
+
+
+
+EfficientNet b2 training
+iat
+b0 imagenet cifar100
+b0 imagenet
+random init
+pretrained
+ghn2
+iat
+MixNet ImageNet CIFAR100
+MixNet ImageNet
+rexnet imagenet cifar100
+rexnet imagenet
+figure test loss cifar100
+
+epoch
+
+
+
+
+
+
+
+tr
+
+
+
+
+ac
+cu
+ra
+cy
+EfficientNet b0 training
+iat
+b2 imagenet cifar100
+b2 imagenet
+
+epoch
+
+
+
+
+
+
+
+EfficientNet b2 training
+iat
+b0 imagenet cifar100
+b0 imagenet
+random init
+pretrained
+ghn2
+iat
+MixNet ImageNet CIFAR100
+MixNet ImageNet
+rexnet imagenet cifar100
+rexnet imagenet
+figure training accuracy cifar100
+
+b.3 training ImageNet additional metric
+
+epoch
+
+
+
+
+
+
+
+tr
+
+
+
+
+lo
+ss
+EfficientNet B0 ImageNet
+random init
+iat
+MixNet
+ReXNet
+b2
+figure training loss
+
+epoch
+
+
+
+
+
+
+te
+st
+lo
+ss
+EfficientNet B0 ImageNet
+random init
+iat
+MixNet
+ReXNet
+b2
+figure test loss
+
+epoch
+
+
+
+
+
+
+
+
+tr
+
+
+
+
+ac
+cu
+ra
+cy
+EfficientNet B0 ImageNet
+random init
+iat
+MixNet
+ReXNet
+b2
+figure training accuracy
+b.4 variant cifar100
+
+epoch
+
+
+
+
+
+
+
+
+te
+st
+ac
+cu
+ra
+cy
+EfficientNet b0 training
+iat
+b2 cifar100
+
+epoch
+
+
+
+
+
+
+
+
+EfficientNet b2 training
+iat
+b0 cifar100
+random init
+pretrained
+ghn2
+iat
+MixNet CIFAR100
+rexnet cifar100
+figure test accuracy cifar100 training black solid line show accuracy randomly initialize
+model transfer source model b2 cifar100 EfficientNet B0 green solid line b2
+randomly initialize fine tune domain dataset epoch IAT transfer b0 train
+epoch figure
+b.5 effectiveness epoch dataset
+table effectiveness epoch training cifar10 standard deviation effectiveness
+median equal
+source
+target eff b0 eff b1 eff b2 Mix Mix ReX ReX Mnas SeMnas
+Eff B0
+eff b1
+eff b2
+mix
+mix
+ReX
+ReX
+Mnas
+SeMnas
+
+table effectiveness epoch training food101 standard deviation effectiveness
+median equal
+source
+target eff b0 eff b1 eff b2 Mix Mix ReX ReX Mnas SeMnas
+Eff B0
+eff b1
+eff b2
+mix
+mix
+ReX
+ReX
+Mnas
+SeMnas
+B.6 ImageNet pretraining
+experiment train model initialize weight ImageNet pretraining
+EfficientNet B0 b1 b2 MixNet MnasNet SeMnasNet training epoch
+transfer knowledge randomly initialize target model compare test accuracy
+epoch test accuracy ImageNet pretrained model epoch exact result
+pair architecture table
+table validation accuracy epoch training cifar10 target network divide validation
+accuracy epoch network ImageNet pretrained parameter architecture target
+network obtain way ImageNet pretrained source network epoch source network training
+cifar10 DPIAT epoch target network training cifar10 standard deviation
+median equal transfer dissimilar architecture give
+bad result network initialize ImageNet pretrained weight weight
+
+source
+target eff b0 eff b1 eff b2 Mix Mix Mnas SeMnas
+Eff B0
+eff b1
+eff b2
+mix
+mix
+Mnas
+SeMnas
+table validation accuracy epoch training cifar100 target network divide
+validation accuracy epoch network ImageNet pretrained parameter architecture
+Target network obtain way ImageNet pretrained source network epoch source network
+training cifar100 DPIAT epoch target network training cifar100 standard deviation
+effectiveness median equal
+source
+target eff b0 eff b1 eff b2 Mix Mix Mnas SeMnas
+Eff B0
+eff b1
+eff b2
+mix
+mix
+Mnas
+SeMnas
+
+table validation accuracy epoch training food101 target network divide
+validation accuracy epoch network ImageNet pretrained parameter architecture
+Target network obtain way ImageNet pretrained source network epoch source network
+training food101 DPIAT epoch target network training food101 standard deviation
+effectiveness median equal
+source
+target eff b0 eff b1 eff b2 Mix Mix ReX ReX Mnas SeMnas
+Eff B0
+eff b1
+eff b2
+mix
+mix
+ReX
+ReX
+Mnas
+SeMnas
+b.7 correlation effectiveness similarity
+table correlation method effectiveness similarity architecture
+dataset correlation
+cifar10
+cifar100
+food101
+cifar10 pretrain
+cifar100 pretrain
+food101 pretrain
+
+similarity
+
+
+
+
+
+ef
+fe
+ct
+iv
+en
+
+
+cifar10
+
+similarity
+
+
+
+
+
+
+ef
+fe
+ct
+iv
+en
+
+
+cifar100
+
+similarity
+
+
+
+
+ef
+fe
+ct
+iv
+en
+
+
+food101
+
+similarity
+
+
+
+
+
+
+ef
+fe
+ct
+iv
+en
+
+
+cifar10_pretrained
+
+similarity
+
+
+
+
+ef
+fe
+ct
+iv
+en
+
+
+cifar100_pretrained
+
+similarity
+
+
+
+
+
+ef
+fe
+ct
+iv
+en
+
+
+food101_pretrained
+figure relationship method effectiveness architecture similarity increase similarity
+lead increase DPIAT effectiveness relationship linear
+b.8 ablation study
+table show method perform matching transfer operator replace
+cliptransfer copy center crop center crop
+clipwithnormalization copy center crop center crop apply
+normalization output consecutive layer similar variance
+
+FullTransfer clip transfer source dimension large opposite
+case replicate weight source fill target
+MagnitudeTransfer method copy connection layer high
+magnitude
+randommatching completely random matching
+dpmatching main technique describe paper
+bipartitematching rely dpmatch match block find maximum weight
+bipartite matching layer
+nbipartitematch BipartiteMatching bipartite matching
+algorithm block
+table effectiveness method compute average effectiveness random
+architecture pair cifar100 format transfer operator
+matching operator
+method effectiveness
+ClipTransfer DPMatching
+ClipTransfer RandomMatching
+clipwithnormalizationtransfer dpmatch
+FullTransfer DPMatching
+MagnitudeTransfer DPMatching
+ClipTransfer BipartiteMatching
+cliptransfer nbipartitematch
+frequently question
+c.1 result experiment interpret case scenario
+initialization problem assume create network network
+never pretrain ImageNet pretrain ImageNet huge
+computational cost figure case MixNet train ImageNet
+parameter transfer dpiat efficientnetb0 fine tune cifar100 figure
+EfficientNet b0 section MixNet ImageNet denote MixNet ImageNet
+efficientnetb0 cifar100 generalize n1 d1 n2 d2 imagine d2 completely
+dataset problem construct specifically design architecture
+n2 IAT option train scratch dpiat good
+case replace random initialization DPIAT follow
+download pool pretrained model e.g. timm library
+similarity score find n1 similar architecture n2
+IAT transfer weight n1 pretrain ImageNet n2 training d2
+run training
+result improvement random initialization present figure sim n1 n2
+behave green dashed line sim n1 n2 behave red blue
+dashed line
+iterative experimentation scenario model train single dataset d2
+improve score situation apply Kaggle contest model test
+obtain good score assume n2 train epoch test
+model n3 accept high resolution image additional layer
+modify shape parameter tensor option initialize network randomly
+lead start scratch option match layer manually copy parameter
+net2net method process provide good initialization point time consume
+tedious repeat time approach DPIAT
+DPIAT transfer weight n2 pretrain d2 n3 d2
+
+run training
+train fast scratch appendix b.1 expect n2 give good
+accuracy change architecture improve expressivity model change
+significant model stop plateau similar behavior present figure
+sim n2 n3 behave green solid line sim n2 n3 behave
+red blue solid line
+process repeat model
+c.2 comparison net2net fna parameter remapping
+net2net paper author propose operator net2widernet net2deepernet
+allow transfer knowledge wide version current layer add layer initialize
+identity admit method allow transfer wide deep network
+network design base current architecture widen layer add
+channel restrict target source architecture method
+limitation
+fna author derive network super network create expansion seed
+network seed network ImageNet pretrained network transfer parameter conduct
+seed network super network parameter remapping architecture
+super network base architecture seed network remapping process
+straightforward remapping perform super network final network
+final network subnetwork super network remap case selection
+layer
+neither net2net fna remap parameter independently design architecture
+require target network create source network method
+limitation allow transfer MixNet EfficientNet b2
+manual analysis architecture net2net fna
+table overview initialization method
+method technique complexity source network target network
+dpiat dp match transform transfer fast define user 3any
+GHN Predict
+fast
+inference 3any
+FNA remapping transform transfer fast define user
+Target network scale
+source network
+net2net transform transfer fast define user
+target network scale
+source network
+wide
+deep network
+pretrain
+ImageNet transfer
+expensive
+training define user
+target network
+source network
+Random init sample fast 3any
+Limitations
+DPIAT reduce computational burden iterative optimization method significant way
+limit aspect
+source network requirement iat require pretrained source network
+iat similar requirement regular transfer learning consequently source network
+pretrain similar domain provide useful feature
+branch DPIAT handle multiple branch network multi-branch architecture
+transfer performance benefit advanced network alignment technique
+
+lack data drive design mitigate architecture constraint source
+domain optimization task complicated resource intensive fine tuning
+GHN predict parameter show promising result nonetheless hypernetwork family
+datum drive unlike method mean potential benefit large dataset
+parameter prediction task intent fine tune parameter feasible show
+experimental domain test algorithm problem domain CNN base
+computer vision cv vit family CNN base CV layer semantically
+similar meaning i.e. compute abstract feature give input network
+layer interchangeable rnn layer mean handle
+hidden state specific way
+societal impact
+empower researcher limited resource DPIAT easily manual experimen
+tation fact dpiat line code complicated configuration
+consequence allow researcher contribute ai community significant way
+resource
+reduce impact environment training network time resource consume
+optimization method negative impact environment training scratch
+emit large amount greenhouse gas atmosphere make
+parameter reusable intend decrease impact modern deep learning
+environment
+

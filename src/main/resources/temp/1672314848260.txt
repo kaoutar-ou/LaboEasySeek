@@ -1,0 +1,511 @@
+Universit Cadi Ayyad Marrakech Ann
+Facult des Sciences techniques irsi
+Enseignant A. Darouichi
+TP en DW guide Tutorial Pentaho Data integration mysql
+rie
+L'objectif de ce tutoriel est de pratiquer l'int gration de donn es avec
+l'outil Pentaho Data Integration pdi de la suite BI Pentaho longtemp
+connu sous le nom de kettle pdi est etl open source qui permet de
+concevoir d'ex cute des op ration de manipulation de transformation
+de donn es
+vous allez l'utiliser pour extraire des donn es de les transformer de les
+charger dan une table de fait sous mysql
+introduction
+data integration exercise Pentaho Data Integration
+tool transform datum source load datum MySQL fact table
+perform transformation parse date string combine eld
+perform validation check start tutorial install
+software download datum source create table
+tutorial
+Tutorial Prerequisites
+start tutorial download install server
+client MySQL detail series MySQL
+installation access remote mysql server
+employer install server software
+machine
+install Pentaho Data Integration start tuto
+rial install Pentaho Data Integration install Java
+database connectivity JDBC driver MySQL
+rie installation instruction Pentaho Data Integration
+JDBC driver tutorial demonstrate community edition
+recent stable version Pentaho Data Integration
+
+install Pentaho Data Integration obtain datum
+source tutorial class website
+Excel le part tutorial
+Access database part tutorial
+tutorial Store sale datum warehouse depict figure
+sale fact entity type surround relationship dimension
+entity type item customer Store TimeDim schema design
+snow ake relationship Division Store table design
+table precede pre ss avoid con ict
+table fact table SSSales sale show ERD
+figure
+class website document Oracle MySQL
+create populate table document Oracle
+document statement create sequence object SS
+sale table
+figure Oracle Snow ake Schema Store Sales Data Warehouse
+
+create Transformation
+datum integration component spoon allow create transfor
+mation job transformation involve datum ow read
+source transform datum load target location Jobs coordi
+nate transformation de ning dependency transformation
+execution condition source le
+table exist database
+exercise step build rst transformation
+Pentaho Data Integration introduce common concept way
+follow instruction create transformation
+start Pentaho Data Integration opening
+window figure spoon window figure
+figure Pentaho Data Integration window
+click
+upper left corner spoon window
+Select Transformation list component figure dis
+play select button
+
+figure spoon opening window
+figure spoon Transformation List
+load rst datum source Excel
+make download Excel input le class
+website location le step
+step View tab click transformation select
+setting
+step set Transformation transformation
+sstoretest click
+step save transformation follow file Save
+empty transformation window spoon figure
+step create Excel Input step
+design tab expand Input node figure
+
+figure empty Transformation window
+figure Microsoft Excel Input Node
+select drag Microsoft Excel Input step canvas
+
+double click Microsoft Excel Input step edit pro-
+perty dialog box figure associate theMicrosoft Excel
+input step dialog box property
+relate step
+
+figure file window Microsoft Excel Input Property Editing
+set Excel Input SSExcelData
+Excel datum source path Files tab
+tab Files click button browse locate
+Excel le download class website
+click add add le select les area
+tab sheet click button sheetname
+enter list figure choose sheet select
+sheet press move area click
+figure sheet Speci cation window
+tab Fields click eld header row
+change datum type length precision
+specus cation figure
+
+figure Fields window Microsoft Excel Input Property Editing
+click bottom window input icon change
+SSExcel icon display figure
+figure Excel Input Node Filter Node spoon
+step part tutorial add constraint checking
+null datum type Excel datum source
+add filter row step transformation design
+table Flow filter row figure
+
+create hop ssexcelsource Excel le input step
+Filter Rows step hop describe ow
+datum transformation create hop click ssexcel
+source Excel le input step press <SHIFT> key
+draw line Filter Rows step figure
+figure hop connect Excel Input Node connect Filter
+node
+alternatively draw hop hover step
+hover menu figure drag hop painter icon
+source step target step
+figure Hover Menu
+double click Filter Rows step Filter Rows edit proper
+tie dialog box figure
+figure property edit window Filter Node
+step eld Filter row default
+
+condition click eld dialog box
+eld create condition
+Fields dialog box figure select salesunit click
+
+figure Condition Fields Selection Window
+click comparison operator figure set default
+select null function click
+figure comparison Operator List
+click button
+condition row null default
+
+click expression add constraint column
+similarly salesunit
+click allow condition joint
+
+click button
+condition row null
+default
+repeat step eld
+nal view lter condition show figure
+figure filter condition window
+
+save transformation
+step create step sort result Filter Rows step
+design tab expand contents Transform
+node
+click drag sort row step transformation create
+hop filter row sort row step select result
+true lter result selection list figure
+figure Filter result selection list
+double click sort row step open edit property dialog
+box figure click Fields obtain eld delete
+eld Day Month Year eld click
+figure property edit window sort row node
+
+database connection Lookup
+lumn mysql table
+Pentaho Data Integration allow de ne connection multiple
+database provide multiple database vendor MySQL Oracle Post
+gressql Pentaho Data Integration ship
+suitable JDBC driver support database primary interface
+database JDBC vendor write driver match JDBC
+specus cation Pentaho Data Integration driver unless
+quire extensive debugging write
+database driver
+de ne database connection connection information user
+password port number store Pentaho Enterprise
+repository user connect reposi
+tory Pentaho Enterprise Repository database
+connection information store xml le associate transfor
+mation job
+connection transformation job
+list database connection node explorer view spoon
+way de ne database connection
+spoon View navigation tap click database connec
+tion choose
+spoon View navigation tap click database connec
+tion choose connection Wizard
+table input con guration box click
+part tutorial involve date SSTimeDim
+table check validity date Excel datum source addition
+lookup primary key column mysql table ensure load
+datum invalid foreign key
+step Access SSTimeDim table MySQL database
+design tab expand contents Input node
+click drag table input step transformation
+double click table input step open edit property dialog
+box figure
+rename table input step SSTimeDim
+
+figure property edit window table input node
+click connection eld create
+connection database database connection dialog box
+
+provide setting connect database show
+figure
+important set connection information
+rst con gure JDBC driver accord instruc
+tion describe section remote da
+tabase make connect VPN prior
+test connection figure show detail connect
+MySQL server
+connection mysql db
+connection type MySQL
+Access native JDBC
+host localhost
+
+figure database connection window
+database database
+Port Number
+user user
+password password
+click test test connection success test result
+show figure
+figure database connection test
+
+type select SSTimeDim sql section figure
+click Preview button view database click
+exit database connection dialog box
+figure sql edit section Property Window table input node
+add sort row component sort row hop connec
+ting SSTimeDim step eld speci cation figure de
+lete eld TIMEDAY TIMEMOHTH TIMEYEAR
+eld
+design tab expand contents Joins node
+click drag aMerge join step transformation create
+hop sort row sort row andmerge join step
+figure
+double click Merge join step property figure
+Set step sort row step sort row
+join type click key eld
+left eld join left table
+delete eld day Month Year eld
+table delete eld TIMEDAY TIMEMONTH
+TIMEYEAR eld click
+
+figure property edit window sort row node
+figure sort row node connect Merge join Node
+figure property edit window Merge join Node
+
+nish join Excel input sstime
+dim table
+step join SSItem SSCustomer ssstore table similar
+datum SSTimeDim table previous section
+join table require table input component
+set connection query property ssitem table note
+table exist mysql schema
+step
+drag drop table input design pane
+double click newly create component open Basic
+setting pane connection show previous gure
+SSItem table select SSItem
+query
+create sort row component sort row sort row
+connect Merge join SSItem eld
+sort ItemID ITEMID
+drag drop Merge join design pane connect sort
+row sort row Merge join set eld
+join Item ID ITEMID
+global view node connection step show
+figure
+figure global view node connection step
+step join table
+join table SSCustomer SSStore trans
+formation method describe previously
+
+SSCustomer step connect custid Excel le
+CUSTID database eld
+SSStore step connect storeid Excel le
+STOREID database eld
+global view node connection step show
+figure
+figure global view node connection step
+
+insert datum SSSales table
+design tab expand contents output node
+click drag insert update step transformation create
+hop Merge join insert update step figure
+figure connect insert update node Merge join Node
+double click insert update component property
+figure set step SSSales select connection
+mysql db type target table SSSales
+click button eld select
+table eld set comparator nal
+window figure
+click button update eld click edit
+mapping button edit mapping mapping edit window
+show figure select eld SalesUnits SalesDol
+lar SaleCost CustID StoreID ItemID TIMENO
+mapping eld Pentaho automatically match correspond
+target eld click
+nal view SSSales step figure
+select SSSales step run preview click
+transformation debug dialog click Quick Launch figure
+examine preview datum window display figure
+connect mysql account verify number row
+SSSales table row row add
+row sample datum figure
+
+figure property edit window insert update node
+extra row mysql output component
+failure error check execution result section
+
+figure mapping edit window
+load datum source Access
+part exercise involve creation transformation
+process Access datum source make download
+Access database le class website note location
+computer begin load datum table database
+step add Access Input Step
+design tab expand Input node figure show
+design table input node
+select drag Microsoft Access Input step canvas
+
+double click theMicrosoft Access Input edit property
+dialog box associate Microsoft Access Input step
+figure dialog box property
+relate step
+set Access Input sale Excel datum
+source path Files tab
+
+figure final view SSSales step
+tab Content click button table table
+section window figure select sale
+table click
+tab Fields click button eld
+list figure show eld table
+sale
+click button Preview row preview database figure
+number row type click
+click bottom window input icon change
+shape show figure
+step add constraint check null Filter
+row step
+
+figure Transformation Debug Dialog
+figure execution report window
+figure Inserted Data Oracle Database
+
+figure Microsoft Access Input Node
+figure property edit window Microsoft Access Input Node
+add filter row step transformation design
+table Flow filter row figure
+create hop sale Access le input step
+filter row step hop describe ow datum
+
+figure table selection window
+figure Fields Window Microsoft Access Input Property Editing
+transformation create hop click sale Access
+le input step press <SHIFT> key draw
+line Filter Rows step
+alternatively draw hop hover step
+hover menu drag hop painter icon source
+step target step
+double click Filter Rows step Filter Rows edit property
+dialog box
+
+figure examine Preview Data Window
+figure sale Node Icon
+figure Access Input Node Filter Node spoon
+
+step eld type filter row
+con guration step similar
+previous excel transformation
+nal view lter condition show figure
+figure filter condition window
+save transformation
+
+separate SalesDay eld day Month
+Year eld
+part tutorial select step change
+format mydate eld Split Fields step parse eld
+date component
+design tab expand contents Transform node
+click drag select step transformation
+create hop filter row step select
+step figure SelectResult true lter result selection
+list
+figure true Filter result connect select node
+double click select step open edit property dialog
+box
+tab Metadata click button eld change
+eld change show figure change
+type eld mydate string change Format dd MM
+yyyy click
+figure Meta datum Tab Select property edit window
+design tab expand contents Transform node
+click drag Split eld step transformation figure
+
+
+figure create Split Fields spoon
+create hop select step Split eld
+step
+double click Split eld step open edit property dialog box
+figure
+selectmydate field split type Delimiter type
+Year Month Day Column eld set
+type number
+figure property edit window Field Splitter Node
+click
+click preview transform figure make Split
+Fields step select left side panel transformation
+debug dialog click Quick Launch button
+
+figure examine Preview Data Window
+Lookup Columns mysql table
+part exercise involve date ssti
+medim table check validity date Access datum source
+addition lookup primary key column Oracle table
+ensure load datum invalid foreign key part
+exercise similar section
+step Access SSTimeDim table MySQL database
+design tab expand contents Input node
+click drag table input step transformation
+double click table input step open edit property dialog
+box
+rename table input step SSTimeDim
+click connection eld create connec
+tion database database connection dialog box
+provide setting connect database show
+figure
+connection mysql db
+connection type MySQL
+Access native JDBC
+host localhost
+database database
+Port Number
+user user
+
+password password
+click Test test connection
+type select SSTimeDim sql section
+click Preview button view database click
+exit database connection dialog box
+design tab expand contents Transform
+node
+click drag sort row step transformation create
+hop Split eld sort row step
+double click sort row step open edit property dialog
+box click eld obtain eld delete eld
+Day Month Year eld click
+add sort row component sort row hop connec
+ting SSTimeDim step eld speci cation delete
+eld TIMEDAY TIMEMOHTH TIMEYEAR eld
+design tab expand contents join node
+click drag aMerge join step transformation create
+hop sort row sort row merge join step
+double click Merge join step property Set
+step sort row step sort row join
+type click key eld left
+eld join left table delete
+eld day Month Year eld table delete
+eld TIMEDAY TIMEMONTH TIMEYEAR
+eld click
+nish join Access table ss
+TimeDim table
+figure show global view node connection
+step
+step join SSItem SSCustomer ssstore Access table
+join table SSItem SSCustomer SSStore
+transformation method describe
+SSItem step connect ItemID Excel le itemid
+database eld
+SSCustomer step connect CustID Excel le cus
+TID database eld
+
+figure global view node connection step
+SSStore step connect StoreID Excel le storeid
+database eld
+figure show global view node connection
+step
+figure global view node connection step
+
+insert datum SSSales table
+design tab expand contents output node
+click drag insert update step transformation create
+hop Merge join insert update step figure
+show connection
+double click insert update component property
+set step SSSales select connection mysql db
+type target table SSSales click button
+eld select table eld set
+comparator nal window
+figure
+click button update eld click edit map
+ping button edit mapping mapping edit window show
+figure select eld SalesUnits SalesDollar Sa
+leCost CustID StoreID ItemID TIMENO map
+ping eld Pentaho automatically match correspond
+target eld click
+figure connect insert update node Merge join Node
+select SSSales step run preview click trans
+formation debug dialog click Quick Launch figure
+examine preview datum window display figure
+connect mysql account verify number row
+SSSales table row row add
+row sample datum figure
+
+figure Inserted Data Oracle Database
+N.B tutorial slithly modi ed Data Warehouse Concepts
+design Data Integration University Colorado
+

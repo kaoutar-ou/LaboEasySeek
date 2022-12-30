@@ -1,0 +1,2818 @@
+confront interact dark radiation scenario cosmological datum
+Thejs Brinckmann Jae Hyeok Chang Peizhi Du Marilena LoVerde7
+1dipartimento di Fisica Scienze della Terra Universita degli Studi di Ferrara Giuseppe Saragat ferrara Italy
+2istituto Nazionale di Fisica Nucleare INFN Sezione di Ferrara Giuseppe Saragat ferrara Italy
+3c N. Yang Institute Theoretical Physics Department Physics Astronomy
+Stony Brook University Stony Brook NY USA
+4Maryland Center Fundamental Physics University Maryland College Park MD USA
+5department physics astronomy Johns Hopkins University Baltimore MD USA
+6new High Energy Theory Center Rutgers University Piscataway NJ USA
+7Physics Department University Washington Seattle WA USA
+dark radiation DR generally predict physics scenario address fundamental
+puzzle Standard Model tension cosmological datum cosmological datum
+sensitivity constrain energy density DR interact
+paper present systematic study type interact DR free streaming fluid
+decouple instantaneous decoupling recouple DR impact cosmological ob
+servable modify Boltzmann hierarchy describe type interact DR
+relaxation time approximation time robustly calculate collision term
+recouple scalar DR provide good estimation recouple transition redshift
+demonstrate distinct feature type DR CMB matter power spectra
+perform MCMC scan Planck datum bao datum assume physics
+SM neutrino sector find statistically significant constraint coupling DR although
+slight preference late transition redshift instantaneous decoupling DR
+recombination fluid limit case Neff constraint vary marginally
+depend type DR.
+I. INTRODUCTION
+Standard Model SM particle physics great success unify elementary particle
+detect pass extensive experimental test SM complete fundamental
+puzzle existence cold dark matter CDM Higgs hierarchy problem non-zero neutrino
+mass physics SM BSM resolve puzzle bsm model propose
+address fundamental puzzle predict light particle behave radiation epoch probe
+cosmic microwave background cmb light particle typically negligible interaction
+SM call dark radiation DR well motivated model address Higgs
+hierarchy problem tend generate dark radiation e.g. Twin Higgs model naturalness model
+cosmological side call CDM model describe evolution universe extremely well explain
+cosmological datum scale success small tension cmb measurement
+late universe measurement Hubble s8 tension refer disagreement
+predict today expansion rate Universe matter clustering CMB datum comparison
+locally determined quantity e.g. review Hubble tension ref study s8
+tension attract significant attention bsm model attempt alleviate
+tension involve dark radiation e.g. constrain property dark radiation crucial
+test bsm model address puzzle SM potential link tension cosmological datum
+dark radiation extremely weak coupling SM particle challenge constrain directly
+terrestrial astrophysical measurement cosmological datum sensitive component
+gravitational interaction SM sector CMB dataset determine dark matter density
+well density decouple radiation include dark radiation well decouple
+radiation SM neutrino decouple SM bath temperature universe
+mev scale early time CMB decouple SM neutrinos gravitational effect
+electronic address
+electronic address jaechang@umd.edu
+electronic address peizhi.du@rutgers.edu
+electronic address mloverde@uw.edu
+ar
+
+iv
+
+
+
+
+
+4v
+
+
+
+tr
+
+ph
+
+
+
+
+
+
+ec
+
+
+
+
+CMB current constraint Planck collaboration energy density decouple radiation
+denote Neff assume radiation free streaming SM neutrino interaction negligible
+epoch probe CMB particle propagate freely speed light effect radiation
+CMB power spectrum increase damp high mode free streaming radiation additionally
+introduce phase shift CMB peak due fact free streaming radiation propagate super-sonically
+push SM sound horizon large scale current cmb datum precision resolve
+damp phase shift distinguish decouple radiation free streaming interact
+SM neutrino dark radiation non-trivial interaction prevent free
+streaming non-standard neutrino interaction generate strong interaction neutrino
+Majoron model Majoron Goldstone boson lepton number break relate
+generation neutrino mass Majoron mediate interaction SM neutrino
+coupling strong neutrino behave couple fluid constraint Neff vary compare free streaming
+case due distinct signature CMB power spectrum generally type model
+generate decoupling recouple feature neutrinos depend mass Majoron
+recently model study extensively literature propose solve Hubble
+tension show decouple neutrino model solve Hubble tension
+separately model generally conflict terrestrial astrophysical constraint
+tend modify SM neutrino interaction significantly
+freedom allow study interact dark radiation assume physics neutrino
+sector practically fix Neff neutrinos SM prediction study constraint additional contribution
+DR Neff paper present systematic study type DR categorize behavior
+interaction discuss standard free streaming fluid DR. study decouple DR
+light dark fermion mediate heavy scalar mediator study instantaneous decouple DR
+arise model dark recombination dark sector confinement recouple case choose study
+interact scalar DR model originate model axion particle popular
+scenario recouple DR Majoron model light mediator scenario light mediator
+unavoidably generate process recouple lead additional signature consider
+describe effect kind DR perturbation CMB modify Boltzmann
+equation account interaction ref provide general framework calculate collision
+term due interaction relaxation time approximation approximation collision term
+proportional product thermally average interaction rate numerical coefficient dub
+relaxation time coefficient calculate type interaction ref calculate
+coefficient decouple case calculation recouple case work
+time calculate relaxation time coefficient recouple case scalar DR.
+provide robust map particle physics model parameter cosmological constraint
+general expectation relaxation time coefficient order unity case decouple DR.
+find relaxation time coefficient recouple case order magnitude small unity
+mean naive estimation time transition modify include coefficient
+paper provide definition transition time redshift set usual h.
+demonstrate definition give good estimate transition redshift accord numerical
+calculation DR behavior
+modify public Boltzmann solver CLASS account type interact DR show
+change CMB temperature polarization lensing power spectra matter power spectrum
+discuss feature observable type DR give intuitive physical understanding
+arise perform MCMC scan current CMB BAO datum place update constraint
+bsm model dark radiation find statistically significant bound coupling constant DR although
+find slight preference late transition redshift instantaneous decoupling DR recombination
+fluid limit case datum exhibit interesting feature specific time redshift
+early universe constraining datum require derive statistically significant bound constraint
+Neff differ marginally assumption
+rest paper organize follow Sec ii discuss qualitative effect kind DR
+CMB include free streaming fluid decoupling instantaneous decoupling recouple DR. present
+particle physics model type DR. Sec iii derive Boltzmann hierarchy account
+type DR relaxation time approximation calculate relaxation time coefficient
+decouple recouple case detail appendix present good way estimate redshift
+transition Sec iv present CMB temperature polarization lensing spectrum
+linear theory matter power spectrum CLASS Sec show result mcmc scan base Planck
+datum bao datum conclude Sec vi appendix discuss simple model scalar DR
+
+feature recouple DR. appendix show detail mcmc scan
+ii dark radiation model
+purpose work classify DR accord gravitational effect cosmological perturbation
+energy density DR contribute parameter Neff define
+DR
+
+
+
+
+
+
+
+
+Neff
+
+
+denote energy density total radiation early universe energy density photon
+energy density neutrino DR energy density DR. fix SM neutrino contribution Neff
+CDM dub contribution DR Neff define
+Neff Neff
+SM neutrino decouple photon bath early CMB decouple neutrino treat
+free streaming CMB analysis primary constraint free streaming neutrino CMB power spectrum
+arise phase shift peak suppression high mode DR free streaming
+similar effect CMB neutrino size effect control Neff
+generically DR non-negligible interaction interaction particle prevent DR
+free streaming DR behave tightly couple fluid interaction strong compare
+Hubble rate key difference free streaming tightly couple fluid tightly couple fluid
+vanish quadrupole high multipole density perturbation moment nonzero
+non-trivial time evolution DR free streaming Sec iii detail tightly couple
+DR generate signature compare free streaming case Neff
+theoretical model DR additional feature capture case
+rate interaction DR equilibrium typically temperature dependent
+drop Hubble rate early time time depend type interaction DR
+tightly couple early universe start free stream decouple case way
+recouple case effect type DR observable free streaming
+tightly couple case Neff due property transition
+decoupling recouple DR leave distinct feature spectrum depend transition time feature
+discuss detail Sec iv
+follow identify DR behavior epoch probe CMB large scale structure lss
+datum classify DR group accord interaction discuss particle physics
+model lead type DR. note analysis paper restrict specific model
+present generalize model interaction rate temperature dependence
+free streaming type DR interaction interaction strength negligible
+compare Hubble rate epoch probe CMB LSS datum kind DR behave identically
+massless SM neutrino free streaming DR natural consequence BSM model involve light
+sterile neutrino gravitational wave free streaming DR. effect free streaming
+DR cosmological observable describe CDM model additional Neff
+fluid refer DR fluid fluid strong interaction interaction rate large
+compare Hubble parameter cosmological time interest non-abelian
+gauge field dark sector behave fluid DR fluid DR strong coupling limit
+decoupling recouple DR mention due strong interaction anisotropic stress
+high multiple fluid DR dynamically set
+note recent calculation prefer
+big bang nucleosynthesis probe cosmic history early time CMB relic abundance sensitive total
+amount radiation perturbation radiation BBN generically sensitive interaction DR.
+
+decouple interaction DR mediate heavy mediator thermal averaged
+interaction rate scale depend particle nature DR mediator
+early universe interaction rate large Hubble rate scale mpl DR interact
+strongly tightly couple drop Hubble rate time interaction
+decouple DR start free stream dub case decouple
+particle physics model predict decouple DR. concrete consider DR
+effectively massless Majorana fermion couple massive mediator Lagrangian write
+
+
+
+m2
+
+
+
+
+
+mass Yukawa coupling Lagrangian similar
+Majoron model scalar couple SM neutrino DR integrate
+obtain effective Lagrangian fermi interaction
+
+
+Geff
+Geff g2
+
+
+term generate interaction DR thermally average interaction
+rate scale g2
+effT
+lead decoupling
+instantaneous decoupling special type decouple DR undergo fast transition
+case discuss case simply treat DR fluid redshift zdec
+characterize time decouple free streaming zdec DR arise model
+complex dark sector bound state neutral DR. DR decouple bath
+dark sector dark sector particle form bound state dark atom similar recombination
+SM sector dark baryon similarly qcd phase transition Atomic Dark Matter
+model twin Higgs model case interaction rate include factor exp
+binding energy dark atom confinement scale dark baryon exponential
+factor change decouple qualitatively make duration decoupling transition short
+standard decouple describe assume dark atom dark baryon form small fraction
+dark matter ignore change cold dark matter perturbation due interaction dark
+atom DR. instantaneous case change behavior Neff cosmological
+parameter
+recouple recouple radiation free streams early universe tightly couple
+time paper model recouple DR light scalar interaction
+
+
+
+dimensionless coupling constant present explicit realization DR model
+axion particle alp appendix interaction Eq lead thermal averaged rate
+scale
+decrease slowy Hubble rate type DR desire
+recouple feature interaction rate small Hubble rate initially strong
+note recouple DR arise model fermionic DR interact light mediator
+Lagrangian Eq set rate interaction DR
+estimate g4
+dependence recouple light mediator
+produce equilibrium recouple
+abundance perturbation cover analysis paper potentially
+important impact cosmological observable
+qualitative effect decouple recouple DR cosmological observable view time
+dependence interaction opacity DR provide intuitive way visualize time dependence
+temperature dark radiation photon temperature
+
+
+
+
+
+
+
+
+
+
+
+ac
+
+Decoupling
+instantaneous decoupling
+recouple
+FIG. opacity decouple DR orange instantaneous decouple DR orange dashed recouple DR blue
+function redshift z. coupling Geff choose zdec rec paper define decou
+pling recoupling transition term perturbation background opacity lead visual offset
+transition precise definition decoupling recouple redshift give Sec iii Eq
+discuss perturbation dark radiation
+type interaction define opacity decoupling recouple DR
+Odec exp
+
+
+t0
+
+dt
+
+
+Orec exp
+
+
+
+
+dt
+
+
+thermal average interaction rate t0 time today exact definition model
+give Eq opacity fraction particle scatter
+time time today t0 decouple case start universe time recouple
+case opacity mean DR free streaming fluid DR correspond opacity unity decouple
+recouple case opacity start evolve decoupling vice versa recouple
+opacity Odec rec difference case decoupling instantaneous decoupling recouple DR show
+function redshift fig. choose step function model Odec instantaneous decoupling
+case transition occur select coupling constant Geff decouple
+recouple case lead transition redshift zdec rec precise definition
+zdec rec give late Eq instantaneous decoupling transition fast
+standard decoupling clear fig. transition recouple case slow decoupling
+case understand fact decouple rate strong dependence
+recouple time dependence visible opacity fig. lead distinct signature
+observable
+iii boltzmann equation interact dark radiation
+section present boltzmann equation relevant interact dark radiation syn
+chronous gauge write perturbation flat Friedmann Robertson Walker metric write
+ds2 a2 ij hij dx
+idxj
+
+conformal time scale factor metric perturbation Hij expression
+Fourier space
+Hij k?ik?jh
+
+k?ik?j
+
+
+ij
+
+
+denote trace traceless longitudinal part Hij kk Fourier conjugate
+comove position consider phase space distribution DR decompose
+
+averaged phase space distribution qq comoving momentum DR relate
+physical momentum ap work demand kind DR analysis
+thermal distribution mean averaged phase space distribution set equilibrium distribution
+eq ne?q td
+TD temperature DR today Maxwell Boltzmann distribution approximation
+normalization factor choose match energy density Maxwell Boltzmann Bose
+Einstein Fermi Dirac distribution
+
+dq q3f eq
+
+dq q3fbe fd boson
+fermion
+equilibrium distribution independent time non-trivial time evolution due interaction
+encode perturbation thermal condition simply achieve decouple DR
+strong interaction DR equilibrium decouple evolution generate
+perturbation recouple case interaction DR equilibrium initially satisfy
+condition assume DR thermal relic SM neutrino inherit thermal distribution
+process present scalar DR model appendix predict recouple DR thermal
+initial condition
+mention non-trivial time evolution perturbation define
+Eq Boltzmann equation give
+ikp1
+ln
+ln
+
+
+
+p2
+
+
+
+
+Legendre polynomial denote derivative respect collision term
+account interaction full expression derive summarize Appendix A.
+deal purely relativistic particle convenient analysis
+
+
+dqq3f
+dqq3f
+
+
+
+
+explicit expression complicate relaxation time approximation simplify
+formula basic assumption lead order contribution linear
+check approximation agree well exact result decouple case
+knowledge explicit check recouple case perform case key
+approximation linear order perturbation ii apply separable ansatz
+
+
+ln
+ln qf easily derive radiation separate universe argument
+dependence temperature expect approximation work recouple
+case well
+relaxation time approximation full boltzmann hierarchy simplify
+kf1
+
+
+
+
+
+
+f1
+
+
+f2
+
+2k
+
+f1
+3k
+
+f3
+
+
+
+
+
+2a f2
+
+
+
+
+
+thermally average rate interaction relaxation time coefficient
+formula general apply kind interact DR. discuss type
+interaction lead
+thermal averaged rate interaction process p1 p2 p3 p4 simplify assumption
+
+
+
+
+1d 2d 3d 4f e1 e2 e3 e4 p1 p2 p3 p4
+g2
+
+
+d3p1
+
+d3p2
+
+e1 e2 2vrel
+pi ei pi momentum particle d?i gd3pus
+32Ei
+spin degeneracy
+
+
+d3p 3f equilibrium number density gnt massless particle quantity
+cross section interaction vrel 2e1e2 relative velocity initial particle
+matrix element square average initial final spin particle include factor
+ni!nf remove double counting identical particle well factor Ni number
+initial identical particle change Ni unit interaction boltzmann equation Ni Nf denote
+number identical particle initial final state case consider process identical
+particle factor ni ni!nf show analytical expression
+case
+calculation relaxation time coefficient show appendix follow calculation
+note model due energy momentum conservation
+summarize thermal averaged rate relaxation time coefficient DR scenario
+free streaming free streaming DR interaction set Eq
+result coincide Boltzmann hierarchy free streaming neutrino
+fluid fluid DR strong interaction tightly couple correspond limit
+Eq limit term dominate time evolution solution
+exp
+
+mode dynamically set
+thermal history set mean anisotropic
+stress high multiple DR
+decouple mention Sec ii consider Majorana fermion heavy scalar mediator
+model decouple DR. Lagrangian give Eq Geff g2
+
+
+effective Fermi
+constant assume mediator heavy interest cosmological evolution abundance
+neglect effect heavy mediator generate interaction dark radiation
+case lead
+
+g2
+effT
+
+
+576a4
+
+Eq td temperature DR today note blow small early
+time physically limit correspond radiation behave fluid avoid numerical issue
+set cut Min g2
+effT
+
+576a4 choose mpc check
+numerically observable sensitive precise choose mpc
+relaxation time coefficient model detail
+appendix similar weak effect observable simply set
+max max standard cut number moment CLASS
+verify approximation compare set max make
+negligible effect CMB matter power spectra consider
+instantaneous decoupling instantaneous decoupling dark radiation behave couple fluid early
+time rapidly transition free stream radiation redshift zdec case mimic transition
+photon SM sector behave interact fluid due interaction free electron
+note define respect thermal averaged rate rate dimensional analysis
+
+quickly transition free streaming hydrogen formation mention fluid regime
+model free streaming case correspond set Eq account
+region set initial condition modify Boltzmann equation Eq
+
+
+
+2k
+
+f1
+3k
+
+f3
+
+
+
+
+
+
+
+zdec
+
+
+
+
+
+
+zdec
+zdec function zdec feature zdec zdec
+choose smooth function zdec
+zdec
+
+
+
+tanh
+
+zdec
+zdec
+
+
+
+
+zdec zdec typically decoupling width zdec instantaneous decoupling case percent
+zdec observable show sensitive zdec zdec zdec
+
+discuss Sec iv check result Eq almost identical general
+Eq large zdec zdec note choice zdec
+model decouple DR heavy mediator choice zdec zdec
+recouple mention Sec ii consider light scalar interaction model
+recouple DR. type recouple DR Lagrangian show Eq describe Eq
+
+
+
+td
+
+
+Appendix detail
+radiation dominate era interaction rate significant compare Hubble rate late time
+lead recouple mean dark radiation free streaming early time behave fluid late
+time similar case decouple DR make approximation max recouple
+DR check compare set max
+affect physical observable
+expression allow general td simplicity numerical calculation
+set td SM neutrino temperature today
+develop insight physical effect DR helpful study time dependence interaction
+identify time redshift de re-coupling transition opacity give eq show
+fig. way characterize average scatter DR particle observable effect
+interact DR due change behavior DR perturbation define
+transition redshift base effect DR perturbation
+show general Boltzmann hierarchy eq time dependence interaction
+dominant effect moment define zdec rec
+
+
+zdec rec
+
+note usual definition relaxation time coefficient
+definition similar close unity decouple DR case recouple DR
+order magnitude small unity rate weak dependence result big shift
+zdec rec generally type interaction
+dedicated calculation determine zdec rec
+illustrate time dependence interaction perturbation estimate zdec rec present
+fig. ratio anisotropic stress interact DR free streaming DR dec rec 2f2
+show choice Geff decouple case recouple case plot
+ratio mpc mode super-horizon time show illustrate time
+dependent change behavior DR. Fluid DR free streaming DR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ec
+
+
+Decoupling
+Geff mev
+Geff mev
+Geff mev
+geff mev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recouple
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ec
+
+
+instantaneous decoupling
+inst zdec
+inst zdec
+inst zdec
+inst zdec
+
+FIG. ratio anisotropic stress decouple recouple instantaneous decoupling DR free
+stream DR dec rec function redshift panel choose mpc cosmology Neff
+interact DR compare free streaming DR. Panel show multiple Geff decouple case panel
+multiple recouple case Vertical line show estimate zdec zrec definition
+solid line panel choose zdec rec usual definition dashed
+line estimate similar decouple DR recouple case standard definition produce
+estimate recouple redshift significantly large note dashed line
+overlap solid line panel show ratio instantaneous decoupling case
+estimate zdec identical
+non-zero normalizing anisotropic stress free streaming case remove additional cosmological time
+dependence
+ratio fig. expected behavior evolve decoupling case
+recouple case vertical grid line show definition zdec rec definition solid usual
+definition dashed decoupling panel fig. definition zdec provide similar result
+close z5 recouple case panel definition zrec
+differ order magnitude definition give good estimate transition time rec
+comparison plot ratio dec instantaneous decoupling case panel instantaneous
+decouple interaction rate sharp transition parameter zdec Eq large
+zdec zdec definition provide identical result
+parameter zdec naturally denote decouple redshift
+iv impact OBSERVABLES
+section discuss interact dark radiation scenario describe Sec ii affect CMB tem
+perature polarization power spectra matter power spectrum physical effect fluid
+decouple recouple radiation CMB power spectrum discuss e.g. matter
+power spectra review completeness focus section extend analysis
+effect interact DR CMB matter power spectra describe change make dif
+ferent type interaction main result discussion difference interact scenario
+radiation decouple instantaneously versus slow transition describe decouple Fermi
+interaction radiation start free streaming recouple time
+raise Sec ii free streaming fluid decoupling instantaneous decoupling recouple leave
+distinct imprint CMB matter power spectra
+CMB matter power spectrum sensitive interaction relativistic dark sector particle interac
+tion change behavior linear perturbation stress energy tensor DR DR gravitationally
+couple photon matter perturbation observe CMB large scale structure review
+physics extreme case free streaming fluid DR move discuss radiation transition
+extreme
+Radiation frequent interaction characterize fluid perturbation relativistic fluid
+completely characterize equation state sound speed tightly couple
+relativistic fluid quantity simple c2s c2 non-zero quantity fluid stress
+energy tensor energy density pressure fluid anisotropic stress high moment vanish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Decoupling
+fluid
+Geff mev
+Geff mev
+Geff mev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+instantaneous decoupling
+fluid
+inst zdec
+inst zdec
+inst zdec
+free?streaming
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recouple
+fluid
+
+
+
+free?streaming
+
+FIG. evolution perturbation Newtonian gauge dark radiation energy density DR plot function
+mpc left plot compare free streaming fluid radiation perturbation decouple model
+Geff mev mev mev correspond decouple zdec center
+plot illustrate perturbation decouple instantaneously zdec plot compare free streaming
+fluid radiation perturbation recouple model
+correspond recouple zrec recouple curve indistinguishable
+free streaming curve
+fluid perturbation propagate
+
+hand perturbation relativistic free streaming particle
+equation state adiabatic sound speed perturbation propagate
+free streaming particle significant anisotropic stress full boltzmann hierarchy
+continuity equation require describe evolution perturbation decouple recouple
+DR transition regime show fig. duration transition vary
+model process decouple interaction slow comparison instantaneous DR
+decouple process recouple slow
+difference duration transition fluid free streaming change evolution pertur
+bation DR energy density figure illustrate difference perturbation DR energy density
+DR DR DR wavenumber mpc horizon cross transition occur csk
+mode deep radiation dominate era DR show range
+de re-coupling time correspond transition occur prior horizon crossing horizon crossing
+horizon crossing decoupling recouple transition complete prior horizon crossing DR
+perturbation match free streaming fluid case show curve expect
+DR perturbation decouple instantaneously show transition follow fluid
+free streaming curve hand decouple radiation slow transition begin deviate
+fluid curve early time long time approach free streaming solution finally
+recouple DR transition sufficiently slow zrec evolution fully
+match fluid solution
+DR perturbation couple gravitationally photon matter perturbation generate CMB matter
+power spectra fluid DR undergo acoustic oscillation photon baryon fluid fig. enhance
+amplitude acoustic oscillation photon baryon fluid CMB temperature polarization power
+spectrum free streaming particle participate acoustic oscillation suppress amplitude
+oscillation CMB power spectra additionally perturbation relativistic fluid propagate speed
+perturbation free streaming radiation propagate slight difference horizon crossing
+time subtle difference barely visible shift interact case fig. induce
+phase shift acoustic peak CMB power spectra phase shift distinct signature
+hard mimic change cosmological parameter
+DR transition fluid free streaming radiation dominate era observable
+acquire scale dependence behavior mode depend behavior DR horizon
+crossing instance photon perturbation cross horizon DR fluid cs?dec
+figure section large cut mpc order achieve good accuracy high discussion
+Eq
+
+cs?rec large amplitude oscillation phase shift cross species
+free streaming cs?dec cs?rec reduce oscillation amplitude phase shift
+respect fluid case mode cross horizon transition intermediate
+behavior visible fig. consider decouple case panel curve Geff match
+fluid curve horizon crossing start depart curve geff match
+fluid case half oscillation switch follow free streaming curve similar feature
+visible panel transition fluid free streaming behavior abrupt
+recouple scenario show panel recouple gradual curve follow fluid
+early recouple case correspond zrec DR sufficiently
+couple undergo acoustic oscillation
+impact DR primary CMB power spectra plot fig. panel illustrate change
+CMB power spectra cosmology common background evolution total energy density
+radiation Neff Neff Neff differ behavior perturbation DR contribute
+Neff curve compare Neff interact DR relative Neff free streaming
+radiation expect amplitude CMB spectra enhance interact DR oscillatory
+feature demonstrate location peak shift slightly enhancement large DR
+interact long decouple time recouple early time matter radiation
+equality fractional contribution DR energy density drop DR interact
+increasingly relevant instance decoupling recouple transition effect
+power spectra small large effect zrec relative zdec due
+fact recouple transition sufficiently gradual radiation partly recouple fig.
+fig. primary difference decoupling instantaneous decoupling scenario amplitude
+change power spectra decoupling model begin transition free streaming early fig.
+fig. effect CMB spectra small note degeneracy width
+decouple transition amplitude effect additional feature distinct
+scenario CMB spectra multipole peak sensitivity wavenumber 2dlss dlss
+distance surface scatter instantaneous decoupling zdec decouple transition
+visible sharp change CMB spectra dec kdecdLSS kdec cs?dec
+early decouple redshift feature high detectable foreseeable future
+standard decoupling model gradual transition wash feature
+radiation dominate era perturbation radiation dominate gravitational potential large scale
+CDM perturbation evolve potential sensitive behavior
+interact DR. understand DR impact CDM helpful time average DR perturbation
+good estimate net source gravitational potential driving CDM fig. show time
+average DR
+
+
+DR radiation perturbation plot fig. clear interact
+case large amplitude horizon crossing time free streaming perturbation large
+source large gravitational potential mean expect CDM perturbation enter horizon
+radiation dominate era large cosmology free streaming DR comparison
+fluid DR. case DR decouple horizon crossing special time average DR large
+horizon crossing decrease subsequently fig. late time slightly large free
+streaming case CDM perturbation cross horizon decouple experience
+slight boost
+effect DR CDM perturbation illustrate fig. plot fractional change amplitude
+Newtonian gauge cdm perturbation cdm Neff DR make interact oppose free
+streaming panel show range correspond mode cross horizon variety
+epoch relative de re-coupling transition matter radiation equality super-horizon scale
+radiation dominate era matter perturbation Newtonian gauge slightly large cosmology
+interact DR e.g. note difference disappear synchronous gauge interact radiation
+experience large boost horizon crossing fig. relative free streaming radiation transmit
+CDM eventually cdm mode cross horizon radiation dominate era interact
+DR experience suppress growth time average oscillation source gravitational potential
+small free streaming radiation fig. mode cross horizon decoupling transition
+experience mixture effect boost amplitude horizon crossing DR interact
+decrease subsequent decay radiation transition free streaming full oscillation complete
+visible mpc mode panel similar feature occur Universe transition matter
+domination mode cross horizon transition experience initial boost due interaction
+subsequent suppression amplitude occur radiation perturbation cease dominate
+gravitational potential visible mpc mpc mode recoupling fluid plot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Decoupling
+fluid
+Geff mev
+Geff mev
+Geff mev
+geff mev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Decoupling
+fluid
+Geff mev
+Geff mev
+Geff mev
+geff mev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+instantaneous decoupling
+fluid
+inst zdec
+inst zdec
+inst zdec
+inst zdec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+instantaneous decoupling
+fluid
+inst zdec
+inst zdec
+inst zdec
+inst zdec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recouple
+fluid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recouple
+fluid
+
+
+
+
+
+FIG. fractional change primary CMB power spectra additional interact component DR add
+Neff compare power spectra cosmology total Neff compose free streaming radiation
+panel show fractional change ctt cee decoupling model fluid species never
+decouple panel show fractional change ctt cee instantaenous decoupling model dashed
+line fluid case comparison zdec choose match decouple redshift
+Geff panel show fractional change ctt cee recouple species
+fluid species
+panel
+scale dependent time evolution fig. lead scale dependent feature matter power spectrum
+figure illustrate dependent change matter power spectrum additional DR contribution
+Neff interact free streaming decoupling case matter power spectrum
+suppress high correspond mode enter horizon radiation domination
+
+
+
+
+
+
+
+
+
+
+
+DR
+
+
+
+
+
+
+
+Decoupling
+free?streaming
+fluid
+Geff mev
+Geff mev
+
+
+
+
+
+
+
+
+
+
+DR
+
+
+
+
+
+
+
+instantaneous decoupling
+free?streaming
+fluid
+inst zdec
+inst zdec
+
+
+
+
+
+
+
+
+
+
+DR
+
+
+
+
+
+
+
+recouple
+free?streaming
+fluid
+
+
+
+FIG. time average Newtonian gauge dark radiation energy density DR plot function
+mpc left plot compare free streaming fluid radiation perturbation decouple model
+Geff mev mev correspond decouple zdec center plot
+illustrate perturbation decouple instantaneously zdec plot compare free streaming fluid
+radiation perturbation recouple model correspond recouple
+zrec
+
+Mpc
+
+
+
+
+
+
+
+
+
+
+
+
+cd
+
+dec
+Geff mev
+mpc
+mpc
+mpc
+mpc
+
+Mpc
+
+
+
+
+
+
+
+
+
+
+
+
+cd
+
+rec
+
+mpc
+mpc
+mpc
+mpc
+
+Mpc
+
+
+
+
+
+
+
+
+
+
+
+
+cd
+
+eq
+fluid
+mpc
+mpc
+mpc
+mpc
+
+FIG. fractional change evolution dark matter density perturbation wavelength component
+radiation density decouple species leave recouple species middle fluid species effect
+dark matter density perturbation depend mode reach decoupling recouple
+transition fluid radiation matter radiation equality time time mark vertical line plot
+
+mpc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Decoupling
+fluid
+Geff mev
+Geff mev
+Geff mev
+geff mev
+
+mpc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+instantaneous decoupling
+fluid
+inst zdec
+inst zdec
+inst zdec
+inst zdec
+
+mpc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recouple
+fluid
+
+
+
+
+
+FIG. fractional change matter power spectrum additional DR contribution Neff
+interact free streaming left panel show Pmm pmm decoupling model center panel
+instantaneous decoupling model panel recouple model Geff choose give
+de re-coupling redshift
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Decoupling
+fluid
+Geff mev
+Geff mev
+Geff mev
+geff mev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+instantaneous decoupling
+fluid
+inst zdec
+inst zdec
+inst zdec
+inst zdec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+recouple
+fluid
+
+
+
+
+
+FIG. fractional change CMB lense power spectrum additional DR contribution Neff interact
+free streaming left panel show decoupling model center panel instantaneous
+decouple model panel recouple model Geff choose give de re-coupling
+redshift instantaneous decoupling center panel
+DR interact case decoupling occur radiation dominate era peak
+wavenumber cs?dec correspond scale reach maximum
+horizon crossing Universe transition radiation matter domination relativistic species
+fluid free streaming relevant evolution matter perturbation low matter
+power spectra agree scenario time dependent change radiation matter domination lead
+scale dependent feature keq qualitatively similar feature cause decoupling transition
+fluid species never decouple finally change power spectra recouple scenario
+show mix behavior high mode identical free streaming case decrease begin
+follow fluid curve krec cs?rec agree free streaming case keq finally
+duration de recoupling transition important transition fluid free streaming
+instantaneous ring feature visible matter power spectrum occur mode enter
+horizon prior decouple oscillate photon baryon fluid instantaneous transition
+imprint oscillatory feature final matter power spectrum gradual decoupling transition
+feature wash recouple model consider gradual transition free streaming
+fluid small imprint matter power spectrum note implement
+instantaneous decoupling transition width zdec zdec Eq ring feature fig.
+unchanged decouple transition wide zdec zdec
+change matter power spectrum fig. lead similar pronounced change CMB
+lense power spectrum figure show fractional change CMB lense spectum additional DR
+contribution Neff interact free streaming scenario qualitative feature
+similar change matter power spectrum suppress amplitude sharp spectral feature
+wash due fact CMB lense give multipole moment depend matter power spectrum
+range k. nevertheless suppression high apparent peak dec eq
+instantaneous standard decoupling case distinguishable feature
+V. MCMC analysis
+section present constraint interact DR scenario discuss Markov chain
+Monte Carlo MCMC analysis Metropolis Hastings algorithm cosmological sampling
+package montepython connect altered version Boltzmann Solver CLASS
+follow dataset combination
+CMB Planck CMB temperature polarization auto cross-correlation high low
+find MontePython public
+recent CLASS public
+
+full set nuisance parameter well Planck CMB lensing8
+bao9 degree field Galaxy Survey 6dfgs Sloan Digital Sky Survey Data Release
+Main Galaxy Sample SDSS DR7 MGS Baryon Oscillation Spectroscopic Survey
+Data Release boss dr12 redshift bin sample CMASS
+LOWZ galaxy sample
+make follow notable modelling choice unless degenerate massive free steam
+neutrino good approximation normal inverted hierarchy vary neutrino mass
+sum prior
+
+ev neutrino contribute Neff helium fraction infer big
+Bang Nucleosynthesis make standard CDM assumption spatial flatness cosmological
+constant CMB power spectra include lensing reconstruction model linear theory
+accurate non-linear prescription interact DR model publicly non-linear
+method assume free streaming DR. case difference due non-linear modelling expect small
+errorbar Planck scale point carefully consider future datum
+Sec iv DR impact amplitude shape high matter power spectrum
+include dataset probe directly expect current bound Neff CMB
+strong e.g. current Lyman forest datum signature
+interesting explore future
+main result show table fig. table show mean CL interval
+unless note parameter show well fit Neff interaction
+parameter well minimum effective chi square chi square contribution likelihood
+fig. show posterior distribution interval dark light shade contour
+Decoupling top left green Instantaneous Decoupling top purple recouple bottom
+yellow case compare free streaming red fluid blue reference case subplot
+interesting parameter model opt show angular scale CMB amount
+DR standard neutrino Neff Hubble parameter today h0 addition relevant interaction
+parameter Geff unit mev estimate zdec Decoupling Eq surround text zdec
+Instantaneous Decoupling model parameter case estimate zdec recouple
+Eq set full triangle plot appendix bottom panel subplot highlight
+interesting point parameter space arrow e.g. transition point peak marginalize posterior
+distribution discuss follow
+decouple fig. top left green
+Neff panel column 2nd top posterior Decoupling
+case neatly extend free streaming Fluid case strong preference
+dataset consider model mcmc exploration allow freely vary full
+parameter space
+illustrate posterior panel log10 Geff bottom posterior flat
+small log10 Geff large zdec free streaming regime leave plot
+small asymptote Free steam case intermediate decoupling redshift
+small statistically significant preference late decoupling begin recombination
+i.e. leftmost arrow log10 Geff correspond log10 zdec peak
+log10 Geff correspond log10 zdec cut posterior exploration bit point
+large log10 Geff small zdec asymptote Fluid case decouple
+happen sufficiently recombination long sensitive decoupling behavior
+although datum MCMC run include change CMB lense spectra show fig. expect feature
+small resolve current datum contribute constraint
+principle constraint bao datum bias model interact dark radiation model
+introduce phase shift acoustic peak ref study problem number extension CDM model
+include fraction dark matter interact neutrino model similar phase shift property current bao
+datum combine probe CMB case model interact dark radiation exhibit bias
+constraint derive standard BAO likelihood future datum conclusion
+include BAO datum full shape power spectrum information analysis consistent way check
+problem way similar ref
+
+current dataset posterior remain flat mcmc noise due notable
+decouple width understand posterior Decoupling case flat recombination
+oppose Instantaneous Decoupling case peak recombination
+consider log10 Geff bottom row 1st panel log10 Geff Neff bottom row 2nd panel
+change prefer interaction strength large large log10 Geff small zdec
+Neff bound relaxed large log10 Geff understand
+fact interact DR cause phase shift acoustic peak free streaming DR DR
+intermediate decoupling redshift cause reduce phase shift feature bring model slightly
+good agreement datum allow large contribution species cause preferred
+shift large
+finally notable impact Hubble parameter bottom row 3rd panel slight widening
+posterior late decoupling fluid asymptote relevant term
+resolve tension
+instantaneous decoupling10 fig. top purple
+consider Neff panel column 2nd top posterior Instantaneous
+decouple track Fluid comparison case easily understand posterior
+panel log10 zdec bottom preference low decoupling redshift asymptote
+Fluid case recombination preference dominate marginalize posterior
+distribution transition point arrow log10 zdec
+preference start increase low decouple redshift log10 zdec fully
+recombination reach Fluid case asymptote posterior flatten mcmc
+noise peak albeit statistically significant log10 zdec datum seem
+prefer decoupling recombination
+consider log10 zdec Neff bottom row 2nd panel Neff bind significantly relaxed late
+decoupling time small zdec recombination onwards lead large uncertainty Hubble
+parameter bottom row 3rd panel note marginalize posterior distribution Neff
+h0 include high decoupling redshift part relaxed bound apparent
+recouple fig. bottom yellow
+Neff panel column 2nd top recouple case span
+posterior space free streaming fluid comparison case Decoupling case reason
+unconstrained parameter space neat transition
+asymptote consider posterior panel log10 bottom flat posterior
+small increase probability start log10 correspond log10 zrec
+arrow large coupling strength correspond early recoupling
+interestingly small peak statistically significant intermediate recouple redshift
+log10 correspond log10 zdec arrow
+sensitive dataset constrain model
+consider bottom row panel similar shift panel Decoupling
+case surprising large coupling parameter correspond early
+recouple decouple asymptote Fluid case late recoupling early decoupling
+model asymptote free streaming case bottom panel bind Neff
+relaxed model recouple early intermediate redshift late recouple bound similar
+free streaming bound finally Hubble parameter panel slight relaxation
+confidence interval compare free streaming asymptote play role resolve
+cosmological tension
+worth remember choice implement neutrino mass sum
+
+impact bound
+Neff direct correlation neutrino mass sum allow Neff work
+mcmc result section parameterize instantaneous decoupling transition width zdec zdec discuss Sec
+ii check parameter constraint virtually unchanged decoupling width zdec zdec
+
+
+
+
+
+
+
+
+eff
+
+
+
+
+
+
+
+
+
+
+log10 Geff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+zdec
+
+
+
+
+
+
+
+
+
+
+lo
+
+
+
+eff
+
+
+Neff
+
+
+
+h0
+free streaming
+fluid
+Decoupling
+
+
+
+
+
+
+
+eff
+
+
+
+
+
+
+
+
+log10 zdec
+
+
+
+
+
+
+
+
+
+
+lo
+
+
+
+ec
+
+
+Neff
+
+
+
+h0
+free streaming
+fluid
+instantaneous decoupling
+
+
+
+
+
+
+
+eff
+
+
+
+
+
+
+
+
+
+log10
+
+log10 zrec
+
+
+
+
+
+
+
+
+
+
+lo
+
+
+
+
+
+
+Neff
+
+
+
+h0
+free streaming
+fluid
+recouple
+FIG. MCMC derive posterior distribution select parameter interval dark light shade
+contour Planck primary CMB anisotropy lensing bao free streaming Neff red
+interact fluid Neff blue comparison show h0 measurement Ref grey bound note
+edge range visible top left Decoupling Neff green arrow bottom sub-panel
+transition point log10 Geff correspond log10 zdec peak log10 Geff
+correspond log10 zdec top Instantaneous Decoupling Neff purple arrow bottom
+sub-panel transition point log10 zdec transition point log10 zdec
+peak log10 zdec bottom recouple Neff yellow arrow bottom sub-panel
+transition point log10 correspond log10 zdec peak log10 correspond
+log10 zdec
+neutrino mass sum fix common choice minimal allow normal hierarchy
+neutrino configuration low mass massive neutrino
+
+ev absolute scale
+neutrino mass sum mass difference state reflect uncertainty allow
+neutrino mass sum vary main analysis impact bound Neff compare fix neutrino
+
+free streaming Fluid Decoupling Instantaneous Dec. recouple
+
+cdm
+
+ln 1010as
+
+zreio
+log10 Geff unbounded
+log10 zdec unbounded
+log10 unbounded
+Neff CL CL CL CL CL
+CL CL CL CL CL
+h0
+
+km
+Mpc
+
+
+s8
+good fit
+Neff
+log10 Geff
+log10 zdec
+log10
+p18 highttteee
+p18 lowtt
+p18 lowee
+p18 lensing
+p18 total
+bao
+
+eff
+
+eff
+table statistical information model
+eff lnl minimum effective chi square
+eff
+correspond free streaming case credibility interval CL center mean unless note
+clustering parameter s8 define s8
+mass sum show table ii fix neutrino mass sum iii vary neutrino mass sum
+fix neutrino mass sum comparison table ii limit scope free streaming fluid
+reference case consider boundary case interact dark radiation case
+consider
+
+ev cover massless neutrino minimum normal hierarchy mass configuration
+degenerate mass denote deg normal hierarchy approximation massless massive neutrino
+denote massless minimum invert hierarchy mass degenerate mass
+table iii allow neutrino mass sum vary common choice remain agnostic
+mass cosmological neutrino freely vary neutrino mass sum
+
+acknowledge physics
+allow
+
+cosmology compare terrestrial measurement e.g.
+impose minimal allow neutrino mass sum roughly correspond minimal mass sum allow
+normal hierarchy configuration
+
+ev case consider degenerate massive neutrino
+difference compare realistic configuration small
+
+prior ev ev deg ev massless ev
+free streaming Neff CL
+fluid Neff CL
+table ii bound effective number extra relativistic species Neff choice fix neutrino mass
+sum
+
+
+
+prior free streaming Fluid Decoupling Instantaneous Decoupling Recoupling
+ev Neff CL
+ev Neff CL
+table iii bound effective number extra relativistic species Neff choice vary neutrino mass
+sum
+
+case neutrino mass implement degenerate state m?i
+
+
+
+find difference order bound Neff common choice literature treat
+neutrino mass difference increase common choice simplicity paper assume
+standard neutrino behave expect contribution Neff result
+obtain assumption relaxed Neff varied
+side note large neutrino mass sum detect cosmology Neff bound
+dramatically change hint recent analysis e.g. analysis factor Planck
+lense anomaly11 find
+
+
+ev CL combination boss Planck
+act dr4 wmap result well ref similarly large neutrino mass sum bound cosmology
+avoid Planck lensing anomaly rudimentary check fix
+
+find free streaming
+Neff fluid Neff CL wildly conventional result proper
+analysis full lensing anomaly treat likelihood vary neutrino mass sum conduct
+large neutrino mass reality Neff bound change
+vi discussion conclusion
+dark radiation commonly arise bsm scenario contribute detectable level radiation density
+Universe addition photon neutrino contribution typically parametrize Neff
+constrain cosmological datum signature DR vary depend nature DR
+parameter Neff solely characterize energy density insufficient capture full range scenario
+generally DR perturbation SM particle energy density pressure
+anisotropic stress evolve differently depend DR interact constituent
+general interaction rate evolve differently Hubble parameter dark radiation decouple recouple
+interaction cosmic history paper explore cosmological signature constraint
+DR interaction modify time dependence sound speed anisotropic stress DR
+leave distinct signature cosmological observable
+classify DR interaction type free streaming fluid decouple instantaneous decoupling
+recouple free streaming fluid DR usual scenario radiation non-interacting
+interact observable cosmic history free streaming case part standard cosmological
+analysis e.g. fluid case study e.g. decouple DR case
+interaction heavy mediator interaction cease radiation transition fluid
+free streaming SM neutrino case decouple transition happen smoothly
+contrast instantaneous decoupling occur suddenly due presence heavy bind state exponentially
+suppress scatter rate similar SM hydrogen recombination recouple DR arise scenario light
+mediator renormalizable interaction term theory case DR initially free streaming
+interaction change behavior DR behave fluid decoupling recouple type
+model e.g. scenario describe Sec ii implement DR scenario
+boltzmann equation relaxation time approximation include collision term Boltzmann
+hierarchy interaction term include thermal average interaction rate relaxation time coefficient
+carefully calculate work interaction benchmark relaxation time coefficient
+depend multipole time moment Boltzmann hiearchy transition fluid free
+streaming depend define decouple recouple respect moment Boltzmann
+hierarchy relate anisotropic stress provide precise relation parameter DR Lagrangian
+decoupling recouple redshift approach describe Sec iii detail calculation
+give Appendix A.
+show DR scenario lead distinct signature CMB matter power spectra
+signature detailed discussion physical mechanism present Sec iv summary
+change CMB power spectra fig. matter power spectra fig. CMB lense fig.
+interest sensitivity matter power spectrum duration decoupling transition visible
+compare panel fig. anticipate allow Neff signature
+matter power spectrum small detect interesting explore feature
+exploit detect constrain DR future large scale structure dataset leave future work
+derive mcmc constraint Planck CMB datum bao datum DR scenario
+cosmological sampling package MontePython interface modify version Boltzmann solver CLASS
+e.g. ref discussion Planck lensing anomaly
+
+Boltzmann hierarchy relaxation time approximation implement interact
+DR case marginalize posterior distribution case show select parameter
+fig. full cosmological parameter space appendix table show bound
+cosmological parameter information well fit model find statistically significant bound
+coupling constant DR although find slight preference late transition redshift instantaneous
+decouple DR recombination fluid limit case datum exhibit interesting
+feature specific time redshift early universe constraining datum require derive
+statistically significant bound constraint Neff differ marginally case
+order note model interact DR consider resolve h0
+tension Planck CMB bound Neff allow signifcant deviation standard prediction
+situation unchanged presence interaction model consideration unable
+alleviate cosmological tension finally table ii iii consider prior choice neutrino
+mass sum affect bound Neff DR case find difference order comparable large
+difference due interaction highlight importance clear prior assumption report
+result
+although current datum provide hint prefer coupling interact DR place
+statistically significant bound future experiment survey detect small scale signature
+interact DR discuss Sec iv upcome CMB experiment Simons Observatory future cmb s4
+experiment possibly CMB HD delve increasingly small scale CMB anisotropy
+potentially bring signature interact radiation reach compare signature interaction
+primary CMB fig. increase significantly small scale well CMB lense fig.
+future dataset simultaneously aid detect signature interaction constrain Neff
+good precision order magnitude improvement expect cmb s4 current constraint
+concurrently datum current term galaxy survey desi euclid Roman Telescope
+Rubin observatory dramatically improve measurement linear theory matter
+power spectrum signature interact radiation show fig. present interesting target worthy
+exploration long term gravitational wave present clean complementary probe DR
+interaction history summary prospects confirm rule non-standard interaction
+neutrino DR sector excellent
+acknowledgement
+grateful helpful conversation Manuel A. Buen Abad Soubhik Kumar Zach Weiner tb
+ML acknowledge support DOE Grant DE-SC0017848 tb support INFN project
+grant73 tec nu COSMOS network asi Italian Space Agency
+grant -24-h -24-h JHC support NSF Grant PHY Maryland Center
+fundamental physics mcfp Johns Hopkins University Joint Postdoc Fund work pd support
+Department Energy grant de-sc0010008 ML acknowledge additional support DOE grant
+de-sc0023183 Department Physics College Arts Sciences University Washington
+result paper obtain high performance computing system Institute Advanced
+computational science Stony Brook University
+appendix detail collision term boltzmann equation
+appendix present detail collision term Boltzmann equation eq Sec iii
+show case scatter process label momenta initial final particle
+collision term order define
+
+g3
+2q
+
+d3l
+2l
+
+d3q
+2q
+
+d3l
+2l
+
+
+
+eq eq eq eq
+
+a1
+degree freedom particle
+Eq a1 analytic expression collision term integration make approximation
+assume kind DR analysis thermal distribution eq
+assume eq Maxwell Boltzmann distribution Bose Einstein Fermi Dirac distribution
+
+neglect Pauli blocking bose enhancement final state particle validity assumption discuss
+Sec iii discussion Eq assumption case study
+consider non-degenerate initial final state
+ready calculate DR scenario list Sec ii ultimate goal obtain
+relevant Eq
+Decoupling
+consider Majorana fermion decouple DR interaction mediate heavy mediator
+discussion Sec ii case
+
+
+
+
+16g
+
+eff s2 t2 u2 Geff effective Fermi
+constant Eq Mandelstam varible Boltzmann hierarchy write
+
+
+
+ln
+ln
+
+
+nt
+0g
+
+eff
+a4
+
+
+ng2
+eff
+2a4
+
+dq
+
+km
+
+
+q2q 2e td
+
+q?f
+qf
+a2
+
+
+
+
+
+
+
+nt
+0g
+
+eff
+a4
+
+
+ng2
+eff
+2a4
+
+dq
+
+km
+
+
+q2q 2e td
+
+q?f
+qf
+a3
+
+
+
+
+
+ln
+ln
+
+
+
+
+
+
+
+
+
+
+nt
+0g
+
+eff
+a4
+
+
+ng2
+eff
+2a4
+
+dq
+
+km
+
+
+q2q 2e td
+
+q?f
+qf
+a4
+
+
+
+
+nt
+0g
+
+eff
+a4
+
+
+ng2
+eff
+2a4
+
+dq?Km
+
+q?f
+qf
+
+a5
+td temperature DR today quantity denote averaged phase space distribution
+Legendre decomposition
+
+
+
+cos a6
+kq cos Legendre polynomial order function km
+define
+km
+
+
+
+cos km cos cos a7
+
+km cos
+
+
+16p
+q2
+
+
+3p 2p q2
+6p
+
+a8
+td td mention boltzmann equation assume
+background density follow Maxwell Boltzmann Bose Einstein Fermi Dirac distribution
+eq ne?q td a9
+normalization factor choose match energy density Maxwell Boltzmann Bose
+Einstein Fermi Dirac distribution
+
+dq q3f eq
+
+dq q3fbe fd boson
+fermion define
+cos
+
+q3dqf
+q3dqf
+
+
+
+cos a10
+
+Boltzmann hierarchy relaxation time approximation achieve
+make follow approximation
+
+
+ln
+ln
+a11
+integrate Boltzmann hierarchy Eqs a2 a5 Boltzmann hierarchy show
+Eq definition Eq find coefficient consistent
+energy momentum conservation high order
+recouple
+recouple case consider scalar DR interaction Sec ii case averaged matrix
+element calculate
+
+
+
+
+
+
+boltzmann equation read
+
+
+
+ln
+ln
+
+
+
+
+
+3q
+
+
+
+
+
+
+dq
+
+k0
+e?q td
+q?f
+qf
+a12
+
+
+
+
+
+
+
+
+
+
+3q
+
+
+
+
+
+
+dq?k0
+
+q?f
+qf
+a13
+
+
+
+
+
+ln
+ln
+
+
+
+
+
+
+
+
+
+
+
+
+
+3q
+
+
+
+
+
+
+dq?k0
+
+q?f
+qf
+a14
+
+
+
+
+
+
+
+3q
+
+
+
+
+
+
+dq?k0
+
+q?f
+qf
+
+a15
+
+k0 cos
+
+
+a16
+Boltzmann hierarchy Eq integrate eq a12 a15 approximation Eq a11
+base definition Eq coefficient recouple case
+due energy momentum conservation note
+recouple case small unity mean naively set generate large deviation
+estimation zrec show Eq
+appendix model interact scalar dark radiation
+present model dark radiation consist interact light scalar consider axion
+particle alp dark sector denote Goldstone boson global dark symmetry
+break spontaneously break scale demand lead coupling field
+
+fgdg?d GD field strength dark SU gauge field coupling rewrite total
+derivative alp mass protect shift symmetry perturbative level naturally light
+
+dark SU field confines acquire potential non-perturbatively
+cos
+
+
+
+
+
+2f2
+
+
+24f4
+
+
+m2
+
+
+
+m2
+
+24f2
+b1
+characterize energy scale confinement line equation
+neglect term expansion effect suppress fn
+line Eq b1 show alp model predict naturally light scalar field
+
+
+interaction
+m2
+
+
+check alp model model recouple dark radiation demand
+thermal relic similar SM neutrino cosmic history relevant cmb measurement ii
+correct interaction strength recouple recombination interested case low
+SU gauge field thermal equilibrium td condition achieve
+td drop confinement phase transition occur dark SU theory light
+particle phase transition SU gauge degree freedom eventually convert conversion
+fast give low consider plausible treat thermal relic TD
+high remain thermal relic history relevant cmb measurement
+translate constraint ev ev roughly correspond high temperature scale
+current CMB datum probe
+condition coupling strength order achieve recouple
+discussion Sec ii give correlate fix m2
+
+arbitrary
+small lead small violate condition assume temperature dark sector
+roughly temperature SM neutrino bath td
+ev ensure remain radiation
+recombination saturate ev infer mev ev alp
+model satisfy condition benchmark model recouple dark radiation
+appendix full mcmc result
+figure show full cosmological parameter space result fig. top leave top
+bottom edge parameter space clustering parameter s8 show
+galaxy survey bind kids comparison purple note edge range
+visible show bind h0 Ref grey edge h0 parameter space note
+edge range visible
+
+
+
+
+
+
+
+cd
+
+
+
+
+
+
+
+
+
+
+
+
+
+ln
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ei
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+eff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+log10 Geff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+zdec
+
+
+
+
+
+
+
+
+
+
+
+lo
+
+
+
+eff
+
+
+
+
+
+
+cdm
+
+
+
+
+
+
+
+
+
+
+ln 1010a
+
+
+
+
+
+
+
+
+
+
+
+zreio
+
+
+
+
+
+
+
+
+Neff
+
+
+
+h0
+
+
+
+
+s8
+free streaming
+fluid
+Decoupling
+FIG. full cosmological parameter space free streaming fluid Decoupling case
+
+
+
+
+
+
+
+cd
+
+
+
+
+
+
+
+
+
+
+
+
+
+ln
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ei
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+eff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+log10 zdec
+
+
+
+
+
+
+
+
+
+
+lo
+
+
+
+ec
+
+
+
+
+
+
+cdm
+
+
+
+
+
+
+
+
+
+
+ln 1010a
+
+
+
+
+
+
+
+
+
+
+
+zreio
+
+
+
+
+
+
+
+
+Neff
+
+
+
+h0
+
+
+
+
+s8
+free streaming
+fluid
+instantaneous decoupling
+FIG. full cosmological parameter space free streaming fluid Instantaneous Decoupling case
+
+
+
+
+
+
+
+cd
+
+
+
+
+
+
+
+
+
+
+
+
+
+ln
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ei
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+eff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+log10
+
+log10 zrec
+
+
+
+
+
+
+
+
+
+
+
+lo
+
+
+
+
+
+
+
+
+
+
+cdm
+
+
+
+
+
+
+
+
+
+
+ln 1010a
+
+
+
+
+
+
+
+
+
+
+
+zreio
+
+
+
+
+
+
+
+
+Neff
+
+
+
+h0
+
+
+
+
+s8
+free streaming
+fluid
+recouple
+FIG. full cosmological parameter space free streaming fluid recouple case
+
+Z. Chacko H. S. Goh R. Harnik Phys Rev. Lett arxiv hep ph
+Z. Chacko N. Craig P. J. Fox R. Harnik JHEP arxiv hep ph
+N. Craig S. Koren T. Trott JHEP arxiv hep ph
+C. Csaki E. Kuflik S. Lombardo Phys Rev. arxiv hep ph
+N. Arkani Hamed T. Cohen R. T. Agnolo A. Hook H. D. Kim D. Pinner Phys Rev. Lett
+arXiv hep ph
+N. Aghanim al. Planck Astron astrophy a6 Erratum astron.astrophys c4
+arXiv astro ph.co
+L. Verde T. Treu A. Riess arxiv astro ph.co
+E. Di Valentino al. Astropart phy arxiv astro ph.co
+N. Scho?neberg G. Franco Abella?n A. Pe?rez Sa?nchez S. J. Witte V. Poulin J. Lesgourgues Phys Rept
+arxiv astro ph.co
+A. Amon al. Mon. Roy Astron soc. arxiv astro ph.co
+R. J. Wilkinson C. Boehm J. Lesgourgues JCAP arxiv astro ph.co
+M. Archidiacono S. Hannestad R. S. Hansen T. Tram Phys Rev. arxiv astro
+ph.CO
+M. A. Buen Abad G. Marques Tavares M. Schmaltz Phys Rev. arxiv hep ph
+J. Lesgourgues G. Marques Tavares M. Schmaltz JCAP arxiv astro ph.co
+M. Archidiacono S. Hannestad R. S. Hansen T. Tram Phys Rev. arxiv astro
+ph.CO
+M. Archidiacono S. Gariazzo C. Giunti S. Hannestad R. Hansen M. Laveder T. Tram JCAP
+arXiv astro ph.co
+Z. Chacko Y. Cui S. Hong T. Okui Y. Tsai JHEP arxiv astro ph.co
+P. Ko Y. Tang Phys Lett arxiv hep ph
+P. Ko Y. Tang Phys Lett arxiv hep ph
+P. Ko N. Nagata Y. Tang Phys Lett arxiv hep ph
+M. Archidiacono S. Bohr S. Hannestad J. H. rgensen J. Lesgourgues JCAP arxiv
+astro ph.co
+M. A. Buen Abad M. Schmaltz J. Lesgourgues T. Brinckmann JCAP arxiv astro
+ph.CO
+E. Di Valentino C. ehm E. Hivon F. R. Bouchet Phys Rev. arxiv astro ph.co
+
+A. Olivares Del Campo C. hm S. Palomares Ruiz S. Pascoli Phys Rev. arxiv
+hep ph
+M. A. Buen Abad R. Emami M. Schmaltz Phys Rev. arxiv hep ph
+J. Stadler C. hm O. Mena JCAP arxiv astro ph.co
+M. Archidiacono D. C. Hooper R. Murgia S. Bohr J. Lesgourgues M. Viel JCAP arxiv
+astro ph.co
+M. Archidiacono S. Gariazzo C. Giunti S. Hannestad T. Tram JCAP arxiv astro
+ph.CO
+S. Heimersheim N. Scho?neberg D. C. Hooper J. Lesgourgues JCAP arxiv astro ph.co
+
+G. Choi T. T. Yanagida N. Yokozaki JHEP arxiv hep ph
+N. Becker D. C. Hooper F. Kahlhoefer J. Lesgourgues N. Scho?neberg JCAP arxiv
+astro ph.co
+M. R. Mosbech C. Boehm S. Hannestad O. Mena J. Stadler Y. Y. Y. Wong JCAP
+arXiv astro ph.co
+S. Ghosh S. Kumar Y. Tsai JCAP arxiv astro ph.co
+F. Y. Cyr Racine F. Ge L. Knox Phys Rev. Lett arxiv astro ph.co
+D. C. Hooper M. Lucca Phys Rev. arxiv astro ph.co
+D. Aloni A. Berlin M. Joseph M. Schmaltz N. Weiner Phys Rev. arxiv
+astro ph.co
+M. A. Corona R. Murgia M. Cadeddu M. Archidiacono S. Gariazzo C. Giunti S. Hannestad JCAP
+arxiv astro ph.co
+S. Bansal J. H. Kim C. Kolda M. Low Y. Tsai JHEP arxiv hep ph
+D. C. Hooper N. Scho?neberg R. Murgia M. Archidiacono J. Lesgourgues M. Viel JCAP
+arXiv astro ph.co
+M. Joseph D. Aloni M. Schmaltz E. N. Sivarajan N. Weiner arxiv astro ph.co
+M. A. Buen Abad Z. Chacko C. Kilic G. Marques Tavares T. Youn arxiv hep ph
+S. Bashinsky U. Seljak Phys Rev. arxiv astro ph
+Z. Hou R. Keisler L. Knox M. Millea C. Reichardt Phys Rev. arxiv astro ph.co
+
+
+G. B. Gelmini M. Roncadelli Phys Lett 99b
+Y. Chikashige R. Mohapatra R. Peccei Physics Letters
+H. M. Georgi S. L. Glashow S. Nussinov Nucl phy b193
+F. Y. Cyr Racine K. Sigurdson Phys Rev. D90 arxiv astro ph.co
+D. Baumann D. Green J. Meyers B. Wallisch JCAP arxiv astro ph.co
+C. Brust Y. Cui K. Sigurdson JCAP arxiv astro ph.co
+G. Choi C. T. Chiang M. LoVerde JCAP arxiv astro ph.co
+N. Blinov G. Marques Tavares JCAP arxiv astro ph.co
+Z. Chacko L. J. Hall T. Okui S. J. Oliver Phys Rev. arxiv hep ph
+S. Hannestad JCAP arxiv astro ph
+S. Hannestad G. Raffelt Phys Rev. arxiv hep ph
+N. F. Bell E. Pierpaoli K. Sigurdson Phys Rev. arxiv astro ph
+R. F. Sawyer Phys Rev. arxiv astro ph
+A. Friedland K. M. Zurek S. Bashinsky arxiv astro ph
+A. Basboll O. E. Bjaelde S. Hannestad G. G. Raffelt Phys Rev. arxiv astro ph
+
+K. S. Jeong F. Takahashi Phys Lett arxiv hep ph
+M. Archidiacono S. Hannestad JCAP arxiv astro ph.co
+F. Forastieri M. Lattanzi P. Natoli JCAP arxiv astro ph.co
+F. Forastieri M. Lattanzi G. Mangano A. Mirizzi P. Natoli N. Saviano JCAP arxiv
+astro ph.co
+F. Forastieri M. Lattanzi P. Natoli Phys Rev. arxiv astro ph.co
+A. Das S. Ghosh JCAP arxiv astro ph.co
+S. Roy Choudhury S. Hannestad T. Tram JCAP arxiv astro ph.co
+T. Brinckmann J. H. Chang M. LoVerde Phys Rev. arxiv astro ph.co
+M. Escudero Abenza JCAP arxiv hep ph
+P. Taule M. Escudero M. Garny Phys Rev. arxiv astro ph.co
+C. Dvorkin al. Snowmass Summer Study arxiv hep ph
+K. N. Abazajian al. arxiv hep ph
+C. D. Kreisch F. Y. Cyr Racine O. Dore Phys Rev. arxiv astro ph.co
+M. Escudero S. J. Witte Eur phy J. arxiv astro ph.co
+M. Escudero S. J. Witte Eur phy J. arxiv hep ph
+N. Blinov K. J. Kelly G. Z. Krnjaic S. D. McDermott Phys Rev. Lett arxiv
+astro ph.co
+V. Brdar M. Lindner S. Vogl X. J. Xu Phys Rev. arxiv hep ph
+F. F. Deppisch L. Graf W. Rodejohann X. J. Xu Phys Rev. arxiv hep ph
+K. F. Lyu E. Stamou L. T. Wang Phys Rev. arxiv hep ph
+I. M. Oldengott C. Rampf Y. Y. Y. Wong JCAP arxiv astro ph.co
+I. M. Oldengott T. Tram C. Rampf Y. Y. Wong JCAP arxiv astro ph.co
+D. Blas J. Lesgourgues T. Tram JCAP arxiv astro ph.co
+J. Lesgourgues arxiv astro ph.im
+J. Lesgourgues T. Tram JCAP arxiv astro ph.co
+J. Froustey C. Pitrou M. C. Volpe JCAP arxiv hep ph
+J. J. Bennett G. Buldgen P. F. De Salas M. Drewes S. Gariazzo S. Pastor Y. Y. Y. Wong JCAP
+arXiv hep ph
+K. Akita M. Yamaguchi JCAP arxiv hep ph
+Z. Hou R. Keisler L. Knox M. Millea C. Reichardt physical review physrevd
+D. E. Kaplan G. Z. Krnjaic K. R. Rehermann C. M. Wells JCAP arxiv hep ph
+F. Y. Cyr Racine K. Sigurdson Phys Rev. arxiv astro ph.co
+S. Bansal J. Barron D. Curtin Y. Tsai arxiv hep ph
+Z. Chacko D. Curtin M. Geller Y. Tsai JHEP arxiv hep ph
+S. Hannestad R. J. Scherrer Phys Rev. arxiv astro ph
+N. Metropolis A. W. Rosenbluth M. N. Rosenbluth A. H. Teller E. Teller J. Chem phy
+W. K. Hastings Biometrika
+B. Audren J. Lesgourgues K. Benabed S. Prunet JCAP arxiv astro ph.co
+T. Brinckmann J. Lesgourgues Phys Dark Univ. arxiv astro ph.co
+N. Aghanim al. Planck Astron astrophy a5 arxiv astro ph.co
+N. Aghanim al. Planck Astron astrophy a8 arxiv astro ph.co
+J. L. Bernal T. L. Smith K. K. Boddy M. Kamionkowski Phys Rev. arxiv
+astro ph.co
+F. Beutler C. Blake M. Colless D. Jones L. Staveley Smith L. Campbell Q. Parker W. Saunders F. Watson
+Mon. Roy Astron soc. arxiv astro ph.co
+A. J. Ross L. Samushia C. Howlett W. J. Percival A. Burden M. Manera Mon. Roy Astron soc.
+
+arxiv astro ph.co
+S. Alam al. boss Mon. Roy Astron Soc. arxiv astro ph.co
+L. Anderson al. boss Mon. Roy Astron soc. arxiv astro ph.co
+J. Lesgourgues S. Pastor Phys Rept arxiv astro ph astro ph
+S. Chabanier al. jcap arxiv astro ph.co
+E. Boera G. D. Becker J. S. Bolton F. Nasir Astrophys J. arxiv astro ph.co
+A. G. Riess al. Astrophys J. Lett l7 arxiv astro ph.co
+C. S. Lorenz E. Calabrese D. Alonso Phys Rev. arxiv astro ph.co
+S. M. Koksbang S. Hannestad JCAP arxiv astro ph.co
+C. S. Lorenz L. Funcke E. Calabrese S. Hannestad Phys Rev. arxiv astro ph.co
+
+Z. Chacko A. Dev P. Du V. Poulin Y. Tsai Phys Rev. arxiv astro ph.co
+M. Escudero J. Lopez Pavon N. Rius S. Sandner JHEP arxiv hep ph
+C. S. Lorenz L. Funcke M. Lo?ffler E. Calabrese Phys Rev. arxiv astro ph.co
+
+G. Franco Abella?n Z. Chacko A. Dev P. Du V. Poulin Y. Tsai JHEP arxiv hep ph
+
+J. Alvey M. Escudero N. Sabti T. Schwetz Phys Rev. arxiv hep ph
+P. Motloch W. Hu Phys Rev. arxiv astro ph.co
+R. Sgier C. Lorenz A. Refregier J. Fluri D. Zu?rcher F. Tarsitano arxiv astro ph.co
+S. Aiola al. act jcap arxiv astro ph.co
+E. Di Valentino A. Melchiorri Astrophys J. Lett l18 arxiv astro ph.co
+P. Ade al. Simons Observatory jcap arxiv astro ph.co
+K. N. Abazajian al. cmb s4 arxiv astro ph.co
+S. Aiola al. CMB HD arxiv astro ph.co
+A. Aghamousa al. DESI arxiv astro ph.im
+L. Amendola al. live Rev. Rel arxiv astro ph.co
+O. Dore al. wfirst arxiv astro ph.co
+P. A. Abell al. LSST Science LSST Project arxiv astro ph.im
+M. Loverde Z. J. Weiner arxiv astro ph.co
+C. Heymans al. Astron astrophy a140 arxiv astro ph.co

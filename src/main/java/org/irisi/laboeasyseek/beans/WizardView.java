@@ -15,7 +15,7 @@ public class WizardView implements Serializable {
 
     private int activeIndex = 0;
     private final int minIndex = 0;
-    private final int maxIndex = 3;
+    private final int maxIndex = 2;
 
     public void handleTabChange(int index) {
         if (index <= maxIndex && index >= minIndex) {

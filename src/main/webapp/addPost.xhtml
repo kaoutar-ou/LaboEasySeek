@@ -52,7 +52,6 @@
                             <p:menuitem value="General Info" update="@form"
                                         actionListener="#{wizardView.handleTabChange(1)}"/>
                             <p:menuitem value="Media" update="@form" actionListener="#{wizardView.handleTabChange(2)}"/>
-                            <p:menuitem value="Tags" update="@form" actionListener="#{wizardView.handleTabChange(3)}"/>
                         </p:steps>
                     </div>
 
@@ -65,7 +64,6 @@
                                     <f:selectItem itemLabel="Report" itemValue="report"/>
                                     <f:selectItem itemLabel="Event" itemValue="event"/>
                                     <f:selectItem itemLabel="Article" itemValue="article"/>
-                                    <f:selectItem itemLabel="Other" itemValue="other"/>
                                 </p:selectOneButton>
                             </h:form>
                         </div>
@@ -155,33 +153,7 @@
                             <p:commandButton styleClass="ui-button-help"
                                              actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}"
                                              update="@form" value="Previous"/>
-                            <p:commandButton styleClass="ui-button-help"
-                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}"
-                                             update="@form" value="Next"/>
-                        </div>
-                    </p:panel>
 
-                    <p:panel rendered="#{wizardView.activeIndex eq 2}">
-
-
-                        <p:outputLabel value="Here you add some tags to your post"/>
-                        <div class="my-5">
-                            <div class="my-3">
-                                <h:form>
-                                    <div class="field col-6 md:col-4 my-3">
-                                        <p:outputLabel for="tags" styleClass="block">Tags</p:outputLabel>
-                                        <p:chips id="tags" value="#{itemsBean.items}" styleClass="block"/>
-                                        <small class="block">Type a tag then press enter ...</small>
-                                    </div>
-                                </h:form>
-                            </div>
-                        </div>
-                        <div class="navigation-container flex justify-between">
-                            <p:commandButton styleClass="ui-button-help"
-                                             actionListener="#{wizardView.handleTabChange(wizardView.activeIndex-1)}"
-                                             update="@form" value="Previous">
-                                <f:ajax execute="@all" render="@form"/>
-                            </p:commandButton>
                             <p:commandButton styleClass="ui-button-help"
                                              actionListener="#{wizardView.handleTabChange(wizardView.activeIndex+1)}"
                                              update="@form" value="Next">
@@ -190,7 +162,7 @@
                         </div>
                     </p:panel>
 
-                    <p:panel rendered="#{wizardView.activeIndex eq 3}">
+                    <p:panel rendered="#{wizardView.activeIndex eq 2}">
 
                         <p:outputLabel value="Here you can upload your files"/>
                         <div class="my-5">

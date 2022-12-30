@@ -35,6 +35,24 @@
 
 
             <p:card style="width: 100%; margin-bottom: 2em">
+
+                <!--                <f:facet name="title">-->
+                <div class="flex justify-between -mt-3">
+                    <div class="font-semibold text-2xl">
+                        Post details
+                    </div>
+                    <!--                </f:facet>-->
+                    <div class="">
+                        <h:form id="msgForm" styleClass="mx-3">
+                            <h:commandButton
+                                    styleClass="w-fit ml-2 my-3 py-2 px-4  font-sans font-semibold text-sm outline outline-1 outline-violet-500 text-white bg-violet-500 shadow-md active:shadow-none"
+                                    id="msgButton"
+                                    action="#{messageController.handleSetReceiver(postController.post.user.id.toString())}"
+                                    value="Message Publisher"/>
+                        </h:form>
+                    </div>
+                </div>
+
                 <h:panelGroup styleClass="flex items-center w-full"
                               rendered="#{not empty postController.post.image and not empty postController.post.image.title}">
                     <div class="bg-cover bg-center w-full h-72"
@@ -43,13 +61,6 @@
                     </div>
                 </h:panelGroup>
 
-                <f:facet name="title">
-                    Post details
-
-                    <h:form id="msgForm" styleClass="mx-3">
-                        <h:commandButton id="msgButton" action="#{messageController.handleSetReceiver(postController.post.user.id.toString())}" value="Message Publisher"/>
-                    </h:form>
-                </f:facet>
 
                 <div class="grid grid-cols-6 mt-3">
 <!--                    iterate over topics-->
@@ -123,6 +134,12 @@
                                 <h:panelGroup rendered="#{not empty postController.post.description}">
                                     <div>
                                         <span class="mb-3 font-normal text-gray-700"> #{postController.post.description} </span>
+                                    </div>
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{not empty postController.post.document.title}">
+                                    <div class="mt-3">
+                                        <a href="#{facesContext.externalContext.requestContextPath}/resources/media/#{postController.post.document.title}" class="mb-3 font-normal text-violet-600 media-download"> Download Document </a>
                                     </div>
                                 </h:panelGroup>
                             </div>
@@ -232,7 +249,7 @@
                                             <div class="flex flex-row items-center">
                                                 <i class="fa fa-comments-o fa-lg"></i>
                                                 <span class="mx-2">
-                                                            0
+                                                           #{postBean.getComments(postController.post.id).size()}
                                                         </span>
                                             </div>
                                         </div>
@@ -304,6 +321,11 @@
 
         </div>
         <script type="text/javascript">
+
+            window.onload = (e) => {
+                document.querySelectorAll('.media-download').forEach(function(e) { e.setAttribute('download', ''); });
+            }
+
             function displayAlert() {
 
                 window.alert("hi");
